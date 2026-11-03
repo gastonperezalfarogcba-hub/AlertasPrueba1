@@ -532,6 +532,127 @@ def motivo_seguimiento(oficiales: list[dict], eventos: list[dict], S_: dict) -> 
 
 
 # ---------------------------------------------------------------------------
+# 2d. Aviso de lluvia (sin alerta) · METAR observado + pronóstico por comuna
+# ---------------------------------------------------------------------------
+NOMBRE_ESTACION = {"SABE": "Aeroparque", "SADF": "San Fernando", "SADP": "El Palomar", "SAEZ": "Ezeiza", "SADM": "Morón"}
+
+
+def texto_wx(wx: str) -> str:
+    """Traduce el código de tiempo presente de un METAR (ej. '-SHRA', 'TSRA', 'VCSH')."""
+    if not wx:
+        return ""
+    partes = []
+    for tok in wx.split():
+        inten = "débil" if tok.startswith("-") else "fuerte" if tok.startswith("+") else ""
+        t = tok.lstrip("+-")
+        cerca = t.startswith("VC")
+        t = t[2:] if cerca else t
+        base = ("tormenta con lluvia" if "TS" in t and "RA" in t else "tormenta" if "TS" in t else
+                "granizo" if "GR" in t or "GS" in t else "chaparrones" if "SH" in t else
+                "lluvia" if "RA" in t else "llovizna" if "DZ" in t else "niebla" if "FG" in t else
+                "neblina" if "BR" in t else "bruma" if "HZ" in t else "")
+        if base:
+            partes.append(base + (f" {inten}" if inten and base not in ("niebla", "neblina", "bruma") else "") + (" en las cercanías" if cerca else ""))
+    return ", ".join(partes)
+
+
+def descargar_metar(estaciones: list[str]) -> list[dict]:
+    """Observaciones aeronáuticas (METAR) de las estaciones cercanas, vía aviationweather.gov."""
+    r = requests.get("https://aviationweather.gov/api/data/metar",
+                     params={"ids": ",".join(estaciones), "format": "json", "hours": 2}, headers=UA, timeout=20)
+    r.raise_for_status()
+    datos = r.json() if r.text.strip() else []
+    out = {}
+    for m in datos:
+        icao = m.get("icaoId") or (m.get("rawOb") or "").split(" ")[0]
+        raw = m.get("rawOb") or ""
+        t = m.get("obsTime")
+        try:
+            obs = datetime.fromtimestamp(int(t), tz=TZ) if t is not None else None
+        except (TypeError, ValueError):
+            obs = None
+        wx = m.get("wxString")
+        if wx is None:  # si el campo no viene, lo sacamos del texto crudo
+            wx = " ".join(re.findall(r"(?<=\s)([-+]?(?:VC)?(?:TS|SH)?(?:RA|DZ|GR|GS|BR|FG|HZ)+)(?=\s)", f" {raw} "))
+        if icao and (icao not in out or (obs and out[icao]["obs"] and obs > out[icao]["obs"])):
+            out[icao] = {"estacion": icao, "nombre": NOMBRE_ESTACION.get(icao, icao), "obs": obs, "wx": wx or "",
+                         "texto": texto_wx(wx or ""), "temp": m.get("temp"), "viento": m.get("wspd"),
+                         "rafaga": m.get("wgst"), "raw": raw}
+    for v in out.values():
+        v["llueve"] = bool(re.search(r"(RA|DZ|TS|GR|GS)", re.sub(r"VC\w+", "", v["wx"])))
+        v["vigente"] = bool(v["obs"] and ahora() - v["obs"] <= timedelta(minutes=90))
+    return [out[k] for k in estaciones if k in out]
+
+
+def intensidad_txt(mm: float) -> str:
+    return "débil" if mm < 2.5 else "moderada" if mm < 7.6 else "fuerte"
+
+
+def situacion_lluvia(datos: list[dict], comunas: list[dict], metar: list[dict], A: dict) -> dict:
+    """Determina si llueve ahora y si se espera lluvia en la próxima hora."""
+    hora_actual = ahora().replace(minute=0, second=0, microsecond=0)
+    umbral = float(A.get("mm_hora_minimo", 0.5))
+    ahora_c, prox_c, horas_fin, mas_mm = [], [], [], {}
+    for c, d in zip(comunas, datos):
+        H = d["hourly"]
+        t = [parse_local(x) for x in H["time"]]
+        i0 = next((i for i, x in enumerate(t) if x >= hora_actual), 0)
+        cur = (d.get("current") or {}).get("precipitation") or 0     # últimos 15 min (modelo)
+        p_hora = H["precipitation"][i0] or 0
+        if p_hora >= umbral or cur * 4 >= umbral:
+            ahora_c.append((c["n"], max(p_hora, cur * 4)))
+        if i0 + 1 < len(t):
+            p1, pr1 = H["precipitation"][i0 + 1] or 0, H["precipitation_probability"][i0 + 1] or 0
+            if p1 >= umbral and pr1 >= A.get("prob_anticipado", 60):
+                prox_c.append((c["n"], p1))
+        # hasta cuándo sigue lloviendo y cuánto más cae (próximas 6 h)
+        fin, suma = None, 0
+        for k in range(i0, min(i0 + 6, len(t))):
+            pk = H["precipitation"][k] or 0
+            suma += pk
+            if pk >= umbral:
+                fin = t[k] + timedelta(hours=1)
+        if fin:
+            horas_fin.append(fin)
+        mas_mm[c["n"]] = suma
+    obs = [m for m in metar if m["vigente"] and m["llueve"]]
+    sabe = next((m for m in metar if m["estacion"] == "SABE" and m["vigente"]), None)
+    llueve = len(ahora_c) >= int(A.get("comunas_minimas", 2)) or bool(sabe and sabe["llueve"])
+    return {"llueve": llueve, "comunas": sorted(ahora_c), "proxima_hora": sorted(prox_c), "observado": obs,
+            "aeroparque": sabe, "hasta": max(horas_fin) if horas_fin else None, "mas_mm": mas_mm}
+
+
+def msg_lluvia(sit: dict, tipo: str, total: int, cfg: dict, desde: str | None = None) -> str:
+    """tipo: 'empieza' | 'sigue' | 'anticipado' | 'para'."""
+    L = []
+    if tipo == "para":
+        L += ["🌤️ <b>AVISO · Dejó de llover en la Ciudad</b>"]
+        if desde:
+            L.append(f"Llovió desde las {datetime.fromisoformat(desde):%H:%M}.")
+        L.append("<i>Información, no es una alerta.</i>")
+        return "\n".join(L)
+    titulo = {"empieza": "🌦️ <b>AVISO · Está lloviendo en la Ciudad</b>",
+              "sigue": "🌧️ <b>AVISO · Sigue lloviendo en la Ciudad</b>",
+              "anticipado": "🌂 <b>AVISO · Se espera lluvia en la próxima hora</b>"}[tipo]
+    L += [titulo, "<i>Información, no es una alerta.</i>", ""]
+    lista = sit["proxima_hora"] if tipo == "anticipado" else sit["comunas"]
+    if lista:
+        n_max, mm_max = max(lista, key=lambda x: x[1])
+        L.append(f"📍 <b>Dónde:</b> {lista_comunas([n for n, _ in lista], total)}")
+        L.append(f"💧 <b>Intensidad:</b> {intensidad_txt(mm_max)} (hasta {num(mm_max, 1)} mm/h en Comuna {n_max})")
+    for m in sit["observado"][:3]:
+        L.append(f"🛩️ <b>{m['nombre']}</b> ({m['obs']:%H:%M}, observado): {m['texto'] or 'lluvia'}")
+    if tipo != "anticipado" and sit.get("hasta"):
+        top = max(sit["mas_mm"].items(), key=lambda x: x[1])
+        L.append(f"⏳ <b>Próximas horas:</b> lluvia hasta las {sit['hasta']:%H} h aprox. · "
+                 f"hasta {num(top[1])} mm más (Comuna {top[0]})")
+    url = cfg["general"].get("url_tablero")
+    if url and "TU-USUARIO" not in url:
+        L += ["", f'<a href="{e(url)}">Ver el radar en el tablero</a>']
+    return "\n".join(L)
+
+
+# ---------------------------------------------------------------------------
 # 3. SMN · alertas oficiales CAP
 # ---------------------------------------------------------------------------
 CAP_NS = {"cap": "urn:oasis:names:tc:emergency:cap:1.2"}
@@ -753,13 +874,13 @@ def responder_comandos(tg: Telegram, estado: dict, eventos: list[dict], U: dict,
     if tg.dry:
         return
     try:
-        updates = tg.api("getUpdates", offset=estado.get("tg_offset", 0), timeout=0, allowed_updates=["message"])
+        updates = tg.api("getUpdates", offset=estado.get("tg_offset", 0), timeout=0, allowed_updates=["message", "channel_post"])
     except Exception as ex:
         log("No se pudieron leer comandos:", ex)
         return
     for u in updates:
         estado["tg_offset"] = u["update_id"] + 1
-        m = u.get("message") or {}
+        m = u.get("message") or u.get("channel_post") or {}
         texto = (m.get("text") or "").strip().lower()
         cid = m.get("chat", {}).get("id")
         if not cid or not texto.startswith("/"):
@@ -815,6 +936,7 @@ def main():
 
     P = cfg.get("perspectiva", {}) or {}
     S_ = cfg.get("seguimiento", {}) or {}
+    A_ = cfg.get("aviso_lluvia", {}) or {}
     errores, eventos, persp, datos = [], [], [], None
     if cfg["fuentes"].get("open_meteo", True):
         try:
@@ -838,6 +960,13 @@ def main():
             errores.append(f"SMN: {ex}")
             log("ERROR SMN:", ex)
     eventos += oficiales
+    metar = []
+    if A_.get("activo", True):
+        try:
+            metar = descargar_metar(A_.get("estaciones_metar", ["SABE"]))
+            log("METAR OK · " + ", ".join(f"{m['estacion']} {m['wx'] or 'sin fenómenos'}" for m in metar))
+        except Exception as ex:   # no es crítico: seguimos con el pronóstico
+            log("METAR no disponible:", ex)
 
     if a.modo == "perspectiva":
         if persp:
@@ -933,6 +1062,46 @@ def main():
         estado["ultimo_envio"] = enviados[-1]
         estado["seguimiento"] = {"activo": False}
 
+    # --- aviso de lluvia (información, aunque no haya alertas) ---
+    LL = estado.setdefault("lluvia", {"estado": "seco"})
+    sit = None
+    if A_.get("activo", True) and datos:
+        sit = situacion_lluvia(datos, comunas, metar, A_)
+        silenciar = A_.get("silenciar_con_seguimiento", True) and estado.get("seguimiento", {}).get("activo")
+
+        def mandar(texto):
+            if silenciar:
+                log("Aviso de lluvia omitido (hay seguimiento activo)")
+                return
+            tg.enviar(texto)
+            enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
+            estado["ultimo_envio"] = enviados[-1]
+
+        if sit["llueve"]:
+            if LL.get("estado") != "lloviendo":
+                mandar(msg_lluvia(sit, "empieza", total, cfg))
+                LL.update(estado="lloviendo", desde=ahora().isoformat(), ultimo=ahora().isoformat())
+            else:
+                cada = int(A_.get("actualizar_cada_minutos", 60))
+                if cada and ahora() - datetime.fromisoformat(LL.get("ultimo", ahora().isoformat())) >= timedelta(minutes=cada - 3):
+                    mandar(msg_lluvia(sit, "sigue", total, cfg))
+                    LL["ultimo"] = ahora().isoformat()
+            LL["secos"] = 0
+        else:
+            if LL.get("estado") == "lloviendo":
+                LL["secos"] = LL.get("secos", 0) + 1
+                if LL["secos"] >= G.get("ciclos_para_cerrar", 2):
+                    if A_.get("avisar_cuando_para", True):
+                        mandar(msg_lluvia(sit, "para", total, cfg, LL.get("desde")))
+                    estado["lluvia"] = LL = {"estado": "seco", "seco_desde": ahora().isoformat()}
+            elif sit["proxima_hora"] and A_.get("avisar_anticipado", True) and LL.get("estado") != "anticipado" \
+                    and len(sit["proxima_hora"]) >= int(A_.get("comunas_minimas", 2)):
+                mandar(msg_lluvia(sit, "anticipado", total, cfg))
+                LL.update(estado="anticipado", anticipado=ahora().isoformat())
+            elif LL.get("estado") == "anticipado" and not sit["proxima_hora"] and \
+                    ahora() - datetime.fromisoformat(LL.get("anticipado")) >= timedelta(hours=2):
+                estado["lluvia"] = LL = {"estado": "seco"}   # la lluvia esperada no llegó: se rearma el aviso
+
     # --- resumen diario de perspectiva (una vez por día, desde la hora configurada) ---
     hoy_txt = ahora().date().isoformat()
     if (persp and P.get("resumen_diario", True) and ahora().hour >= int(P.get("hora_resumen", 8))
@@ -958,6 +1127,9 @@ def main():
         "pronostico": [x for x in eventos if x["fuente"] == "pronostico"],
         "perspectiva": persp,
         "perspectiva_config": P,
+        "lluvia": {"estado": estado.get("lluvia", {}).get("estado", "seco"), "desde": estado.get("lluvia", {}).get("desde"),
+                   "comunas": [n for n, _ in sit["comunas"]] if sit else []},
+        "observado": [{k: (v.isoformat() if isinstance(v, datetime) else v) for k, v in m.items()} for m in metar],
         "seguimiento": {"activo": bool(estado.get("seguimiento", {}).get("activo")),
                         "motivo": estado.get("seguimiento", {}).get("motivo"),
                         "ultimo": estado.get("seguimiento", {}).get("ultimo"),

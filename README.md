@@ -9,7 +9,7 @@ Sistema automático de monitoreo y alertas meteorológicas para la Ciudad de Bue
 - **Alertas por pronóstico**: el pronóstico horario de Open-Meteo, evaluado con criterios similares a los del Sistema de Alerta Temprana del SMN (amarillo, naranja y rojo).
 - **Tablero web** con mapa animado, alertas, tabla de umbrales y conexión al canal de Telegram (con código QR).
 
-Todo corre gratis en GitHub: GitHub Actions ejecuta el proceso cada 15 minutos y GitHub Pages publica el tablero.
+Todo corre gratis en GitHub: GitHub Actions ejecuta el proceso (cada 10 minutos con cron-job.org) y GitHub Pages publica el tablero.
 
 ---
 
@@ -178,6 +178,52 @@ El seguimiento empieza 3 horas antes del inicio de la alerta del SMN y termina c
 - **Configuración** en `config.yaml`, sección `seguimiento`: intervalo, horas, niveles del SMN que lo activan, y si también se activa con alertas propias de lluvia, viento o tormenta (`tambien_por_pronostico`).
 
 > GitHub puede demorar las corridas, así que el intervalo real puede ser de 30 a 40 minutos.
+
+---
+
+## Aviso de lluvia (sin alerta)
+
+Aunque no haya ninguna alerta, el bot avisa cuando **llueve en la Ciudad**. Es información, no una alerta:
+
+- 🌂 **Se espera lluvia en la próxima hora:** según el pronóstico por comuna.
+- 🌦️ **Está lloviendo:** dónde, con qué intensidad, lo **observado en Aeroparque** (METAR) y hasta qué hora seguiría.
+- 🌧️ **Sigue lloviendo:** un parte breve cada 60 minutos mientras dure.
+- 🌤️ **Dejó de llover.**
+
+Combina dos fuentes: la observación real de las estaciones aeronáuticas (Aeroparque, San Fernando, El Palomar y Ezeiza, vía aviationweather.gov) y el pronóstico de Open-Meteo para cada comuna. Si hay seguimiento por una alerta del SMN, estos avisos se silencian para no duplicar mensajes. La configuración está en `config.yaml`, sección `aviso_lluvia`.
+
+---
+
+## Que corra seguido: cron-job.org (recomendado)
+
+GitHub no garantiza los horarios programados: en momentos de mucha carga demora o saltea corridas. La solución gratuita es que un servicio externo le pida a GitHub que corra el proceso cada 10 minutos.
+
+**1. Crear un token en GitHub (solo para este repositorio)**
+
+1. github.com → tu foto → **Settings** → abajo a la izquierda, **Developer settings** → **Personal access tokens** → **Fine-grained tokens** → **Generate new token**.
+2. Completá:
+   - **Token name:** `cron-job alertas`
+   - **Expiration:** 1 año (o el máximo que permita)
+   - **Repository access:** *Only select repositories* → `AlertasPrueba1`
+   - **Permissions → Repository permissions → Actions:** *Read and write*
+3. **Generate token** y copialo. Empieza con `github_pat_` y se muestra una sola vez.
+
+**2. Configurar cron-job.org**
+
+1. Creá una cuenta gratis en [cron-job.org](https://cron-job.org) → **Create cronjob**.
+2. **URL:**
+   `https://api.github.com/repos/gastonperezalfarogcba-hub/AlertasPrueba1/actions/workflows/alertas.yml/dispatches`
+3. **Execution schedule:** *Every 10 minutes*.
+4. En **Advanced**:
+   - **Request method:** `POST`
+   - **Headers** (agregá los tres):
+     - `Authorization` = `Bearer github_pat_...` (tu token)
+     - `Accept` = `application/vnd.github+json`
+     - `Content-Type` = `application/json`
+   - **Request body:** `{"ref":"main","inputs":{"modo":"normal"}}`
+5. Guardá y tocá **Test run**: tiene que responder **204**. En GitHub → Actions va a aparecer una corrida nueva.
+
+El cron de GitHub queda como respaldo. Cuando el token venza, generá uno nuevo y reemplazalo en cron-job.org.
 
 ---
 

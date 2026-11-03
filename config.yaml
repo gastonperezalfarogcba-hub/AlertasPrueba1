@@ -70,6 +70,23 @@ seguimiento:
   nivel_minimo_pronostico: 2      # ...desde este nivel (2 = naranja)
 
 # ---------------------------------------------------------------------
+#  AVISO DE LLUVIA (información, NO es una alerta)
+#  Avisa cuando empieza a llover en la Ciudad aunque no haya alertas,
+#  cuando se espera lluvia en la próxima hora, y cuando para.
+#  Combina lo observado en Aeroparque (METAR) con el pronóstico por comuna.
+# ---------------------------------------------------------------------
+aviso_lluvia:
+  activo: true
+  mm_hora_minimo: 0.5          # mm/h en una comuna para considerar que llueve
+  comunas_minimas: 2           # cuántas comunas tienen que tener lluvia (o lluvia observada en Aeroparque)
+  avisar_anticipado: true      # avisar si se espera lluvia en la próxima hora
+  prob_anticipado: 60          # % de probabilidad mínima para el aviso anticipado
+  actualizar_cada_minutos: 60  # mientras llueve, un parte breve cada N minutos (0 = no mandar)
+  avisar_cuando_para: true
+  silenciar_con_seguimiento: true   # si hay seguimiento por alerta del SMN, no duplicar avisos
+  estaciones_metar: [SABE, SADF, SADP, SAEZ]   # Aeroparque, San Fernando, El Palomar, Ezeiza
+
+# ---------------------------------------------------------------------
 #  UMBRALES · basados en los criterios del Sistema de Alerta Temprana
 #  del SMN para la región Llanura (incluye CABA). Ver README, sección
 #  "De dónde salen los umbrales". Ajustalos con el área técnica.
