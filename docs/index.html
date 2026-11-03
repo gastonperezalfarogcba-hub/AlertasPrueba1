@@ -142,6 +142,31 @@ button,select{font-family:inherit}
 .cmds code{color:var(--accent);font-weight:700}
 .lastmsg{white-space:pre-wrap;font-size:12px;line-height:1.5;background:rgba(0,0,0,.2);border-radius:12px;padding:12px;color:#dbe6f5}
 .steps{margin:0;padding-left:18px;font-size:13px;line-height:1.6;color:#cfdcee}
+.segbar{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:rgba(41,168,235,.14);border:1px solid rgba(41,168,235,.45);font-size:12px;line-height:1.4;margin-bottom:10px}
+.segbar b{font-size:13px}
+.segbar .rd{width:10px;height:10px;border-radius:50%;background:#29a8eb;flex:0 0 10px;animation:pulse 1.8s infinite}
+.nh{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
+.nh th{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:right;padding:6px 4px;border-bottom:1px solid var(--line);font-weight:700}
+.nh th:first-child,.nh td:first-child{text-align:left}
+.nh td{padding:7px 4px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
+.nh tr{cursor:pointer} .nh tbody tr:hover{background:rgba(255,255,255,.05)}
+.nh td small{color:var(--muted);font-size:10.5px;margin-left:3px}
+.nh .v1{color:var(--yel);font-weight:800} .nh .v2{color:var(--ora);font-weight:800} .nh .v3{color:var(--red);font-weight:800}
+.nh .zero{color:rgba(255,255,255,.3)}
+.pday{padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);margin-bottom:8px}
+.pday.l1{border-color:rgba(255,212,0,.45)} .pday.l2{border-color:rgba(255,140,26,.55)} .pday.l3{border-color:rgba(255,59,59,.6)}
+.pday .ph{display:flex;align-items:center;gap:10px}
+.pday .ph svg{width:30px;height:30px;flex:0 0 30px}
+.pday .pn{font-weight:800;font-size:14px}
+.pday .pm{font-size:12px;color:var(--muted);margin-top:1px}
+.pday .pt{margin-left:auto;text-align:right;font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap}
+.pday .pt b{font-size:15px}
+.conf{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.08);color:var(--muted);margin-left:6px;vertical-align:1px}
+.chips{display:flex;flex-direction:column;gap:5px;margin-top:10px}
+.chip{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.4;color:#dbe6f5}
+.chip i{width:9px;height:9px;border-radius:50%;flex:0 0 9px;margin-top:4px}
+.pquiet{font-size:12px;color:var(--muted);margin-top:6px}
+.day .dot{display:inline-block;width:7px;height:7px;border-radius:50%;margin-left:5px;vertical-align:1px}
 
 /* layer rail */
 .rail{position:absolute;z-index:1000;top:110px;right:14px;display:flex;flex-direction:column;gap:6px;padding:8px}
@@ -259,6 +284,8 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
   <section data-pane="alertas" hidden>
     <div class="sec" style="margin-top:0"><h3>Oficiales · SMN <a href="https://www.smn.gob.ar/alertas" target="_blank" rel="noopener">smn.gob.ar ↗</a></h3><div id="official"></div></div>
     <div class="sec"><h3>Por pronóstico · criterios SMN</h3><div id="alerts"></div></div>
+    <div class="sec"><h3>Próximas horas por comuna <span style="text-transform:none;letter-spacing:0;font-weight:600" id="nhRango"></span></h3><div id="nhoras"></div></div>
+    <div class="sec"><h3>Perspectiva · próximos días <span style="text-transform:none;letter-spacing:0;font-weight:600" id="perspRango"></span></h3><div id="persp"></div></div>
     <div class="sec"><h3>Umbrales de alerta</h3><div id="thresholds"></div></div>
   </section>
 
@@ -271,7 +298,7 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
       <div class="tgbtns"><a class="tgbtn" id="tgJoin" target="_blank" rel="noopener">Unirme al canal</a><a class="tgbtn alt" id="tgBot" target="_blank" rel="noopener">Abrir el bot</a></div>
     </div>
     <div class="sec"><h3>Comandos del bot</h3>
-      <div class="cmds"><code>/estado</code><span>Alertas vigentes en la Ciudad</span><code>/umbrales</code><span>Criterios que usa el sistema</span><code>/ayuda</code><span>Lista de comandos</span></div>
+      <div class="cmds"><code>/estado</code><span>Alertas vigentes en la Ciudad</span><code>/ahora</code><span>Próximas horas por comuna</span><code>/perspectiva</code><span>Próximos días, con menor certeza</span><code>/umbrales</code><span>Criterios que usa el sistema</span><code>/ayuda</code><span>Lista de comandos</span></div>
     </div>
     <div class="sec"><h3>Último aviso enviado <span id="lastWhen" style="text-transform:none;letter-spacing:0;font-weight:600"></span></h3><div id="lastMsg"></div></div>
     <div class="sec"><h3>Cómo funciona</h3>
@@ -279,6 +306,8 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
         <li>Cada 15 minutos un proceso en GitHub revisa el pronóstico de las 15 comunas y las alertas CAP del SMN.</li>
         <li>Compara contra los umbrales de la pestaña Alertas.</li>
         <li>Si hay algo nuevo, publica en el canal. No repite avisos ya enviados.</li>
+        <li>Mientras haya una alerta del SMN vigente, manda cada 30 minutos un parte con las próximas horas por comuna.</li>
+        <li>Todos los días a la mañana manda la perspectiva de los próximos días.</li>
       </ol>
     </div>
   </section>
@@ -319,7 +348,9 @@ const DEF_U = {
 };
 let U = DEF_U;
 const HORIZ = 48, HORIZ_DIAS = 5;
-const TG_DEFAULT = {url_canal:'', usuario_bot:''};
+const TG_DEFAULT = {url_canal:'https://t.me/alertasprueba1', usuario_bot:'Alertasprueba1Bot'};
+// Perspectiva extendida (idéntico a config.yaml; si existe data/alertas.json se usan los valores de ahí)
+let P = {activa:true, dias_desde:3, dias_hasta:7, prob_min_tormenta:50};
 const LEVELS = ['Sin alerta','Amarillo','Naranja','Rojo'];
 
 const COMUNAS = [
@@ -340,7 +371,12 @@ const COMUNAS = [
   {n:15,name:'Comuna 15', barrios:'Chacarita · Villa Crespo · Paternal · Agronomía · Villa Ortúzar · Parque Chas', lat:-34.592, lon:-58.462}
 ];
 // Grilla del modelo para pintar el mapa (7 x 7 puntos sobre CABA y alrededores)
-const GRID = { n:7, latN:-34.47, latS:-34.75, lonW:-58.58, lonE:-58.30 };
+// Grillas del modelo para pintar las capas: una fina sobre CABA y otra más amplia sobre el AMBA.
+// Donde se superponen se usa la fina; hacia afuera se funde con la del AMBA.
+const GRIDS = [
+  {id:'caba', nLat:7, nLon:7, latN:-34.47, latS:-34.75, lonW:-58.58, lonE:-58.30},
+  {id:'amba', nLat:7, nLon:11, latN:-33.85, latS:-35.35, lonW:-59.70, lonE:-57.30}
+];
 
 /* =========================================================
    ÍCONOS (SVG propios)
@@ -411,7 +447,7 @@ function colorAt(stops, v){
 /* =========================================================
    MAPA
    ========================================================= */
-const map = L.map('map',{zoomControl:false, attributionControl:true, minZoom:8, maxZoom:15}).setView([-34.615,-58.445], 12);
+const map = L.map('map',{zoomControl:false, attributionControl:true, minZoom:9, maxZoom:15, maxBounds:[[-35.6,-60.1],[-33.6,-56.9]], maxBoundsViscosity:0.8}).setView([-34.615,-58.445], 11);
 L.control.zoom({position:'bottomright'}).addTo(map);
 /* ---------- MAPAS BASE ----------
    Vectoriales: OpenFreeMap (OpenStreetMap, sin clave) dibujados con MapLibre.
@@ -486,6 +522,7 @@ function sizeCanvases(){
 }
 map.on('zoomstart movestart',()=>{fieldCv.style.opacity=0;partCv.style.opacity=0;resetParticles=true;});
 map.on('moveend zoomend resize',()=>{sizeCanvases();drawField();fieldCv.style.opacity=1;partCv.style.opacity=1;});
+map.on('zoomend',()=>{ if(S.com) updatePins(); });
 
 /* =========================================================
    ESTADO
@@ -540,11 +577,8 @@ function evalComuna(c){
   // temperaturas extremas (por día)
   const hoy=H.time[i0].slice(0,10), idx=[]; D.time.forEach((t,j)=>{ if(t>=hoy && idx.length<HORIZ_DIAS) idx.push(j); });
   const fechas=idx.map(j=>D.time[j]), tx=idx.map(j=>D.temperature_2m_max[j]), tn=idx.map(j=>D.temperature_2m_min[j]);
-  const UC=U.calor, cal=tx.map((a,j)=>(a??-99)>=UC.tmax && (tn[j]??-99)>=UC.tmin), nc=cal.map(()=>0);
-  for(let j=0;j<cal.length;){ if(!cal[j]){j++;continue;} let k=j; while(k<cal.length&&cal[k]) k++;
-    const racha=k-j; let n=0; if(racha>=UC.dias_consecutivos.amarillo) n=1;
-    if(racha>=UC.dias_consecutivos.naranja){ n=2; if(Math.max(...tx.slice(j,k))>=UC.rojo_tmax) n=3; }
-    for(let m=j;m<k;m++) nc[m]=n; j=k; }
+  const allIdx=[]; D.time.forEach((t,j)=>{ if(t>=hoy) allIdx.push(j); });
+  const nc=rachasCalor(allIdx.map(j=>D.temperature_2m_max[j]), allIdx.map(j=>D.temperature_2m_min[j]), U.calor).slice(0,idx.length);
   const UF=U.frio||{}, nf=tn.map(b=> (UF.activo===false||b==null)?0 : b<=UF.tmin.rojo?3 : b<=UF.tmin.naranja?2 : b<=UF.tmin.amarillo?1 : 0);
   mx.tmax=Math.max(...tx.filter(x=>x!=null)); mx.tmin=Math.min(...tn.filter(x=>x!=null));
   for(let k=0;k<N;k++){ const d=H.time[i0+k].slice(0,10), j=fechas.indexOf(d); if(j>=0){ per[k].calor=nc[j]; per[k].frio=nf[j]; } }
@@ -569,6 +603,41 @@ function agregarEventos(evals){
   }
   return evs.sort((x,y)=>y.nivel-x.nivel);
 }
+/* Perspectiva extendida · misma lógica que alertas.py (valores diarios) */
+function rachasCalor(tx,tn,UC){ const cal=tx.map((a,j)=>(a??-99)>=UC.tmax&&(tn[j]??-99)>=UC.tmin), n=cal.map(()=>0);
+  for(let j=0;j<cal.length;){ if(!cal[j]){j++;continue;} let k=j; while(k<cal.length&&cal[k]) k++;
+    let v=(k-j)>=UC.dias_consecutivos.amarillo?1:0; if((k-j)>=UC.dias_consecutivos.naranja) v=Math.max(...tx.slice(j,k))>=UC.rojo_tmax?3:2;
+    for(let m=j;m<k;m++) n[m]=v; j=k; } return n; }
+function calcPerspectiva(){
+  if(P.activa===false||!S.com) return [];
+  const D0=S.com[0].daily, hoy=S.com[0].hourly.time[S.i0].slice(0,10), UL=U.lluvia, UV=U.viento, UT=U.tormenta, UF=U.frio||{};
+  const uLl={amarillo:UL.acumulado_12h_mm.amarillo, naranja:UL.acumulado_12h_mm.naranja, rojo:UL.acumulado_24h_mm.rojo};
+  const calor=S.com.map(c=>rachasCalor(c.daily.temperature_2m_max,c.daily.temperature_2m_min,U.calor));
+  const out=[];
+  D0.time.forEach((f,j)=>{ const n=Math.round((new Date(f+'T12:00')-new Date(hoy+'T12:00'))/864e5)+1;
+    if(n<(P.dias_desde||3)||n>(P.dias_hasta||7)) return;
+    const sen={}, res={tmax:-99,tmin:99,lluvia:0,prob:0,rafagas:0,codigo:0};
+    const marcar=(fen,niv,val,c)=>{ if(!niv) return; const x=sen[fen] ||= {fenomeno:fen,nivel:0,comunas:[],valor:null};
+      x.nivel=Math.max(x.nivel,niv); x.comunas.push(c.n); if(val!=null) x.valor = x.valor==null?val:(fen==='frio'?Math.min(x.valor,val):Math.max(x.valor,val)); };
+    S.com.forEach((cm,ci)=>{ const D=cm.daily, c=COMUNAS[ci];
+      const tx=D.temperature_2m_max[j], tn=D.temperature_2m_min[j], ps=D.precipitation_sum[j]||0, pp=D.precipitation_probability_max[j]||0,
+            ws=(D.wind_speed_10m_max||[])[j]||0, wg=D.wind_gusts_10m_max[j]||0, code=D.weather_code[j]||0;
+      if(tx!=null) res.tmax=Math.max(res.tmax,tx); if(tn!=null) res.tmin=Math.min(res.tmin,tn);
+      res.lluvia=Math.max(res.lluvia,ps); res.prob=Math.max(res.prob,pp); res.rafagas=Math.max(res.rafagas,wg); res.codigo=Math.max(res.codigo,code);
+      marcar('lluvia',nivelU(ps,uLl),ps,c);
+      marcar('viento',Math.max(nivelU(ws,UV.sostenido_kmh),nivelU(wg,UV.rafagas_kmh)),wg,c);
+      if(code>=95 && pp>=(P.prob_min_tormenta??50)){ let nt=1;
+        if((UT.naranja.granizo&&(code===96||code===99))||ps>=UT.naranja.lluvia_12h_mm||wg>=UT.naranja.rafagas_kmh) nt=2;
+        if(ps>=UT.rojo.lluvia_12h_mm||wg>=UT.rojo.rafagas_kmh) nt=3; marcar('tormenta',nt,pp,c); }
+      marcar('calor',calor[ci][j],tx,c);
+      if(UF.activo!==false && tn!=null) marcar('frio', tn<=UF.tmin.rojo?3:tn<=UF.tmin.naranja?2:tn<=UF.tmin.amarillo?1:0, tn, c);
+    });
+    out.push({fecha:f, dia:n, confianza:n<=4?'media':'baja', resumen:res, senales:Object.values(sen).sort((a,b)=>b.nivel-a.nivel)});
+  });
+  return out;
+}
+const textoSenal = x => ({lluvia:`lluvia de hasta ${r0(x.valor)} mm en el día`, viento:`ráfagas de hasta ${r0(x.valor)} km/h`,
+  tormenta:`tormentas (probabilidad ${r0(x.valor)} %)`, calor:`máximas de hasta ${r0(x.valor)} °C`, frio:`mínimas de hasta ${r0(x.valor)} °C`}[x.fenomeno]);
 function detalle(ev){ const m=ev.max;
   return {lluvia:`acumulado hasta ${fmt1(m.lluvia_12h)} mm en 12 h · máx. ${fmt1(m.lluvia_1h)} mm/h`,
     viento:`viento medio hasta ${r0(m.viento)} km/h · ráfagas hasta ${r0(m.rafagas)} km/h`,
@@ -586,22 +655,23 @@ async function fetchJSON(url){ const r=await fetch(url); if(!r.ok) throw new Err
 
 async function loadModel(){
   const gLat=[],gLon=[];
-  for(let i=0;i<GRID.n;i++) for(let j=0;j<GRID.n;j++){
-    gLat.push((GRID.latN+(GRID.latS-GRID.latN)*i/(GRID.n-1)).toFixed(4));
-    gLon.push((GRID.lonW+(GRID.lonE-GRID.lonW)*j/(GRID.n-1)).toFixed(4));
+  for(const G of GRIDS) for(let i=0;i<G.nLat;i++) for(let j=0;j<G.nLon;j++){
+    gLat.push((G.latN+(G.latS-G.latN)*i/(G.nLat-1)).toFixed(4));
+    gLon.push((G.lonW+(G.lonE-G.lonW)*j/(G.nLon-1)).toFixed(4));
   }
   const common={timezone:TZ, wind_speed_unit:'kmh'};
   const comURL = OM+new URLSearchParams({...common,
     latitude:COMUNAS.map(c=>c.lat).join(','), longitude:COMUNAS.map(c=>c.lon).join(','),
     current:'temperature_2m,apparent_temperature,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,pressure_msl,cloud_cover',
     hourly:'temperature_2m,precipitation,precipitation_probability,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,cape,uv_index',
-    daily:'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_gusts_10m_max',
-    past_hours:'24', forecast_days:'7'});
+    daily:'weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,wind_speed_10m_max,wind_gusts_10m_max',
+    past_hours:'24', forecast_days:String(Math.max(7,Math.min(16,P.activa===false?7:(P.dias_hasta||7))))});
   const gridURL = OM+new URLSearchParams({...common, latitude:gLat.join(','), longitude:gLon.join(','),
     hourly:'temperature_2m,precipitation,wind_speed_10m,wind_direction_10m,wind_gusts_10m,cloud_cover,cape', forecast_days:'3'});
   let [com,grid]=await Promise.all([fetchJSON(comURL),fetchJSON(gridURL)]);
   if(!Array.isArray(com)) com=[com]; if(!Array.isArray(grid)) grid=[grid];
   S.com=com; S.grid=grid;
+  S.grids={}; let off_=0; for(const G of GRIDS){ const n=G.nLat*G.nLon; S.grids[G.id]=grid.slice(off_,off_+n); off_+=n; }
   const nowKey=com[0].current.time.slice(0,13);
   S.i0=Math.max(0,com[0].hourly.time.findIndex(t=>t.slice(0,13)>=nowKey));
   S.gi0=Math.max(0,grid[0].hourly.time.findIndex(t=>t.slice(0,13)>=nowKey));
@@ -615,12 +685,13 @@ function evaluarTodo(){
   S.evals=S.com.map(evalComuna);
   S.alerts=S.evals.map(e=>e.per.map(x=>{ const al=Object.entries(x).filter(([,v])=>v>0).map(([k,l])=>({k,l})); return {l:Math.max(0,...al.map(a=>a.l)), al}; }));
   S.events=agregarEventos(S.evals);
+  S.persp=calcPerspectiva();
 }
 async function loadSistema(){
   // Archivo que genera el proceso de GitHub (alertas oficiales SMN, umbrales y estado del bot)
   try{
     const r=await fetch('data/alertas.json?t='+Date.now(),{cache:'no-store'}); if(!r.ok) throw 0;
-    S.sys=await r.json(); if(S.sys.umbrales) U=S.sys.umbrales;
+    S.sys=await r.json(); if(S.sys.umbrales) U=S.sys.umbrales; if(S.sys.perspectiva_config) P={...P,...S.sys.perspectiva_config};
   }catch(e){ S.sys=null; }
 }
 async function loadRadar(){
@@ -725,18 +796,26 @@ function drawLegend(){
 
 /* ---------- interpolación de la grilla ---------- */
 function gridField(key, k){
-  if(!S.grid) return null; const n=GRID.n, out=[];
-  for(let i=0;i<n;i++){ const row=[]; for(let j=0;j<n;j++){ const H=S.grid[i*n+j].hourly; row.push(H[key][S.gi0+k]); } out.push(row); }
-  return out;
+  if(!S.grids) return null; const FF={};
+  for(const G of GRIDS){ const pts=S.grids[G.id], out=[];
+    for(let i=0;i<G.nLat;i++){ const row=[]; for(let j=0;j<G.nLon;j++){ row.push(pts[i*G.nLon+j].hourly[key][S.gi0+k]); } out.push(row); }
+    FF[G.id]=out; }
+  return FF;
 }
-function sample(F, lat, lon){
-  const n=GRID.n;
-  let fi=(lat-GRID.latN)/(GRID.latS-GRID.latN)*(n-1), fj=(lon-GRID.lonW)/(GRID.lonE-GRID.lonW)*(n-1);
-  const out=Math.max(0,-fi,fi-(n-1),-fj,fj-(n-1)); const edge=Math.max(0,1-out/0.9);
-  fi=Math.max(0,Math.min(n-1,fi)); fj=Math.max(0,Math.min(n-1,fj));
-  const i0=Math.min(n-2,Math.floor(fi)), j0=Math.min(n-2,Math.floor(fj)), di=fi-i0, dj=fj-j0;
-  const v=(F[i0][j0]*(1-di)*(1-dj)+F[i0+1][j0]*di*(1-dj)+F[i0][j0+1]*(1-di)*dj+F[i0+1][j0+1]*di*dj);
-  return [v,edge];
+function mapField(A,B,fn){ const R={}; for(const id in A) R[id]=A[id].map((r,i)=>r.map((v,j)=>fn(v,B?B[id][i][j]:null))); return R; }
+function sampleOne(G, F, lat, lon){
+  let fi=(lat-G.latN)/(G.latS-G.latN)*(G.nLat-1), fj=(lon-G.lonW)/(G.lonE-G.lonW)*(G.nLon-1);
+  const out=Math.max(0,-fi,fi-(G.nLat-1),-fj,fj-(G.nLon-1));
+  fi=Math.max(0,Math.min(G.nLat-1,fi)); fj=Math.max(0,Math.min(G.nLon-1,fj));
+  const i0=Math.min(G.nLat-2,Math.floor(fi)), j0=Math.min(G.nLon-2,Math.floor(fj)), di=fi-i0, dj=fj-j0;
+  const v=F[i0][j0]*(1-di)*(1-dj)+F[i0+1][j0]*di*(1-dj)+F[i0][j0+1]*(1-di)*dj+F[i0+1][j0+1]*di*dj;
+  return [v,out];
+}
+function sample(FF, lat, lon){
+  const [vf,of]=sampleOne(GRIDS[0],FF.caba,lat,lon), [va,oa]=sampleOne(GRIDS[1],FF.amba,lat,lon);
+  const w=Math.max(0,1-of/1.2);                 // peso de la grilla fina (se funde en ~1 celda)
+  const edge=Math.max(w, Math.max(0,1-oa/0.6)); // desvanecido en el borde de la grilla del AMBA
+  return [vf*w+va*(1-w), edge];
 }
 
 /* ---------- campo de color ---------- */
@@ -744,7 +823,7 @@ const off=document.createElement('canvas');
 function drawField(){
   const ctx=fieldCv.getContext('2d'), s=map.getSize(); ctx.clearRect(0,0,s.x,s.y);
   const f=S.frames[S.frame], L_=LAYERS[S.layer];
-  if(!f||f.kind!=='fc'||!L_.key||!S.grid) return;
+  if(!f||f.kind!=='fc'||!L_.key||!S.grids) return;
   const F=gridField(L_.key,f.k); if(!F) return;
   const cell=5, w=Math.ceil(s.x/cell), h=Math.ceil(s.y/cell);
   off.width=w; off.height=h; const octx=off.getContext('2d'); const img=octx.createImageData(w,h);
@@ -764,17 +843,17 @@ let particles=[], resetParticles=true;
 function windAt(lat,lon,k){
   if(!S._wf||S._wfk!==k){ S._wf={s:gridField('wind_speed_10m',k), d:gridField('wind_direction_10m',k)}; S._wfk=k;
     // convertir a componentes u/v para interpolar bien
-    S._wf.u=S._wf.s.map((r,i)=>r.map((v,j)=>-v*Math.sin(S._wf.d[i][j]*Math.PI/180)));
-    S._wf.v=S._wf.s.map((r,i)=>r.map((v,j)=>-v*Math.cos(S._wf.d[i][j]*Math.PI/180))); }
+    S._wf.u=mapField(S._wf.s,S._wf.d,(v,d)=>-v*Math.sin(d*Math.PI/180));
+    S._wf.v=mapField(S._wf.s,S._wf.d,(v,d)=>-v*Math.cos(d*Math.PI/180)); }
   const [u,e]=sample(S._wf.u,lat,lon), [v]=sample(S._wf.v,lat,lon); return [u,v,e];
 }
 function spawn(s){ return {x:Math.random()*s.x, y:Math.random()*s.y, age:Math.random()*80|0}; }
 function tick(){
   requestAnimationFrame(tick);
   const ctx=partCv.getContext('2d'), s=map.getSize();
-  const f=S.frames[S.frame], on=LAYERS[S.layer].particles && f && f.kind==='fc' && S.grid;
+  const f=S.frames[S.frame], on=LAYERS[S.layer].particles && f && f.kind==='fc' && S.grids;
   if(!on){ if(particles.length){ ctx.clearRect(0,0,s.x,s.y); particles=[]; } return; }
-  if(resetParticles){ ctx.clearRect(0,0,s.x,s.y); const n=Math.round(s.x*s.y/900); particles=Array.from({length:Math.min(2200,n)},()=>spawn(s)); resetParticles=false; }
+  if(resetParticles){ ctx.clearRect(0,0,s.x,s.y); const n=Math.round(s.x*s.y/900); particles=Array.from({length:Math.min(2600,n)},()=>spawn(s)); resetParticles=false; }
   ctx.globalCompositeOperation='destination-in'; ctx.fillStyle='rgba(0,0,0,.90)'; ctx.fillRect(0,0,s.x,s.y);
   ctx.globalCompositeOperation='source-over'; ctx.strokeStyle='rgba(255,255,255,.75)'; ctx.lineWidth=1.1; ctx.beginPath();
   const kz=0.035*Math.pow(1.25,map.getZoom()-12);
@@ -806,7 +885,9 @@ function updatePins(){
   if(!S.com) return;
   const f=S.frames[S.frame], k=f&&f.kind==='fc'?f.k:0;
   pins.forEach(m=>map.removeLayer(m)); pins=[];
+  const lejos=map.getZoom()<10;   // alejado: solo la comuna elegida, para que no se amontonen
   COMUNAS.forEach((c,ci)=>{
+    if(lejos && ci!==S.comuna) return;
     const l=S.alerts[ci][k]?S.alerts[ci][k].l:0;
     const html=`<div class="pin${ci===S.comuna?' sel':''}"><i class="b${l}"></i>${c.n} <small>·</small> ${pinValue(ci)}</div>`;
     const m=L.marker([c.lat,c.lon],{icon:L.divIcon({className:'pinwrap',html,iconSize:[0,0]}),zIndexOffset:ci===S.comuna?1000:0}).addTo(map);
@@ -846,7 +927,8 @@ function renderPanel(){
   const lo=Math.min(...D.temperature_2m_min), hi=Math.max(...D.temperature_2m_max);
   D.time.forEach((t,i)=>{ const [,ic3]=wmo(D.weather_code[i]); const el=document.createElement('div'); el.className='day';
     const a=(D.temperature_2m_min[i]-lo)/(hi-lo)*100, b=(D.temperature_2m_max[i]-lo)/(hi-lo)*100;
-    el.innerHTML=`<span class="dn">${dayName(t,true)}</span>${IC[ic3]}<span class="pp">${D.precipitation_probability_max[i]>=20?D.precipitation_probability_max[i]+'%':''}</span><span class="mn">${r0(D.temperature_2m_min[i])}°</span><div class="range"><i style="left:${a}%;right:${100-b}%"></i></div><span class="mx">${r0(D.temperature_2m_max[i])}°</span>`;
+    const pdia=(S.persp||[]).find(x=>x.fecha===t), plv=pdia?Math.max(0,...pdia.senales.map(x=>x.nivel)):0;
+    el.innerHTML=`<span class="dn">${dayName(t,true)}${plv?`<span class="dot b${plv}" title="Perspectiva: fenómenos a vigilar"></span>`:''}</span>${IC[ic3]}<span class="pp">${D.precipitation_probability_max[i]>=20?D.precipitation_probability_max[i]+'%':''}</span><span class="mn">${r0(D.temperature_2m_min[i])}°</span><div class="range"><i style="left:${a}%;right:${100-b}%"></i></div><span class="mx">${r0(D.temperature_2m_max[i])}°</span>`;
     ds.appendChild(el); });
   highlightHour();
 }
@@ -862,6 +944,8 @@ function renderAlertas(){
   st.className='status l'+lv;
   document.getElementById('stTitle').textContent = lv ? `${ALERTA[lv]} · ${top[0].t}` : 'Sin alertas';
   document.getElementById('stSub').textContent = lv ? `${top[0].src} · ${top[0].when}`+(top.length>1?` · ${top.length-1} alerta(s) más`:'') : 'Ningún umbral se supera en la Ciudad.';
+  const sg=(S.sys&&S.sys.seguimiento)||{};
+  if(sg.activo) document.getElementById('stSub').textContent += ` · Seguimiento activo: partes cada ${sg.cada_minutos||30} min`;
   document.getElementById('tabBadge').textContent = top.length||'';
 
   // --- oficiales SMN ---
@@ -891,6 +975,45 @@ function renderAlertas(){
       const k=ev.kDesde!=null?ev.kDesde:Math.max(0,H.time.slice(S.i0).findIndex(t=>t.slice(0,10)===ev.dDesde)+14);
       const idx=S.frames.findIndex(f=>f.kind==='fc'&&f.k===Math.min(47,k)); if(idx>=0) setFrame(idx); });
     al.appendChild(el); });
+
+  // --- próximas horas por comuna ---
+  const seg=(S.sys&&S.sys.seguimiento)||{}, NH=seg.horas||6, UIh=U.lluvia.intensidad_horaria_mm||{}, UGh=U.viento.rafagas_kmh;
+  document.getElementById('nhRango').textContent=`· ${NH} h`;
+  const nh=document.getElementById('nhoras'); nh.textContent='';
+  if(seg.activo) nh.insertAdjacentHTML('beforeend',`<div class="segbar"><span class="rd"></span><div><b>Seguimiento activo</b><br>${esc(seg.motivo||'')}. El bot manda un parte cada ${seg.cada_minutos||30} minutos${seg.ultimo?` · último: ${fmtISO(seg.ultimo).toLowerCase()}`:''}.</div></div>`);
+  const filas=S.com.map((cm,ci)=>{ const H=cm.hourly; let ll=0,lm=0,hm=null,rf=0,pr=0,st=false,gr=false;
+    for(let k=0;k<NH;k++){ const i=S.i0+k; if(i>=H.time.length) break; const p=H.precipitation[i]||0, g=H.wind_gusts_10m[i]||0, c=H.weather_code[i]||0;
+      ll+=p; if(p>lm){lm=p;hm=H.time[i];} rf=Math.max(rf,g); pr=Math.max(pr,H.precipitation_probability[i]||0); if(c>=95) st=true; if(c===96||c===99) gr=true; }
+    return {ci,n:COMUNAS[ci].n,ll,lm,hm,rf,pr,st,gr}; });
+  const cls=(v,u)=>{ const n=nivelU(v,u); return n?`v${n}`:''; };
+  nh.insertAdjacentHTML('beforeend',`<table class="nh"><colgroup><col style="width:22%"><col><col><col><col style="width:16%"></colgroup>
+    <thead><tr><th>Comuna</th><th>Lluvia</th><th>Máx/h</th><th>Ráfaga</th><th>Torm.</th></tr></thead><tbody>${
+    filas.map(f=>`<tr data-ci="${f.ci}"><td><b>${f.n}</b></td>
+      <td class="${f.ll<0.5?'zero':''}">${fmt1(f.ll)}<small>mm</small></td>
+      <td class="${f.lm<0.5?'zero':cls(f.lm,UIh)}">${fmt1(f.lm)}${f.hm&&f.lm>=0.5?`<small>${hhmm(f.hm).slice(0,2)}h</small>`:''}</td>
+      <td class="${cls(f.rf,UGh)}">${r0(f.rf)}<small>km/h</small></td>
+      <td>${f.st?(f.gr?'<span class="v2">sí · granizo</span>':'<span class="v1">sí</span>'):'<span class="zero">no</span>'}</td></tr>`).join('')}</tbody></table>
+    <div class="note" style="margin-top:8px">Pronóstico de las próximas ${NH} horas (Open-Meteo). En color, los valores que superan los umbrales de intensidad de lluvia o de ráfagas. Tocá una comuna para verla en el panel.</div>`);
+  nh.querySelectorAll('tbody tr').forEach(tr=>tr.addEventListener('click',()=>{ selectComuna(+tr.dataset.ci);
+    document.querySelector('.tabs button[data-tab=ahora]').click(); }));
+
+  // --- perspectiva extendida ---
+  const pe=document.getElementById('persp'); pe.textContent='';
+  const pd=S.persp||[];
+  document.getElementById('perspRango').textContent = pd.length?`· días ${P.dias_desde||3} a ${P.dias_hasta||7}`:'';
+  if(!pd.length) pe.innerHTML='<div class="note">La perspectiva extendida está desactivada en config.yaml.</div>';
+  else pe.insertAdjacentHTML('beforeend','<div class="note" style="margin-bottom:8px">Pronóstico extendido de <b>menor certeza</b>: no dispara alertas, sirve para anticipar y planificar.</div>');
+  pd.forEach(d=>{ const lv=Math.max(0,...d.senales.map(x=>x.nivel)), r=d.resumen, [,ic]=wmo(r.codigo);
+    const el=document.createElement('div'); el.className='pday l'+lv;
+    el.innerHTML=`<div class="ph">${IC[ic]}<div><div class="pn">${dayName(d.fecha+'T12')} <span class="conf">confianza ${d.confianza}</span></div>
+      <div class="pm">${d.fecha.slice(8,10)}/${d.fecha.slice(5,7)} · lluvia ${fmt1(r.lluvia)} mm${r.prob>=20?` (${r.prob} %)`:''} · ráfagas ${r0(r.rafagas)} km/h</div></div>
+      <div class="pt"><b>${r0(r.tmax)}°</b> / ${r0(r.tmin)}°</div></div>`;
+    if(d.senales.length){ const ch=document.createElement('div'); ch.className='chips';
+      d.senales.forEach(x=>{ const c=document.createElement('div'); c.className='chip'; c.innerHTML=`<i class="b${x.nivel}"></i><span></span>`;
+        c.querySelector('span').textContent=`${NOMBRE[x.fenomeno]} · ${LEVELS[x.nivel].toLowerCase()}: ${textoSenal(x)} · ${comTxt(x.comunas)}`; ch.appendChild(c); });
+      el.appendChild(ch); }
+    else el.insertAdjacentHTML('beforeend','<div class="pquiet">Sin fenómenos a vigilar.</div>');
+    pe.appendChild(el); });
 
   // --- tabla de umbrales ---
   const L_=U.lluvia, V=U.viento, T=U.tormenta, C=U.calor, F=U.frio||{tmin:{}}, v=(o,k,u='')=>o&&o[k]!=null?`${String(o[k]).replace('.',',')}${u}`:'—';
@@ -974,7 +1097,9 @@ async function refreshAll(first){
 sizeCanvases();
 refreshAll(true);
 requestAnimationFrame(tick);
-setInterval(()=>refreshAll(false), MODEL_REFRESH_MIN*60e3);
+let lastRefresh=Date.now();
+setInterval(()=>{ if(document.hidden) return; lastRefresh=Date.now(); refreshAll(false); }, MODEL_REFRESH_MIN*60e3);
+document.addEventListener('visibilitychange',()=>{ if(!document.hidden && Date.now()-lastRefresh>MODEL_REFRESH_MIN*60e3){ lastRefresh=Date.now(); refreshAll(false); } });
 setInterval(async()=>{ await loadRadar(); if(S.layer==='radar'||S.layer==='sat') setLayer(S.layer); }, RADAR_REFRESH_MIN*60e3);
 </script>
 </body>
