@@ -276,6 +276,7 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
     <div class="now"><div class="temp" id="nowTemp">—</div><div class="ico" id="nowIco"></div></div>
     <div class="desc" id="nowDesc">—</div>
     <div class="feels" id="nowFeels">—</div>
+    <div class="feels" id="obsLine" style="margin-top:4px"></div>
     <div class="metrics" id="metrics"></div>
     <div class="sec"><h3>Próximas 24 horas</h3><div class="hours" id="hours"></div></div>
     <div class="sec"><h3>Próximos 7 días</h3><div id="days"></div></div>
@@ -944,6 +945,15 @@ function renderAlertas(){
   st.className='status l'+lv;
   document.getElementById('stTitle').textContent = lv ? `${ALERTA[lv]} · ${top[0].t}` : 'Sin alertas';
   document.getElementById('stSub').textContent = lv ? `${top[0].src} · ${top[0].when}`+(top.length>1?` · ${top.length-1} alerta(s) más`:'') : 'Ningún umbral se supera en la Ciudad.';
+  // observación real de Aeroparque (METAR) y aviso de lluvia
+  const ob=((S.sys&&S.sys.observado)||[]).find(x=>x.estacion==='SABE');
+  const ol=document.getElementById('obsLine');
+  if(ob && ob.obs){ const t=new Date(ob.obs).toLocaleTimeString('es-AR',{timeZone:TZ,hour:'2-digit',minute:'2-digit',hour12:false});
+    ol.textContent=`Observado en Aeroparque (${t}): ${ob.texto||'sin precipitación'}${ob.temp!=null?` · ${r0(ob.temp)} °C`:''}${ob.viento!=null?` · viento ${r0(ob.viento*1.852)} km/h`:''}`; }
+  else ol.textContent='';
+  const ll=(S.sys&&S.sys.lluvia)||{};
+  if(ll.estado==='lloviendo'){ document.getElementById('stSub').textContent += ` · Llueve en la Ciudad${ll.comunas&&ll.comunas.length?` (${comTxt(ll.comunas)})`:''}`;
+    if(!lv){ document.getElementById('stTitle').textContent='Sin alertas · está lloviendo'; } }
   const sg=(S.sys&&S.sys.seguimiento)||{};
   if(sg.activo) document.getElementById('stSub').textContent += ` · Seguimiento activo: partes cada ${sg.cada_minutos||30} min`;
   document.getElementById('tabBadge').textContent = top.length||'';
