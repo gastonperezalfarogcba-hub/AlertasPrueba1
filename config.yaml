@@ -21,7 +21,7 @@ general:
   # (evita mensajes de "finalizó" cuando el modelo oscila entre corridas)
   ciclos_para_cerrar: 2
   # URL pública del tablero (se agrega al final de cada mensaje)
-  url_tablero: "https://TU-USUARIO.github.io/alertas-clima-caba/"
+  url_tablero: "https://gastonperezalfarogcba-hub.github.io/AlertasPrueba1/"
 
 fuentes:
   open_meteo: true
@@ -33,9 +33,9 @@ telegram:
   # El token y los chat_id NO van acá: se cargan como "secrets" en GitHub
   # (TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_IDS). Ver README.
   # Link público al canal o grupo donde publica el bot (lo muestra el tablero con un QR)
-  url_canal: "https://t.me/TU_CANAL_DE_ALERTAS"
+  url_canal: "https://t.me/alertasprueba1"
   # Nombre de usuario del bot, sin @ (para el botón "Abrir bot" del tablero)
-  usuario_bot: "TU_BOT"
+  usuario_bot: "Alertasprueba1Bot"
   # Responder comandos /estado, /umbrales y /ayuda que le escriban al bot
   responder_comandos: true
 
