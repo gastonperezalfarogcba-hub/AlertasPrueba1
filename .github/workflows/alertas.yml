@@ -6,11 +6,11 @@ on:
   workflow_dispatch:
     inputs:
       modo:
-        description: "normal · prueba (mensaje de conexión) · simulacro (alerta ficticia)"
+        description: "normal · prueba · simulacro · perspectiva · seguimiento"
         required: true
         default: normal
         type: choice
-        options: [normal, prueba, simulacro]
+        options: [normal, prueba, simulacro, perspectiva, seguimiento]
   push:
     branches: [main]
     paths: ["docs/**", "config.yaml"]
@@ -64,8 +64,11 @@ jobs:
           key: estado-${{ github.run_id }}
 
       - uses: actions/configure-pages@v5
+        if: ${{ !inputs.modo || inputs.modo == 'normal' }}
       - uses: actions/upload-pages-artifact@v3
+        if: ${{ !inputs.modo || inputs.modo == 'normal' }}
         with:
           path: docs
       - id: deploy
+        if: ${{ !inputs.modo || inputs.modo == 'normal' }}
         uses: actions/deploy-pages@v4
