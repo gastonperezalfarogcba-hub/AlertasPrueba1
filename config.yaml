@@ -40,6 +40,36 @@ telegram:
   responder_comandos: true
 
 # ---------------------------------------------------------------------
+#  PERSPECTIVA EXTENDIDA (días 3 a 7)
+#  Pronóstico de menor certeza: NO dispara alertas. Se muestra en el
+#  tablero y se envía como resumen diario por Telegram.
+#  Usa los mismos umbrales de abajo, aplicados a valores diarios.
+# ---------------------------------------------------------------------
+perspectiva:
+  activa: true
+  dias_desde: 3            # hoy = día 1
+  dias_hasta: 7            # máximo 16 (Open-Meteo); más allá de 7 la confianza es baja
+  resumen_diario: true     # mandar un resumen por Telegram una vez por día
+  hora_resumen: 8          # hora local (0 a 23) a partir de la cual se manda
+  solo_si_hay_senales: false   # true = mandar el resumen solo si hay algún fenómeno a vigilar
+  prob_min_tormenta: 50    # % mínimo de probabilidad de lluvia para marcar tormenta
+
+# ---------------------------------------------------------------------
+#  SEGUIMIENTO (modo "alerta en curso")
+#  Mientras haya una alerta oficial del SMN vigente para CABA, el bot manda
+#  cada 30 minutos un parte con las próximas horas por comuna (Open-Meteo):
+#  dónde y cuándo llueve, ráfagas, tormentas, temperatura y tendencia.
+# ---------------------------------------------------------------------
+seguimiento:
+  activo: true
+  niveles_smn: [1, 2, 3]          # 1 = amarillo, 2 = naranja, 3 = rojo
+  cada_minutos: 30                # cada cuánto se manda el parte (mínimo 15)
+  horas_adelante: 6               # horas de pronóstico que incluye cada parte
+  inicio_anticipado_horas: 3      # empieza N horas antes del inicio de la alerta del SMN
+  tambien_por_pronostico: false   # true = activarlo también con alertas propias de lluvia, viento o tormenta
+  nivel_minimo_pronostico: 2      # ...desde este nivel (2 = naranja)
+
+# ---------------------------------------------------------------------
 #  UMBRALES · basados en los criterios del Sistema de Alerta Temprana
 #  del SMN para la región Llanura (incluye CABA). Ver README, sección
 #  "De dónde salen los umbrales". Ajustalos con el área técnica.

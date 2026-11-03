@@ -17,6 +17,8 @@ Uso:
   python alertas.py --dry-run          muestra los mensajes en pantalla, no envía nada
   python alertas.py --modo prueba      manda un mensaje de prueba ("bot conectado")
   python alertas.py --modo simulacro   manda una alerta ficticia marcada SIMULACRO
+  python alertas.py --modo perspectiva manda ya el resumen de perspectiva (días 3 a 7)
+  python alertas.py --modo seguimiento manda ya un parte de seguimiento (próximas horas por comuna)
 """
 from __future__ import annotations
 
@@ -105,15 +107,17 @@ def num(v, dec=0):
 # ---------------------------------------------------------------------------
 # 1. Open-Meteo
 # ---------------------------------------------------------------------------
-def descargar_open_meteo(comunas: list[dict]) -> list[dict]:
+def descargar_open_meteo(comunas: list[dict], dias: int = 7) -> list[dict]:
     params = {
         "latitude": ",".join(str(c["lat"]) for c in comunas),
         "longitude": ",".join(str(c["lon"]) for c in comunas),
         "hourly": "temperature_2m,precipitation,precipitation_probability,weather_code,"
                   "wind_speed_10m,wind_gusts_10m,cape",
-        "daily": "temperature_2m_max,temperature_2m_min",
+        "daily": "temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,"
+                 "wind_speed_10m_max,wind_gusts_10m_max,weather_code",
+        "current": "temperature_2m,precipitation,wind_gusts_10m,weather_code",
         "past_hours": 24,
-        "forecast_days": 7,
+        "forecast_days": dias,
         "timezone": "America/Argentina/Buenos_Aires",
         "wind_speed_unit": "kmh",
     }
@@ -200,28 +204,9 @@ def evaluar_comuna(d: dict, U: dict, horizonte: int, dias: int) -> dict:
     tn = [D["temperature_2m_min"][j] for j in idx]
     fechas = [datetime.fromisoformat(D["time"][j]).replace(tzinfo=TZ) for j in idx]
 
-    UC = U["calor"]
-    cal = [(a or -99) >= UC["tmax"] and (b or -99) >= UC["tmin"] for a, b in zip(tx, tn)]
-    niv_dia = [0] * len(cal)
-    j = 0
-    while j < len(cal):
-        if not cal[j]:
-            j += 1
-            continue
-        k = j
-        while k < len(cal) and cal[k]:
-            k += 1
-        racha = k - j
-        n = 0
-        if racha >= UC["dias_consecutivos"]["amarillo"]:
-            n = 1
-        if racha >= UC["dias_consecutivos"]["naranja"]:
-            n = 2
-            if max(tx[j:k]) >= UC["rojo_tmax"]:
-                n = 3
-        for m in range(j, k):
-            niv_dia[m] = n
-        j = k
+    # las rachas de calor se cuentan con todos los días disponibles y después se recorta al horizonte
+    D_all = [j for j, s_ in enumerate(D["time"]) if datetime.fromisoformat(s_).date() >= hoy]
+    niv_dia = rachas_calor([D["temperature_2m_max"][j] for j in D_all], [D["temperature_2m_min"][j] for j in D_all], U["calor"])[:len(idx)]
     out["calor"] = {"dias": fechas, "niveles_dia": niv_dia, "max": {"tmax": max([x for x in tx if x is not None], default=None)}}
 
     UF = U.get("frio", {})
@@ -287,6 +272,263 @@ def detalle_evento(e: dict) -> str:
     if f == "frio":
         return f"temperaturas mínimas de hasta {num(m.get('tmin'))} °C"
     return ""
+
+
+# ---------------------------------------------------------------------------
+# 2b. Perspectiva extendida (días 3 a 7) · valores diarios, menor certeza
+#     (la misma lógica está replicada en docs/index.html)
+# ---------------------------------------------------------------------------
+def rachas_calor(tx, tn, UC) -> list[int]:
+    cal = [(a if a is not None else -99) >= UC["tmax"] and (b if b is not None else -99) >= UC["tmin"] for a, b in zip(tx, tn)]
+    niv, j = [0] * len(cal), 0
+    while j < len(cal):
+        if not cal[j]:
+            j += 1
+            continue
+        k = j
+        while k < len(cal) and cal[k]:
+            k += 1
+        n = 1 if k - j >= UC["dias_consecutivos"]["amarillo"] else 0
+        if k - j >= UC["dias_consecutivos"]["naranja"]:
+            n = 3 if max(tx[j:k]) >= UC["rojo_tmax"] else 2
+        for m in range(j, k):
+            niv[m] = n
+        j = k
+    return niv
+
+
+def calcular_perspectiva(datos: list[dict], comunas: list[dict], U: dict, P: dict) -> list[dict]:
+    hoy = ahora().date()
+    D0 = datos[0]["daily"]
+    fechas = [datetime.fromisoformat(x).date() for x in D0["time"]]
+    UL, UV, UT, UF = U["lluvia"], U["viento"], U["tormenta"], U.get("frio", {})
+    u_lluvia = {"amarillo": UL["acumulado_12h_mm"].get("amarillo"), "naranja": UL["acumulado_12h_mm"].get("naranja"),
+                "rojo": UL["acumulado_24h_mm"].get("rojo")}
+    calor = []
+    for d in datos:
+        D = d["daily"]
+        calor.append(rachas_calor(D["temperature_2m_max"], D["temperature_2m_min"], U["calor"]))
+    dias = []
+    for j, f in enumerate(fechas):
+        n = (f - hoy).days + 1
+        if n < P.get("dias_desde", 3) or n > P.get("dias_hasta", 7):
+            continue
+        senales = {}
+
+        def marcar(fen, nivel, valor, c):
+            if not nivel:
+                return
+            s_ = senales.setdefault(fen, {"fenomeno": fen, "nivel": 0, "comunas": [], "valor": None})
+            s_["nivel"] = max(s_["nivel"], nivel)
+            s_["comunas"].append(c["n"])
+            if valor is not None:
+                s_["valor"] = valor if s_["valor"] is None else (min(s_["valor"], valor) if fen == "frio" else max(s_["valor"], valor))
+
+        res = {"tmax": None, "tmin": None, "lluvia": 0, "prob": 0, "rafagas": 0, "codigo": 0}
+        for ci, (c, d) in enumerate(zip(comunas, datos)):
+            D = d["daily"]
+            tx, tn = D["temperature_2m_max"][j], D["temperature_2m_min"][j]
+            ps, pp = D["precipitation_sum"][j] or 0, D["precipitation_probability_max"][j] or 0
+            ws, wg, code = D["wind_speed_10m_max"][j] or 0, D["wind_gusts_10m_max"][j] or 0, D["weather_code"][j] or 0
+            res["tmax"] = tx if res["tmax"] is None or (tx is not None and tx > res["tmax"]) else res["tmax"]
+            res["tmin"] = tn if res["tmin"] is None or (tn is not None and tn < res["tmin"]) else res["tmin"]
+            res["lluvia"], res["prob"] = max(res["lluvia"], ps), max(res["prob"], pp)
+            res["rafagas"], res["codigo"] = max(res["rafagas"], wg), max(res["codigo"], code)
+            marcar("lluvia", nivel_por_umbral(ps, u_lluvia), ps, c)
+            marcar("viento", max(nivel_por_umbral(ws, UV["sostenido_kmh"]), nivel_por_umbral(wg, UV["rafagas_kmh"])), wg, c)
+            if code >= 95 and pp >= P.get("prob_min_tormenta", 50):
+                nt = 1
+                if (UT["naranja"].get("granizo") and code in (96, 99)) or ps >= UT["naranja"]["lluvia_12h_mm"] or wg >= UT["naranja"]["rafagas_kmh"]:
+                    nt = 2
+                if ps >= UT["rojo"]["lluvia_12h_mm"] or wg >= UT["rojo"]["rafagas_kmh"]:
+                    nt = 3
+                marcar("tormenta", nt, pp, c)
+            marcar("calor", calor[ci][j], tx, c)
+            if UF.get("activo", True) and tn is not None:
+                marcar("frio", 3 if tn <= UF["tmin"]["rojo"] else 2 if tn <= UF["tmin"]["naranja"] else 1 if tn <= UF["tmin"]["amarillo"] else 0, tn, c)
+        dias.append({"fecha": f.isoformat(), "dia": n, "confianza": "media" if n <= 4 else "baja",
+                     "resumen": res, "senales": sorted(senales.values(), key=lambda x: -x["nivel"])})
+    return dias
+
+
+DIAS_SEMANA = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"]
+
+
+def texto_senal(s_: dict) -> str:
+    v, f = s_.get("valor"), s_["fenomeno"]
+    return {"lluvia": f"lluvia de hasta {num(v)} mm en el día", "viento": f"ráfagas de hasta {num(v)} km/h",
+            "tormenta": f"tormentas (probabilidad {num(v)} %)", "calor": f"máximas de hasta {num(v)} °C",
+            "frio": f"mínimas de hasta {num(v)} °C"}.get(f, f)
+
+
+def msg_perspectiva(dias: list[dict], total: int) -> str:
+    lineas = ["🗓️ <b>Perspectiva · próximos días</b>",
+              "<i>Pronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.</i>", ""]
+    hay = any(d["senales"] for d in dias)
+    for d in dias:
+        f = datetime.fromisoformat(d["fecha"])
+        r = d["resumen"]
+        cab = f"<b>{DIAS_SEMANA[f.weekday()]} {f:%d/%m}</b> · {num(r['tmin'])}° / {num(r['tmax'])}°"
+        if r["prob"] >= 30:
+            cab += f" · 💧 {num(r['prob'])} %"
+        lineas.append(cab)
+        if d["senales"]:
+            for s_ in d["senales"]:
+                lineas.append(f"   {ICONO[s_['nivel']]} {NOMBRE_FENOMENO.get(s_['fenomeno'], s_['fenomeno'])}: "
+                              f"{texto_senal(s_)} · {lista_comunas(s_['comunas'], total)}")
+            lineas.append(f"   <i>confianza {d['confianza']}</i>")
+    if not hay:
+        lineas += ["", "✅ Sin señales de eventos significativos en estos días."]
+    return "\n".join(lineas)
+
+
+# ---------------------------------------------------------------------------
+# 2c. Seguimiento · próximas horas por comuna (para partes cada 30 minutos)
+# ---------------------------------------------------------------------------
+def resumen_proximas_horas(datos: list[dict], comunas: list[dict], horas: int) -> dict:
+    filas = []
+    hora_actual = ahora().replace(minute=0, second=0, microsecond=0)
+    for c, d in zip(comunas, datos):
+        H = d["hourly"]
+        t = [parse_local(x) for x in H["time"]]
+        i0 = next((i for i, x in enumerate(t) if x >= hora_actual), 0)
+        rng = list(range(i0, min(i0 + horas, len(t))))
+        hs = [{"t": t[i], "p": H["precipitation"][i] or 0, "g": H["wind_gusts_10m"][i] or 0,
+               "pr": H["precipitation_probability"][i] or 0, "c": H["weather_code"][i] or 0,
+               "temp": H["temperature_2m"][i]} for i in rng]
+        kp = max(range(len(hs)), key=lambda k: hs[k]["p"])
+        kg = max(range(len(hs)), key=lambda k: hs[k]["g"])
+        tormenta = [h["t"] for h in hs if h["c"] >= 95]
+        temps = [h["temp"] for h in hs if h["temp"] is not None]
+        filas.append({
+            "comuna": c["n"], "lluvia": sum(h["p"] for h in hs), "lluvia_max": hs[kp]["p"], "hora_lluvia_max": hs[kp]["t"],
+            "rafaga": hs[kg]["g"], "hora_rafaga": hs[kg]["t"], "prob": max(h["pr"] for h in hs),
+            "tormenta": tormenta, "granizo": any(h["c"] in (96, 99) for h in hs),
+            "ahora_lluvia": hs[0]["p"], "ahora_rafaga": hs[0]["g"],
+            "temp_ahora": temps[0] if temps else None, "temp_min": min(temps) if temps else None,
+            "temp_max": max(temps) if temps else None, "horas": hs,
+        })
+    ciudad = []
+    for k in range(min(len(f["horas"]) for f in filas)):
+        hk = [f["horas"][k] for f in filas]
+        ciudad.append({"t": hk[0]["t"], "p": max(h["p"] for h in hk), "g": max(h["g"] for h in hk),
+                       "pr": max(h["pr"] for h in hk), "tormenta": any(h["c"] >= 95 for h in hk),
+                       "comunas_lluvia": sum(1 for h in hk if h["p"] >= 0.5)})
+    return {"filas": filas, "ciudad": ciudad}
+
+
+def msg_seguimiento(res: dict, motivo: str, U: dict, total: int, prev: dict | None, cfg: dict, prueba=False) -> str:
+    F, C = res["filas"], res["ciudad"]
+    hh = lambda d: f"{d:%H} h"
+    UI, UG = U["lluvia"].get("intensidad_horaria_mm", {}), U["viento"]["rafagas_kmh"]
+    L = []
+    if prueba:
+        L.append("🧪 <b>PRUEBA DE SEGUIMIENTO</b>")
+    L += [f"📡 <b>Seguimiento · {e(motivo)}</b>",
+          f"<i>Parte de las {ahora():%H:%M} · próximas {len(C)} h · pronóstico por comuna (Open-Meteo)</i>", ""]
+
+    # esta hora
+    llueve = [f for f in F if f["ahora_lluvia"] >= 0.5]
+    g_ahora = max(f["ahora_rafaga"] for f in F)
+    if llueve:
+        m = max(llueve, key=lambda f: f["ahora_lluvia"])
+        L.append(f"🕒 <b>Esta hora:</b> lluvia en {len(llueve)} de {total} comunas "
+                 f"(máx. {num(m['ahora_lluvia'], 1)} mm en Comuna {m['comuna']}) · ráfagas hasta {num(g_ahora)} km/h")
+    else:
+        L.append(f"🕒 <b>Esta hora:</b> sin lluvia significativa · ráfagas hasta {num(g_ahora)} km/h")
+
+    # lluvia
+    con = sorted([f for f in F if f["lluvia"] >= 2], key=lambda f: -f["lluvia"])
+    if con:
+        pico = max(C, key=lambda h: h["p"])
+        L.append(f"🌧️ <b>Lluvia:</b> {len(con)} comuna(s) con lluvia; lo más intenso cerca de las {hh(pico['t'])}.")
+        for f in con[:5]:
+            n = nivel_por_umbral(f["lluvia_max"], UI)
+            L.append(f"   {ICONO[n] if n else '•'} Comuna {f['comuna']}: {num(f['lluvia'])} mm "
+                     f"(máx. {num(f['lluvia_max'], 1)} mm/h a las {hh(f['hora_lluvia_max'])})")
+        if len(con) > 5:
+            resto = con[5:]
+            a_, b_ = num(min(f['lluvia'] for f in resto)), num(max(f['lluvia'] for f in resto))
+            L.append(f"   • Otras {len(resto)} comunas: " + (f"alrededor de {a_} mm" if a_ == b_ else f"entre {a_} y {b_} mm"))
+    else:
+        L.append("🌧️ <b>Lluvia:</b> no se espera lluvia significativa.")
+
+    # viento
+    gmax = max(F, key=lambda f: f["rafaga"])
+    fuertes = sorted([f["comuna"] for f in F if nivel_por_umbral(f["rafaga"], UG) >= 1])
+    nv = nivel_por_umbral(gmax["rafaga"], UG)
+    if fuertes:
+        L.append(f"💨 <b>Viento:</b> {ICONO[nv]} ráfagas de hasta {num(gmax['rafaga'])} km/h cerca de las {hh(gmax['hora_rafaga'])} · "
+                 f"{lista_comunas(fuertes, total)}")
+    else:
+        L.append(f"💨 <b>Viento:</b> ráfagas de hasta {num(gmax['rafaga'])} km/h, por debajo de los umbrales.")
+
+    # tormenta
+    st = [f for f in F if f["tormenta"]]
+    if st:
+        h_ini = min(min(f["tormenta"]) for f in st)
+        h_fin = max(max(f["tormenta"]) for f in st)
+        franja = hh(h_ini) if h_ini == h_fin else f"entre las {h_ini:%H} y las {(h_fin + timedelta(hours=1)):%H} h"
+        gr = " · posible granizo" if any(f["granizo"] for f in st) else ""
+        L.append(f"⛈️ <b>Tormentas:</b> probables {franja} · {lista_comunas([f['comuna'] for f in st], total)}{gr}")
+    else:
+        L.append("⛈️ <b>Tormentas:</b> el modelo no pronostica tormentas en este lapso.")
+
+    # temperatura
+    ta = [f["temp_ahora"] for f in F if f["temp_ahora"] is not None]
+    tm = [f["temp_min"] for f in F if f["temp_min"] is not None]
+    if ta and tm:
+        L.append(f"🌡️ <b>Temperatura:</b> {num(sum(ta) / len(ta))}° ahora, mínima de {num(min(tm))}° en las próximas horas")
+
+    # tendencia
+    lluvia_top = con[0]["lluvia"] if con else 0
+    if prev:
+        cambios = []
+        dl = lluvia_top - prev.get("lluvia_max", 0)
+        if abs(dl) >= 3:
+            cambios.append(("⬆️ más" if dl > 0 else "⬇️ menos") + f" lluvia prevista ({'+' if dl > 0 else ''}{num(dl)} mm en la comuna más afectada)")
+        dg = gmax["rafaga"] - prev.get("rafaga_max", 0)
+        if abs(dg) >= 10:
+            cambios.append(("⬆️ ráfagas más fuertes" if dg > 0 else "⬇️ ráfagas más débiles") + f" ({'+' if dg > 0 else ''}{num(dg)} km/h)")
+        L.append("📈 <b>Respecto del parte anterior:</b> " + ("; ".join(cambios) if cambios else "sin cambios importantes."))
+
+    # hora por hora
+    L += ["", "<b>Hora por hora</b> (máximo en la Ciudad):"]
+    for h in C:
+        ic = "⛈️" if h["tormenta"] else "🌧️" if h["p"] >= 0.5 else "☁️" if h["pr"] >= 30 else "🌤️"
+        extra = f" · {h['comunas_lluvia']} com." if h["p"] >= 0.5 else ""
+        L.append(f"<code>{h['t']:%H}h</code> {ic} {num(h['p'], 1)} mm · 💨 {num(h['g'])} km/h{extra}")
+    url = cfg["general"].get("url_tablero")
+    if url and "TU-USUARIO" not in url:
+        L += ["", f'<a href="{e(url)}">Ver mapa y radar en el tablero</a>']
+    return "\n".join(L)
+
+
+def motivo_seguimiento(oficiales: list[dict], eventos: list[dict], S_: dict) -> str | None:
+    """Devuelve el motivo del seguimiento si corresponde activarlo, o None."""
+    niveles = set(S_.get("niveles_smn", [1, 2, 3]))
+    ant = timedelta(hours=float(S_.get("inicio_anticipado_horas", 3)))
+    t = ahora()
+    vig = []
+    for o in oficiales:
+        if o["nivel"] not in niveles:
+            continue
+        try:
+            d0 = datetime.fromisoformat(o["desde"]) if o.get("desde") else t
+            d1 = datetime.fromisoformat(o["hasta"]) if o.get("hasta") else None
+        except ValueError:
+            d0, d1 = t, None
+        if d0 - ant <= t and (d1 is None or t <= d1):
+            vig.append((o["nivel"], f"{ALERTA[o['nivel']].capitalize()} del SMN por {o.get('titulo') or o['fenomeno']}"
+                        + (f" (hasta {fmt_hora(d1)})" if d1 else "")))
+    if S_.get("tambien_por_pronostico", False):
+        for ev in eventos:
+            if ev["fuente"] == "pronostico" and ev["fenomeno"] in ("lluvia", "viento", "tormenta") \
+                    and ev["nivel"] >= S_.get("nivel_minimo_pronostico", 2) and datetime.fromisoformat(ev["desde"]) - ant <= t:
+                vig.append((ev["nivel"], f"{ALERTA[ev['nivel']].capitalize()} por pronóstico · {NOMBRE_FENOMENO[ev['fenomeno']]}"))
+    if not vig:
+        return None
+    return max(vig, key=lambda x: x[0])[1]
 
 
 # ---------------------------------------------------------------------------
@@ -473,9 +715,11 @@ def msg_evento(ev: dict, cfg: dict, cambio: str, total: int, simulacro=False) ->
     return "\n".join(lineas)
 
 
-def msg_fin(prev: dict) -> str:
+def msg_fin(prev: dict, clave: str = "") -> str:
     nombre = prev.get("nombre", "Alerta")
-    return f"✅ <b>FINALIZÓ · {e(nombre)}</b>\nYa no se prevén condiciones de alerta para la Ciudad."
+    if clave.startswith("smn:"):
+        return f"✅ <b>FINALIZÓ · {e(nombre)}</b> · alerta oficial SMN\nEl SMN ya no tiene esta alerta vigente para la Ciudad."
+    return f"✅ <b>FINALIZÓ · {e(nombre)}</b> · por pronóstico\nYa no se prevén condiciones de alerta para la Ciudad."
 
 
 def msg_estado(eventos: list[dict], total: int) -> str:
@@ -504,7 +748,7 @@ def msg_umbrales(U: dict) -> str:
     ])
 
 
-def responder_comandos(tg: Telegram, estado: dict, eventos: list[dict], U: dict, total: int):
+def responder_comandos(tg: Telegram, estado: dict, eventos: list[dict], U: dict, total: int, persp: list[dict] | None = None, parte=None):
     """Lee los mensajes nuevos que le escribieron al bot y responde comandos."""
     if tg.dry:
         return
@@ -525,9 +769,13 @@ def responder_comandos(tg: Telegram, estado: dict, eventos: list[dict], U: dict,
             tg.enviar(msg_estado(eventos, total), [cid])
         elif cmd == "/umbrales":
             tg.enviar(msg_umbrales(U), [cid])
+        elif cmd == "/ahora":
+            tg.enviar(parte() if parte else "El pronóstico por comuna no está disponible en este momento.", [cid])
+        elif cmd == "/perspectiva":
+            tg.enviar(msg_perspectiva(persp, total) if persp else "La perspectiva extendida no está disponible en este momento.", [cid])
         elif cmd in ("/start", "/ayuda", "/help"):
             tg.enviar("👋 <b>Bot de alertas meteorológicas CABA</b>\nGCBA · Jefatura de Gabinete\n\n"
-                      "/estado · alertas vigentes\n/umbrales · criterios que usa el sistema\n/ayuda · este mensaje\n\n"
+                      "/estado · alertas vigentes\n/ahora · próximas horas por comuna\n/perspectiva · próximos días (3 a 7)\n/umbrales · criterios que usa el sistema\n/ayuda · este mensaje\n\n"
                       "Las respuestas pueden demorar hasta 15 minutos.", [cid])
 
 
@@ -543,7 +791,7 @@ def main():
     ap.add_argument("--config", default=str(ROOT / "config.yaml"))
     ap.add_argument("--estado", default=str(ROOT / "estado" / "estado.json"))
     ap.add_argument("--salida", default=str(ROOT / "docs" / "data" / "alertas.json"))
-    ap.add_argument("--modo", default="normal", choices=["normal", "prueba", "simulacro"])
+    ap.add_argument("--modo", default="normal", choices=["normal", "prueba", "simulacro", "perspectiva", "seguimiento"])
     ap.add_argument("--dry-run", action="store_true", help="no envía nada, muestra los mensajes")
     a = ap.parse_args()
 
@@ -565,13 +813,19 @@ def main():
                   f"GCBA · Jefatura de Gabinete · {ahora():%d/%m/%Y %H:%M}")
         return
 
-    errores, eventos = [], []
+    P = cfg.get("perspectiva", {}) or {}
+    S_ = cfg.get("seguimiento", {}) or {}
+    errores, eventos, persp, datos = [], [], [], None
     if cfg["fuentes"].get("open_meteo", True):
         try:
-            datos = descargar_open_meteo(comunas)
+            dias_pedidos = max(7, min(16, int(P.get("dias_hasta", 7)) if P.get("activa", True) else 7))
+            datos = descargar_open_meteo(comunas, dias_pedidos)
             evals = [evaluar_comuna(d, U, G["horizonte_horas"], G["horizonte_dias"]) for d in datos]
             eventos += agregar_eventos(evals, comunas)
             log(f"Open-Meteo OK · {len(eventos)} alerta(s) por pronóstico")
+            if P.get("activa", True):
+                persp = calcular_perspectiva(datos, comunas, U, P)
+                log(f"Perspectiva OK · {sum(1 for d in persp if d['senales'])} día(s) con señales")
         except Exception as ex:
             errores.append(f"Open-Meteo: {ex}")
             log("ERROR Open-Meteo:", ex)
@@ -584,6 +838,22 @@ def main():
             errores.append(f"SMN: {ex}")
             log("ERROR SMN:", ex)
     eventos += oficiales
+
+    if a.modo == "perspectiva":
+        if persp:
+            tg.enviar(msg_perspectiva(persp, total))
+        else:
+            log("No hay datos de perspectiva (¿falló Open-Meteo o está desactivada?)")
+        return
+
+    if a.modo == "seguimiento":
+        if not datos:
+            log("No hay datos de Open-Meteo para armar el parte.")
+            return
+        motivo = motivo_seguimiento(oficiales, eventos, S_) or "sin alerta vigente (parte de prueba)"
+        res = resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6)))
+        tg.enviar(msg_seguimiento(res, motivo, U, total, None, cfg, prueba=True))
+        return
 
     if a.modo == "simulacro":
         t0 = ahora().replace(minute=0, second=0, microsecond=0) + timedelta(hours=3)
@@ -626,7 +896,7 @@ def main():
         ausente = prev.get("ausente", 0) + 1
         if ausente >= G.get("ciclos_para_cerrar", 2):
             if prev.get("nivel", 0) >= minimo:
-                texto = msg_fin(prev)
+                texto = msg_fin(prev, k)
                 tg.enviar(texto)
                 enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
         else:
@@ -635,8 +905,49 @@ def main():
     if enviados:
         estado["ultimo_envio"] = enviados[-1]
 
+    # --- seguimiento: partes cada N minutos mientras haya alerta del SMN vigente ---
+    seg = estado.setdefault("seguimiento", {})
+    motivo = motivo_seguimiento(oficiales, eventos, S_) if S_.get("activo", True) else None
+    if motivo:
+        ultimo = seg.get("ultimo")
+        intervalo = max(15, int(S_.get("cada_minutos", 30)))
+        toca = not ultimo or ahora() - datetime.fromisoformat(ultimo) >= timedelta(minutes=intervalo - 3)
+        if toca and datos:
+            res = resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6)))
+            texto = msg_seguimiento(res, motivo, U, total, seg.get("prev"), cfg)
+            tg.enviar(texto)
+            enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
+            estado["ultimo_envio"] = enviados[-1]
+            con = [f["lluvia"] for f in res["filas"]]
+            seg.update(ultimo=ahora().isoformat(),
+                       prev={"lluvia_max": max(con) if max(con) >= 2 else 0, "rafaga_max": max(f["rafaga"] for f in res["filas"])})
+        seg.update(activo=True, motivo=motivo, ausente=0)
+    elif seg.get("activo") and fuente_ok["smn"] and (fuente_ok["pronostico"] or not S_.get("tambien_por_pronostico")) \
+            and seg.get("ausente", 0) + 1 < G.get("ciclos_para_cerrar", 2):
+        seg["ausente"] = seg.get("ausente", 0) + 1     # igual que las alertas: esperamos antes de darlo por terminado
+    elif seg.get("activo") and fuente_ok["smn"] and (fuente_ok["pronostico"] or not S_.get("tambien_por_pronostico")):
+        texto = ("📡 <b>Seguimiento finalizado</b>\nYa no hay alertas vigentes para la Ciudad. "
+                 "Se dejan de enviar los partes cada " + str(S_.get("cada_minutos", 30)) + " minutos.")
+        tg.enviar(texto)
+        enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
+        estado["ultimo_envio"] = enviados[-1]
+        estado["seguimiento"] = {"activo": False}
+
+    # --- resumen diario de perspectiva (una vez por día, desde la hora configurada) ---
+    hoy_txt = ahora().date().isoformat()
+    if (persp and P.get("resumen_diario", True) and ahora().hour >= int(P.get("hora_resumen", 8))
+            and estado.get("resumen_fecha") != hoy_txt):
+        if any(d["senales"] for d in persp) or not P.get("solo_si_hay_senales", False):
+            texto = msg_perspectiva(persp, total)
+            tg.enviar(texto)
+            enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
+            estado["ultimo_envio"] = enviados[-1]
+        estado["resumen_fecha"] = hoy_txt
+
     if cfg["telegram"].get("responder_comandos", True):
-        responder_comandos(tg, estado, eventos, U, total)
+        parte = (lambda: msg_seguimiento(resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6))),
+                                         motivo or "consulta a pedido", U, total, None, cfg)) if datos else None
+        responder_comandos(tg, estado, eventos, U, total, persp, parte)
 
     # --- archivo para el tablero ---
     salida = {
@@ -645,6 +956,13 @@ def main():
         "umbrales": U,
         "oficiales": [x for x in eventos if x["fuente"] == "smn"],
         "pronostico": [x for x in eventos if x["fuente"] == "pronostico"],
+        "perspectiva": persp,
+        "perspectiva_config": P,
+        "seguimiento": {"activo": bool(estado.get("seguimiento", {}).get("activo")),
+                        "motivo": estado.get("seguimiento", {}).get("motivo"),
+                        "ultimo": estado.get("seguimiento", {}).get("ultimo"),
+                        "cada_minutos": S_.get("cada_minutos", 30), "horas": S_.get("horas_adelante", 6),
+                        "configurado": bool(S_.get("activo", True))},
         "telegram": {"url_canal": cfg["telegram"].get("url_canal"), "usuario_bot": cfg["telegram"].get("usuario_bot"),
                      "ultimo_envio": estado.get("ultimo_envio")},
     }

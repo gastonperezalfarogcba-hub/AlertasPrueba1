@@ -148,6 +148,39 @@ Las alertas oficiales del SMN llegan marcadas **🏛️ Oficial SMN**, con la de
 
 ---
 
+## Perspectiva extendida (días 3 a 7)
+
+Además de las alertas (próximas 48 horas), el sistema calcula una **perspectiva** de los días 3 a 7 con los mismos umbrales aplicados a valores diarios: lluvia del día, ráfaga máxima, tormenta, calor y frío.
+
+- **No dispara alertas.** Es un pronóstico de menor certeza: confianza *media* en los días 3 y 4, *baja* del 5 en adelante.
+- **Tablero:** pestaña Alertas → "Perspectiva · próximos días". En la lista de 7 días, los días con fenómenos a vigilar llevan un punto de color.
+- **Telegram:** un resumen por día, a partir de las 8 h. También a pedido con `/perspectiva`, o desde Actions con el modo `perspectiva`.
+- **Configuración** en `config.yaml`, sección `perspectiva`: días, hora del resumen, y si se manda solo cuando hay algo para vigilar (`solo_si_hay_senales: true`).
+
+---
+
+## Seguimiento durante una alerta del SMN
+
+Mientras haya una **alerta oficial del SMN vigente para la Ciudad** (amarilla, naranja o roja), el bot manda **cada 30 minutos un parte** con las próximas 6 horas por comuna (Open-Meteo):
+
+- **Esta hora:** cuántas comunas tienen lluvia y dónde llueve más.
+- **Lluvia:** las comunas más afectadas, con milímetros totales, intensidad máxima y a qué hora.
+- **Viento:** ráfaga máxima, hora y comunas que superan el umbral.
+- **Tormentas:** franja horaria, comunas y posible granizo.
+- **Temperatura:** valor actual y mínima de las próximas horas.
+- **Tendencia:** si el pronóstico empeoró o mejoró respecto del parte anterior.
+- **Hora por hora:** el máximo en la Ciudad.
+
+El seguimiento empieza 3 horas antes del inicio de la alerta del SMN y termina cuando la alerta deja de estar vigente. En ese momento llega "📡 Seguimiento finalizado". Las alertas del SMN, las alertas por pronóstico y el resumen diario se siguen enviando igual.
+
+- **A pedido:** `/ahora` en el bot, o el modo `seguimiento` en Actions para ver un parte de prueba.
+- **Tablero:** pestaña Alertas → "Próximas horas por comuna". Cuando hay seguimiento, se ve un aviso "Seguimiento activo".
+- **Configuración** en `config.yaml`, sección `seguimiento`: intervalo, horas, niveles del SMN que lo activan, y si también se activa con alertas propias de lluvia, viento o tormenta (`tambien_por_pronostico`).
+
+> GitHub puede demorar las corridas, así que el intervalo real puede ser de 30 a 40 minutos.
+
+---
+
 ## Cambiar los umbrales
 
 Todo está en `config.yaml`, sección `umbrales`. Editás, guardás, y el próximo ciclo ya usa los valores nuevos. El tablero muestra la misma tabla, así que el bot y el tablero siempre coinciden.
