@@ -1,0 +1,102 @@
+# =====================================================================
+#  Alertas meteorológicas CABA · Configuración
+#  GCBA · Jefatura de Gabinete de Ministros
+#
+#  Todo lo que está acá se puede cambiar sin tocar el código.
+#  Después de editar, hacé commit y el próximo ciclo ya usa los valores nuevos.
+#  El tablero lee estos mismos umbrales (vía docs/data/alertas.json).
+# =====================================================================
+
+general:
+  nombre: "Alertas meteorológicas CABA"
+  # Horizonte que se evalúa para lluvia, viento y tormenta (horas hacia adelante)
+  horizonte_horas: 48
+  # Horizonte para temperaturas extremas (días hacia adelante, incluye hoy)
+  horizonte_dias: 5
+  # Nivel mínimo que dispara un mensaje: 1 = amarillo, 2 = naranja, 3 = rojo
+  nivel_minimo_envio: 1
+  # Avisar también cuando una alerta baja de nivel (además de cuando sube o aparece)
+  avisar_bajas: true
+  # Cantidad de ciclos seguidos sin la alerta para darla por finalizada
+  # (evita mensajes de "finalizó" cuando el modelo oscila entre corridas)
+  ciclos_para_cerrar: 2
+  # URL pública del tablero (se agrega al final de cada mensaje)
+  url_tablero: "https://TU-USUARIO.github.io/alertas-clima-caba/"
+
+fuentes:
+  open_meteo: true
+  # Alertas oficiales del SMN en formato CAP (Common Alerting Protocol, estándar OMM)
+  smn_cap: true
+  smn_cap_feed: "https://ssl.smn.gob.ar/CAP/AR.php"
+
+telegram:
+  # El token y los chat_id NO van acá: se cargan como "secrets" en GitHub
+  # (TELEGRAM_BOT_TOKEN y TELEGRAM_CHAT_IDS). Ver README.
+  # Link público al canal o grupo donde publica el bot (lo muestra el tablero con un QR)
+  url_canal: "https://t.me/TU_CANAL_DE_ALERTAS"
+  # Nombre de usuario del bot, sin @ (para el botón "Abrir bot" del tablero)
+  usuario_bot: "TU_BOT"
+  # Responder comandos /estado, /umbrales y /ayuda que le escriban al bot
+  responder_comandos: true
+
+# ---------------------------------------------------------------------
+#  UMBRALES · basados en los criterios del Sistema de Alerta Temprana
+#  del SMN para la región Llanura (incluye CABA). Ver README, sección
+#  "De dónde salen los umbrales". Ajustalos con el área técnica.
+# ---------------------------------------------------------------------
+umbrales:
+
+  lluvia:
+    # SMN: amarillo y naranja por acumulado en 12 h; rojo por acumulado en 24 h
+    acumulado_12h_mm:  { amarillo: 40, naranja: 80 }
+    acumulado_24h_mm:  { rojo: 150 }
+    # Criterio LOCAL (no SMN): intensidad horaria, relevante para el drenaje urbano de CABA
+    intensidad_horaria_mm: { amarillo: 20, naranja: 35, rojo: 60 }
+
+  viento:
+    # SMN Llanura: viento medio / ráfagas en km/h, con duración mínima
+    sostenido_kmh: { amarillo: 55, naranja: 75, rojo: 90 }
+    rafagas_kmh:   { amarillo: 65, naranja: 90, rojo: 110 }
+    horas_minimas: 2
+
+  tormenta:
+    # Se detecta con el código de tiempo del modelo (95 tormenta, 96/99 granizo).
+    # Opcional: también con energía convectiva (CAPE) y probabilidad de lluvia altas.
+    usar_cape: true
+    cape_minimo: 1500        # J/kg
+    probabilidad_minima: 60  # %
+    # Escalamiento del nivel (como el SMN: intensidad de lluvia, ráfagas y granizo)
+    naranja: { lluvia_12h_mm: 60, rafagas_kmh: 90, granizo: true }
+    rojo:    { lluvia_12h_mm: 100, rafagas_kmh: 110 }
+
+  calor:
+    # SMN usa umbrales de Tmáx y Tmín por localidad (percentil 90) y la persistencia.
+    # Valores de referencia para Buenos Aires: verificalos con el SMN.
+    tmax: 32.3
+    tmin: 22.0
+    dias_consecutivos: { amarillo: 2, naranja: 3 }
+    rojo_tmax: 38.0          # rojo: 3+ días seguidos y Tmáx igual o mayor a este valor
+
+  frio:
+    activo: true
+    tmin: { amarillo: 2, naranja: 0, rojo: -3 }
+
+# ---------------------------------------------------------------------
+#  COMUNAS (punto representativo de cada una)
+# ---------------------------------------------------------------------
+comunas:
+  - { n: 1,  lat: -34.607, lon: -58.372, barrios: "Retiro, San Nicolás, Puerto Madero, San Telmo, Monserrat, Constitución" }
+  - { n: 2,  lat: -34.588, lon: -58.397, barrios: "Recoleta" }
+  - { n: 3,  lat: -34.606, lon: -58.404, barrios: "Balvanera, San Cristóbal" }
+  - { n: 4,  lat: -34.645, lon: -58.385, barrios: "La Boca, Barracas, Parque Patricios, Nueva Pompeya" }
+  - { n: 5,  lat: -34.621, lon: -58.423, barrios: "Almagro, Boedo" }
+  - { n: 6,  lat: -34.618, lon: -58.443, barrios: "Caballito" }
+  - { n: 7,  lat: -34.636, lon: -58.455, barrios: "Flores, Parque Chacabuco" }
+  - { n: 8,  lat: -34.673, lon: -58.455, barrios: "Villa Soldati, Villa Riachuelo, Villa Lugano" }
+  - { n: 9,  lat: -34.653, lon: -58.502, barrios: "Liniers, Mataderos, Parque Avellaneda" }
+  - { n: 10, lat: -34.629, lon: -58.497, barrios: "Floresta, Vélez Sarsfield, Villa Luro, Versalles, Monte Castro, Villa Real" }
+  - { n: 11, lat: -34.604, lon: -58.497, barrios: "Villa Devoto, Villa del Parque, Villa General Mitre, Villa Santa Rita" }
+  - { n: 12, lat: -34.566, lon: -58.490, barrios: "Villa Urquiza, Saavedra, Coghlan, Villa Pueyrredón" }
+  - { n: 13, lat: -34.560, lon: -58.455, barrios: "Belgrano, Núñez, Colegiales" }
+  - { n: 14, lat: -34.578, lon: -58.425, barrios: "Palermo" }
+  - { n: 15, lat: -34.592, lon: -58.462, barrios: "Chacarita, Villa Crespo, Paternal, Agronomía, Villa Ortúzar, Parque Chas" }
