@@ -784,13 +784,21 @@ class Telegram:
         destinos = chat_ids or self.chat_ids
         if self.dry or not destinos:
             print("\n----- MENSAJE (no enviado) -----\n" + re.sub(r"<[^>]+>", "", texto) + "\n--------------------------------")
-            return
+            return True
+        ok = True
         for cid in destinos:
             try:
                 self.api("sendMessage", chat_id=cid, text=texto, parse_mode="HTML", disable_web_page_preview=True)
                 log("Enviado a", cid)
             except Exception as ex:
                 log("ERROR enviando a", cid, ex)
+                try:   # segundo intento sin formato, por si el problema fue el HTML
+                    self.api("sendMessage", chat_id=cid, text=re.sub(r"<[^>]+>", "", texto), disable_web_page_preview=True)
+                    log("Enviado sin formato a", cid)
+                except Exception as ex2:
+                    log("ERROR (2º intento) enviando a", cid, ex2)
+                    ok = False
+        return ok
 
 
 def e(s) -> str:
@@ -1035,83 +1043,104 @@ def main():
         estado["ultimo_envio"] = enviados[-1]
 
     # --- seguimiento: partes cada N minutos mientras haya alerta del SMN vigente ---
-    seg = estado.setdefault("seguimiento", {})
-    motivo = motivo_seguimiento(oficiales, eventos, S_) if S_.get("activo", True) else None
-    if motivo:
-        ultimo = seg.get("ultimo")
-        intervalo = max(15, int(S_.get("cada_minutos", 30)))
-        toca = not ultimo or ahora() - datetime.fromisoformat(ultimo) >= timedelta(minutes=intervalo - 3)
-        if toca and datos:
-            res = resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6)))
-            texto = msg_seguimiento(res, motivo, U, total, seg.get("prev"), cfg)
+    motivo, sit = None, None
+    try:
+        seg = estado.setdefault("seguimiento", {})
+        motivo = motivo_seguimiento(oficiales, eventos, S_) if S_.get("activo", True) else None
+        if motivo:
+            ultimo = seg.get("ultimo")
+            intervalo = max(15, int(S_.get("cada_minutos", 30)))
+            toca = not ultimo or ahora() - datetime.fromisoformat(ultimo) >= timedelta(minutes=intervalo - 3)
+            if toca and datos:
+                res = resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6)))
+                texto = msg_seguimiento(res, motivo, U, total, seg.get("prev"), cfg)
+                tg.enviar(texto)
+                enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
+                estado["ultimo_envio"] = enviados[-1]
+                con = [f["lluvia"] for f in res["filas"]]
+                seg.update(ultimo=ahora().isoformat(),
+                           prev={"lluvia_max": max(con) if max(con) >= 2 else 0, "rafaga_max": max(f["rafaga"] for f in res["filas"])})
+            seg.update(activo=True, motivo=motivo, ausente=0)
+        elif seg.get("activo") and fuente_ok["smn"] and (fuente_ok["pronostico"] or not S_.get("tambien_por_pronostico")) \
+                and seg.get("ausente", 0) + 1 < G.get("ciclos_para_cerrar", 2):
+            seg["ausente"] = seg.get("ausente", 0) + 1     # igual que las alertas: esperamos antes de darlo por terminado
+        elif seg.get("activo") and fuente_ok["smn"] and (fuente_ok["pronostico"] or not S_.get("tambien_por_pronostico")):
+            texto = ("📡 <b>Seguimiento finalizado</b>\nYa no hay alertas vigentes para la Ciudad. "
+                     "Se dejan de enviar los partes cada " + str(S_.get("cada_minutos", 30)) + " minutos.")
             tg.enviar(texto)
             enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
             estado["ultimo_envio"] = enviados[-1]
-            con = [f["lluvia"] for f in res["filas"]]
-            seg.update(ultimo=ahora().isoformat(),
-                       prev={"lluvia_max": max(con) if max(con) >= 2 else 0, "rafaga_max": max(f["rafaga"] for f in res["filas"])})
-        seg.update(activo=True, motivo=motivo, ausente=0)
-    elif seg.get("activo") and fuente_ok["smn"] and (fuente_ok["pronostico"] or not S_.get("tambien_por_pronostico")) \
-            and seg.get("ausente", 0) + 1 < G.get("ciclos_para_cerrar", 2):
-        seg["ausente"] = seg.get("ausente", 0) + 1     # igual que las alertas: esperamos antes de darlo por terminado
-    elif seg.get("activo") and fuente_ok["smn"] and (fuente_ok["pronostico"] or not S_.get("tambien_por_pronostico")):
-        texto = ("📡 <b>Seguimiento finalizado</b>\nYa no hay alertas vigentes para la Ciudad. "
-                 "Se dejan de enviar los partes cada " + str(S_.get("cada_minutos", 30)) + " minutos.")
-        tg.enviar(texto)
-        enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
-        estado["ultimo_envio"] = enviados[-1]
-        estado["seguimiento"] = {"activo": False}
+            estado["seguimiento"] = {"activo": False}
+    except Exception as ex:   # un error acá no frena el resto del ciclo
+        log("ERROR en seguimiento:", repr(ex))
+        errores.append("seguimiento: " + str(ex))
 
     # --- aviso de lluvia (información, aunque no haya alertas) ---
-    LL = estado.setdefault("lluvia", {"estado": "seco"})
-    sit = None
-    if A_.get("activo", True) and datos:
-        sit = situacion_lluvia(datos, comunas, metar, A_)
-        silenciar = A_.get("silenciar_con_seguimiento", True) and estado.get("seguimiento", {}).get("activo")
+    try:
+        LL = estado.setdefault("lluvia", {"estado": "seco"})
+        sit = None
+        if A_.get("activo", True) and datos:
+            sit = situacion_lluvia(datos, comunas, metar, A_)
+            silenciar = A_.get("silenciar_con_seguimiento", True) and estado.get("seguimiento", {}).get("activo")
 
-        def mandar(texto):
-            if silenciar:
-                log("Aviso de lluvia omitido (hay seguimiento activo)")
-                return
-            tg.enviar(texto)
-            enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
-            estado["ultimo_envio"] = enviados[-1]
+            def mandar(texto):
+                if silenciar:
+                    log("Aviso de lluvia omitido (hay seguimiento activo)")
+                    return
+                tg.enviar(texto)
+                enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
+                estado["ultimo_envio"] = enviados[-1]
 
-        if sit["llueve"]:
-            if LL.get("estado") != "lloviendo":
-                mandar(msg_lluvia(sit, "empieza", total, cfg))
-                LL.update(estado="lloviendo", desde=ahora().isoformat(), ultimo=ahora().isoformat())
+            if sit["llueve"]:
+                if LL.get("estado") != "lloviendo":
+                    mandar(msg_lluvia(sit, "empieza", total, cfg))
+                    LL.update(estado="lloviendo", desde=ahora().isoformat(), ultimo=ahora().isoformat())
+                else:
+                    cada = int(A_.get("actualizar_cada_minutos", 60))
+                    if cada and ahora() - datetime.fromisoformat(LL.get("ultimo", ahora().isoformat())) >= timedelta(minutes=cada - 3):
+                        mandar(msg_lluvia(sit, "sigue", total, cfg))
+                        LL["ultimo"] = ahora().isoformat()
+                LL["secos"] = 0
             else:
-                cada = int(A_.get("actualizar_cada_minutos", 60))
-                if cada and ahora() - datetime.fromisoformat(LL.get("ultimo", ahora().isoformat())) >= timedelta(minutes=cada - 3):
-                    mandar(msg_lluvia(sit, "sigue", total, cfg))
-                    LL["ultimo"] = ahora().isoformat()
-            LL["secos"] = 0
-        else:
-            if LL.get("estado") == "lloviendo":
-                LL["secos"] = LL.get("secos", 0) + 1
-                if LL["secos"] >= G.get("ciclos_para_cerrar", 2):
-                    if A_.get("avisar_cuando_para", True):
-                        mandar(msg_lluvia(sit, "para", total, cfg, LL.get("desde")))
-                    estado["lluvia"] = LL = {"estado": "seco", "seco_desde": ahora().isoformat()}
-            elif sit["proxima_hora"] and A_.get("avisar_anticipado", True) and LL.get("estado") != "anticipado" \
-                    and len(sit["proxima_hora"]) >= int(A_.get("comunas_minimas", 2)):
-                mandar(msg_lluvia(sit, "anticipado", total, cfg))
-                LL.update(estado="anticipado", anticipado=ahora().isoformat())
-            elif LL.get("estado") == "anticipado" and not sit["proxima_hora"] and \
-                    ahora() - datetime.fromisoformat(LL.get("anticipado")) >= timedelta(hours=2):
-                estado["lluvia"] = LL = {"estado": "seco"}   # la lluvia esperada no llegó: se rearma el aviso
+                if LL.get("estado") == "lloviendo":
+                    LL["secos"] = LL.get("secos", 0) + 1
+                    if LL["secos"] >= G.get("ciclos_para_cerrar", 2):
+                        if A_.get("avisar_cuando_para", True):
+                            mandar(msg_lluvia(sit, "para", total, cfg, LL.get("desde")))
+                        estado["lluvia"] = LL = {"estado": "seco", "seco_desde": ahora().isoformat()}
+                elif sit["proxima_hora"] and A_.get("avisar_anticipado", True) and LL.get("estado") != "anticipado" \
+                        and len(sit["proxima_hora"]) >= int(A_.get("comunas_minimas", 2)):
+                    mandar(msg_lluvia(sit, "anticipado", total, cfg))
+                    LL.update(estado="anticipado", anticipado=ahora().isoformat())
+                elif LL.get("estado") == "anticipado" and not sit["proxima_hora"] and \
+                        ahora() - datetime.fromisoformat(LL.get("anticipado")) >= timedelta(hours=2):
+                    estado["lluvia"] = LL = {"estado": "seco"}   # la lluvia esperada no llegó: se rearma el aviso
+    except Exception as ex:   # un error acá no frena el resto del ciclo
+        log("ERROR en aviso de lluvia:", repr(ex))
+        errores.append("aviso de lluvia: " + str(ex))
 
     # --- resumen diario de perspectiva (una vez por día, desde la hora configurada) ---
-    hoy_txt = ahora().date().isoformat()
-    if (persp and P.get("resumen_diario", True) and ahora().hour >= int(P.get("hora_resumen", 8))
-            and estado.get("resumen_fecha") != hoy_txt):
-        if any(d["senales"] for d in persp) or not P.get("solo_si_hay_senales", False):
-            texto = msg_perspectiva(persp, total)
-            tg.enviar(texto)
-            enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
-            estado["ultimo_envio"] = enviados[-1]
-        estado["resumen_fecha"] = hoy_txt
+    try:
+        hoy_txt = ahora().date().isoformat()
+        if (persp and P.get("resumen_diario", True) and ahora().hour >= int(P.get("hora_resumen", 8))
+                and estado.get("resumen_fecha") != hoy_txt):
+            enviado_ok = True
+            if any(d["senales"] for d in persp) or not P.get("solo_si_hay_senales", False):
+                texto = msg_perspectiva(persp, total)
+                enviado_ok = tg.enviar(texto)
+                if enviado_ok:
+                    enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
+                    estado["ultimo_envio"] = enviados[-1]
+            if enviado_ok:                     # si falló, se reintenta en la próxima corrida
+                estado["resumen_fecha"] = hoy_txt
+                log("Resumen diario de perspectiva enviado")
+        elif persp:
+            log(f"Resumen diario: ya enviado hoy ({estado.get('resumen_fecha')}) o antes de las {P.get('hora_resumen', 8)} h")
+        elif P.get("activa", True):
+            log("Resumen diario: sin datos de perspectiva en esta corrida")
+    except Exception as ex:   # un error acá no frena el resto del ciclo
+        log("ERROR en resumen diario:", repr(ex))
+        errores.append("resumen diario: " + str(ex))
 
     if cfg["telegram"].get("responder_comandos", True):
         parte = (lambda: msg_seguimiento(resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6))),
