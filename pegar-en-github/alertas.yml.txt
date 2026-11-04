@@ -1,0 +1,121 @@
+name: Alertas meteorológicas CABA
+
+on:
+  schedule:
+    - cron: "7,22,37,52 * * * *"  # respaldo: minutos "raros" para evitar los picos de GitHub
+                                    # (el disparo principal es cron-job.org cada 10 minutos, ver README)
+  workflow_dispatch:               # botón "Run workflow" para correrlo a mano
+    inputs:
+      modo:
+        description: "normal · prueba (conexión) · simulacro (alerta ficticia) · perspectiva (días 3 a 7) · seguimiento (parte de próximas horas)"
+        required: true
+        default: normal
+        type: choice
+        options: [normal, prueba, simulacro, perspectiva, seguimiento]
+  push:
+    branches: [main]
+    paths: ["docs/**", "config.yaml", "alertas.py"]   # al cambiar el tablero, los umbrales o el código, se publica enseguida
+
+permissions:
+  contents: write      # para guardar el estado en la rama "estado"
+  pages: write
+  id-token: write
+
+concurrency:
+  group: alertas
+  cancel-in-progress: false
+
+jobs:
+  alertas:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - run: pip install -r requirements.txt
+
+      - run: mkdir -p estado docs/data
+
+      # El estado (qué alertas ya se avisaron) se guarda en la rama "estado" del repositorio.
+      # La caché de Actions queda solo como respaldo: GitHub la borra a los 7 días sin uso.
+      - name: Restaurar estado (respaldo en caché)
+        uses: actions/cache/restore@v4
+        with:
+          path: estado
+          key: estado-${{ github.run_id }}
+          restore-keys: estado-
+
+      - name: Restaurar estado (rama estado)
+        run: |
+          if git ls-remote --exit-code --heads origin estado > /dev/null; then
+            git fetch --depth=1 origin estado
+            git archive FETCH_HEAD | tar -x -C estado
+            echo "Estado restaurado desde la rama 'estado'"
+          else
+            echo "Todavía no existe la rama 'estado' (primera corrida): se usa la caché si hay"
+          fi
+
+      # Último ciclo del modelo WRF-SMN 4 km (lo actualiza el workflow "WRF-SMN" una vez por hora)
+      - name: Traer WRF-SMN
+        run: |
+          mkdir -p wrf
+          if git ls-remote --exit-code --heads origin wrf > /dev/null; then
+            git fetch --depth=1 origin wrf
+            git archive FETCH_HEAD | tar -x -C wrf
+          else
+            echo "Todavía no hay datos del WRF-SMN: se usa solo Open-Meteo"
+          fi
+
+      - name: Evaluar alertas y avisar por Telegram
+        id: alertas
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_IDS: ${{ secrets.TELEGRAM_CHAT_IDS }}
+        run: python alertas.py --modo "${{ inputs.modo || 'normal' }}"
+
+      - name: Guardar estado (rama estado)
+        if: always()
+        continue-on-error: true   # si no se puede guardar en la rama, queda la caché y el tablero se publica igual
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          [ -f estado/estado.json ] || { echo "No hay estado para guardar"; exit 0; }
+          cd estado
+          git init -q -b estado
+          git config user.name "alertas-clima-caba[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A
+          git commit -q -m "Estado $(date -u +%Y-%m-%dT%H:%MZ)"
+          git push -q -f "https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git" estado
+          echo "Estado guardado en la rama 'estado'"
+
+      - name: Guardar estado (respaldo en caché)
+        if: always()
+        uses: actions/cache/save@v4
+        with:
+          path: estado
+          key: estado-${{ github.run_id }}
+
+      # Publica el tablero (docs/) con el alertas.json recién generado
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: docs
+      - id: deploy
+        uses: actions/deploy-pages@v4
+
+      # Si no llegó algún mensaje de Telegram o se cayeron las dos fuentes, la corrida queda en rojo
+      # (GitHub manda un mail). Va al final para que igual se guarde el estado y se publique el tablero.
+      - name: Avisar si hubo un error grave
+        if: steps.alertas.outputs.fallo == 'true'
+        run: |
+          echo "::error::No llegó algún mensaje de Telegram o fallaron Open-Meteo y el SMN. Revisá el paso 'Evaluar alertas y avisar por Telegram'."
+          exit 1

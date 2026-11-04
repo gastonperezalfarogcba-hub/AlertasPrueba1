@@ -23,7 +23,7 @@
 html,body{margin:0;height:100%;background:var(--bg);color:var(--fg);font-family:Montserrat,system-ui,sans-serif;overflow:hidden}
 #map{position:absolute;inset:0;background:#0a1626}
 .leaflet-container{background:#0a1626;font-family:inherit}
-.leaflet-control-attribution{background:rgba(7,22,41,.7)!important;color:#7f93ad!important;font-size:10px}
+.leaflet-control-attribution{background:rgba(7,22,41,.7)!important;color:#7f93ad!important;font-size:12px}
 .leaflet-control-attribution a{color:#a9bcd6!important}
 .leaflet-control-zoom a{background:var(--glass)!important;color:#fff!important;border-color:var(--line)!important;backdrop-filter:blur(8px)}
 .glass{background:var(--glass);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:var(--r);box-shadow:0 10px 30px rgba(0,0,0,.35)}
@@ -36,7 +36,7 @@ button,select{font-family:inherit}
 .top{position:absolute;top:14px;left:14px;right:96px;z-index:1100;display:flex;gap:10px;align-items:center;flex-wrap:wrap;pointer-events:none}
 .top > *{pointer-events:auto}
 .brand{padding:10px 16px;display:flex;flex-direction:column;gap:2px}
-.brand .k{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}
+.brand .k{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);font-weight:700}
 .brand .t{font-size:17px;font-weight:800}
 .sel{appearance:none;background:var(--glass);backdrop-filter:blur(14px);color:#fff;border:1px solid var(--line);border-radius:999px;padding:12px 38px 12px 16px;font-weight:600;font-size:14px;cursor:pointer;
   background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23ffd400' stroke-width='2' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
@@ -57,9 +57,9 @@ button,select{font-family:inherit}
 .feels{font-size:12px;color:var(--muted);margin-top:2px}
 .metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:16px 0}
 .metric{background:rgba(255,255,255,.05);border-radius:12px;padding:10px}
-.metric .l{font-size:10px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
+.metric .l{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;font-weight:600}
 .metric .v{font-size:17px;font-weight:700;margin-top:3px;font-variant-numeric:tabular-nums}
-.metric .v small{font-size:11px;color:var(--muted);font-weight:600;margin-left:2px}
+.metric .v small{font-size:12px;color:var(--muted);font-weight:600;margin-left:2px}
 .sec{margin-top:18px}
 .sec h3{font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin:0 0 10px;font-weight:700;display:flex;justify-content:space-between;align-items:center}
 .sec h3 a{color:var(--accent);text-transform:none;letter-spacing:0;font-weight:600;text-decoration:none}
@@ -68,27 +68,27 @@ button,select{font-family:inherit}
 .alert.l1{border-left-color:var(--yel)} .alert.l2{border-left-color:var(--ora)} .alert.l3{border-left-color:var(--red)}
 .alert .ttl{font-weight:700;font-size:14px}
 .alert .sub{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
-.lvl{font-size:10px;font-weight:800;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:#0b1f3a;white-space:nowrap}
+.lvl{font-size:12px;font-weight:800;text-transform:uppercase;padding:3px 8px;border-radius:999px;color:#0b1f3a;white-space:nowrap}
 .b0{background:var(--ok)} .b1{background:var(--yel)} .b2{background:var(--ora)} .b3{background:var(--red);color:#fff}
 .calm{font-size:13px;color:var(--muted);padding:12px;border-radius:14px;background:rgba(46,204,113,.08);border:1px solid rgba(46,204,113,.25)}
 .hours{display:flex;gap:6px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin}
 .hour{flex:0 0 56px;text-align:center;padding:10px 4px;border-radius:12px;background:rgba(255,255,255,.04);cursor:pointer;border:1px solid transparent}
 .hour.sel{border-color:var(--accent);background:rgba(255,212,0,.08)}
 .hour.al{box-shadow:inset 0 -3px 0 var(--ora)}
-.hour .h{font-size:11px;color:var(--muted);font-weight:600}
+.hour .h{font-size:12px;color:var(--muted);font-weight:600}
 .hour svg{width:26px;height:26px;margin:6px auto 4px;display:block}
 .hour .tt{font-size:14px;font-weight:700}
-.hour .pp{font-size:10px;color:#6fc3ff;font-weight:600;margin-top:2px;min-height:12px}
+.hour .pp{font-size:12px;color:#6fc3ff;font-weight:600;margin-top:2px;min-height:12px}
 .day{display:grid;grid-template-columns:62px 26px 38px 30px 1fr 30px;align-items:center;gap:8px;padding:8px 0;border-bottom:1px solid var(--line);font-size:13px}
 .day:last-child{border-bottom:0}
 .day .dn{font-weight:600}
 .day svg{width:24px;height:24px}
-.day .pp{font-size:11px;color:#6fc3ff;font-weight:600}
+.day .pp{font-size:12px;color:#6fc3ff;font-weight:600}
 .day .mn{color:var(--muted);text-align:right}
 .day .mx{font-weight:700}
 .range{height:6px;border-radius:3px;background:rgba(255,255,255,.08);position:relative}
 .range i{position:absolute;top:0;bottom:0;border-radius:3px;background:linear-gradient(90deg,#4fb3ff,#ffd400,#ff8c1a)}
-.foot{font-size:11px;color:var(--muted);line-height:1.6;margin-top:18px}
+.foot{font-size:12px;color:var(--muted);line-height:1.6;margin-top:18px}
 .foot a{color:var(--accent)}
 
 /* estado + pestañas */
@@ -100,16 +100,16 @@ button,select{font-family:inherit}
 .status.l1 .st-dot{background:var(--yel)} .status.l2 .st-dot{background:var(--ora)} .status.l3 .st-dot{background:var(--red)}
 .status:not(.l0) .st-dot{animation:pulse 1.8s infinite}
 @keyframes pulse{0%{box-shadow:0 0 0 0 rgba(255,255,255,.45)}70%{box-shadow:0 0 0 10px rgba(255,255,255,0)}100%{box-shadow:0 0 0 0 rgba(255,255,255,0)}}
-.st-k{font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
+.st-k{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);font-weight:700}
 .st-t{font-size:17px;font-weight:800;margin-top:2px}
 .st-s{font-size:12px;color:var(--muted);margin-top:2px;line-height:1.4}
 .tabs{display:flex;gap:4px;background:#11294b;box-shadow:0 6px 14px rgba(7,22,41,.6);border-radius:12px;padding:4px;margin-bottom:14px;position:sticky;top:-18px;z-index:2;backdrop-filter:blur(10px)}
 .tabs button{flex:1;border:0;background:transparent;color:var(--muted);font-weight:700;font-size:13px;padding:9px 6px;border-radius:9px;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:6px}
 .tabs button.on{background:var(--accent);color:#0b1f3a}
-.badge{min-width:18px;height:18px;border-radius:9px;font-size:11px;display:inline-grid;place-items:center;padding:0 5px;background:var(--ora);color:#0b1f3a}
+.badge{min-width:18px;height:18px;border-radius:9px;font-size:12px;display:inline-grid;place-items:center;padding:0 5px;background:var(--ora);color:#0b1f3a}
 .badge:empty{display:none}
 [data-pane][hidden]{display:none}
-.src{font-size:10px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.1);color:#cfdcee;margin-left:6px;vertical-align:2px}
+.src{font-size:12px;font-weight:800;text-transform:uppercase;letter-spacing:.06em;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.1);color:#cfdcee;margin-left:6px;vertical-align:2px}
 .src.smn{background:#cfe3ff;color:#0b1f3a}
 .off{padding:14px;border-radius:14px;background:rgba(255,255,255,.05);border-left:4px solid var(--yel);margin-bottom:8px}
 .off.l2{border-left-color:var(--ora)} .off.l3{border-left-color:var(--red)}
@@ -123,11 +123,11 @@ button,select{font-family:inherit}
 .note{font-size:12px;color:var(--muted);line-height:1.5;padding:12px;border-radius:12px;background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.15)}
 .thr{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
 .thr col.f{width:34%}
-.thr th{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:6px 4px;border-bottom:1px solid var(--line)}
+.thr th{font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);text-align:left;padding:6px 4px;border-bottom:1px solid var(--line)}
 .thr th.c{text-align:center} .thr th.c i{display:inline-block;width:10px;height:10px;border-radius:50%}
 .thr td{padding:8px 4px;border-bottom:1px solid var(--line);vertical-align:top;line-height:1.35}
-.thr td.c{text-align:center;font-weight:700;font-variant-numeric:tabular-nums;font-size:11.5px;overflow-wrap:anywhere}
-.thr td small{color:var(--muted);display:block;font-size:10.5px}
+.thr td.c{text-align:center;font-weight:700;font-variant-numeric:tabular-nums;font-size:12px;overflow-wrap:anywhere}
+.thr td small{color:var(--muted);display:block;font-size:12px}
 .tg{padding:18px;border-radius:16px;background:linear-gradient(135deg,rgba(41,168,235,.22),rgba(41,168,235,.06));border:1px solid rgba(41,168,235,.4);text-align:center}
 .tg .logo{width:46px;height:46px;margin:0 auto 8px;border-radius:50%;background:#29a8eb;display:grid;place-items:center}
 .tg .logo svg{width:24px;height:24px}
@@ -146,11 +146,11 @@ button,select{font-family:inherit}
 .segbar b{font-size:13px}
 .segbar .rd{width:10px;height:10px;border-radius:50%;background:#29a8eb;flex:0 0 10px;animation:pulse 1.8s infinite}
 .nh{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
-.nh th{font-size:10px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:right;padding:6px 4px;border-bottom:1px solid var(--line);font-weight:700}
+.nh th{font-size:12px;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);text-align:right;padding:6px 4px;border-bottom:1px solid var(--line);font-weight:700}
 .nh th:first-child,.nh td:first-child{text-align:left}
 .nh td{padding:7px 4px;border-bottom:1px solid var(--line);text-align:right;font-variant-numeric:tabular-nums}
 .nh tr{cursor:pointer} .nh tbody tr:hover{background:rgba(255,255,255,.05)}
-.nh td small{color:var(--muted);font-size:10.5px;margin-left:3px}
+.nh td small{color:var(--muted);font-size:12px;margin-left:3px}
 .nh .v1{color:var(--yel);font-weight:800} .nh .v2{color:var(--ora);font-weight:800} .nh .v3{color:var(--red);font-weight:800}
 .nh .zero{color:rgba(255,255,255,.3)}
 .pday{padding:12px 14px;border-radius:14px;background:rgba(255,255,255,.04);border:1px solid var(--line);margin-bottom:8px}
@@ -161,7 +161,7 @@ button,select{font-family:inherit}
 .pday .pm{font-size:12px;color:var(--muted);margin-top:1px}
 .pday .pt{margin-left:auto;text-align:right;font-variant-numeric:tabular-nums;font-size:13px;white-space:nowrap}
 .pday .pt b{font-size:15px}
-.conf{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.08);color:var(--muted);margin-left:6px;vertical-align:1px}
+.conf{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2px 7px;border-radius:6px;background:rgba(255,255,255,.08);color:var(--muted);margin-left:6px;vertical-align:1px}
 .chips{display:flex;flex-direction:column;gap:5px;margin-top:10px}
 .chip{display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.4;color:#dbe6f5}
 .chip i{width:9px;height:9px;border-radius:50%;flex:0 0 9px;margin-top:4px}
@@ -177,9 +177,9 @@ button,select{font-family:inherit}
 
 /* legend */
 .legend{position:absolute;z-index:1000;right:14px;bottom:110px;padding:10px 12px;width:230px}
-.legend .lt{font-size:11px;font-weight:700;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
+.legend .lt{font-size:12px;font-weight:700;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between}
 .legend .bar{height:8px;border-radius:4px}
-.legend .ticks{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
+.legend .ticks{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:4px;font-variant-numeric:tabular-nums}
 
 /* timeline */
 .timeline{position:absolute;z-index:1000;left:calc(var(--panelW) + 28px);right:14px;bottom:14px;padding:12px 16px;display:flex;align-items:center;gap:14px}
@@ -188,7 +188,7 @@ button,select{font-family:inherit}
 .tl-body{flex:1;min-width:0}
 .tl-top{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin-bottom:6px}
 .tl-time{font-weight:800;font-size:15px;white-space:nowrap}
-.tl-kind{font-size:11px;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.tl-kind{font-size:12px;color:var(--muted);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .track{position:relative;height:30px}
 .ticksbar{position:absolute;left:0;right:0;top:0;height:14px;display:flex;align-items:flex-end;gap:1px}
 .ticksbar i{flex:1;background:rgba(255,255,255,.12);border-radius:2px 2px 0 0;min-height:2px}
@@ -199,7 +199,7 @@ input[type=range]::-webkit-slider-runnable-track{height:4px;background:rgba(255,
 input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:#fff;border:3px solid var(--accent);margin-top:-6px}
 input[type=range]::-moz-range-track{height:4px;background:rgba(255,255,255,.18);border-radius:2px}
 input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;background:#fff;border:3px solid var(--accent)}
-.daymarks{display:flex;justify-content:space-between;font-size:10px;color:var(--muted);margin-top:2px;position:relative;height:12px}
+.daymarks{display:flex;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:2px;position:relative;height:12px}
 .daymarks span{position:absolute;transform:translateX(-50%);white-space:nowrap}
 
 /* map pins */
@@ -242,10 +242,66 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
   .legend{right:10px;bottom:calc(44vh + 92px);width:190px}
   .now .temp{font-size:48px}
 }
+
+/* ===== v3.3 · mejoras de visualización ===== */
+/* 06 · áreas táctiles de 44 px */
+.tabs button{min-height:44px}
+.sel,.pillbtn,.lay{min-height:44px}
+.play{width:44px;height:44px;flex-basis:44px}
+.leaflet-control-zoom a{width:44px!important;height:44px!important;line-height:44px!important;font-size:20px!important}
+.off a,.sec h3 a{display:inline-flex;align-items:center;min-height:44px}
+input[type=range]{height:28px}
+/* 08 · filas que se deslizan: desvanecido en el borde */
+.hours{-webkit-mask-image:linear-gradient(90deg,#000 88%,transparent);mask-image:linear-gradient(90deg,#000 88%,transparent);padding-right:24px}
+/* 02 · resumen operativo */
+.resumen{display:grid;gap:6px;margin:0 0 14px}
+.resumen:empty{display:none}
+.rs{display:flex;gap:10px;align-items:flex-start;min-height:44px;padding:11px 12px;border-radius:12px;background:rgba(255,255,255,.05);border:1px solid var(--line);font-size:13px;line-height:1.4;color:#dbe6f5;text-decoration:none}
+a.rs:hover{background:rgba(255,255,255,.09)}
+.rs .cu{font-weight:800;min-width:78px;color:#fff;white-space:nowrap}
+.rs i{width:9px;height:9px;border-radius:50%;flex:0 0 9px;margin-top:5px}
+.chip{display:inline-block;font-size:12px;font-weight:800;padding:1px 8px;border-radius:999px;margin-left:4px;white-space:nowrap}
+.chip.alta{background:#2ecc71;color:#06301a}.chip.media{background:#ffb020;color:#3a2500}.chip.baja{background:rgba(255,255,255,.18);color:#fff}
+.chip.smn{background:#cfdcee;color:#0b1f3a}
+/* 03 · pines compactos: número de comuna con el color del nivel de alerta */
+.pin2{position:relative;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;font:800 13px Montserrat,sans-serif;color:#0b1f3a;background:#e6eef8;border:2px solid #0b1f3a;box-shadow:0 2px 8px rgba(0,0,0,.45);transform:translate(-50%,-50%);cursor:pointer}
+.pin2.l1{background:#ffd400}.pin2.l2{background:#ff8c1a}.pin2.l3{background:#ff3b3b;color:#fff}
+.pin2.sel{box-shadow:0 0 0 3px #fff,0 2px 8px rgba(0,0,0,.45)}
+.pin2 span{position:absolute;left:32px;top:50%;transform:translateY(-50%);white-space:nowrap;background:var(--glass2);color:#fff;padding:3px 9px;border-radius:999px;font-size:12px;border:1px solid rgba(255,255,255,.25)}
+/* 05 · encabezado fijo en la tabla por comuna */
+.nh thead th{position:sticky;top:var(--theadTop,0px);background:#10284a;z-index:1}
+/* 10/11 · límites de comunas */
+.leaflet-interactive.comuna{cursor:pointer}
+.tabs button[data-tab=mapa]{display:none}
+/* 01 · celular: hoja inferior con tres alturas (baja · media · alta) sobre el mapa */
+.asa{display:none}
+@media (max-width:820px){
+  .tabs button[data-tab=mapa]{display:flex}
+  .tabs{position:fixed;left:0;right:0;bottom:0;top:auto;margin:0;border-radius:0;z-index:1200;padding:6px max(8px,env(safe-area-inset-left,0px)) calc(6px + env(safe-area-inset-bottom,0px));background:#0d2647;box-shadow:0 -6px 16px rgba(0,0,0,.4)}
+  .tabs button{font-size:13px;padding:8px 2px}
+  .panel{position:fixed;top:62px;bottom:0;left:0;right:0;width:100%;max-height:none;border-radius:20px 20px 0 0;
+    backdrop-filter:none;-webkit-backdrop-filter:none;background:#0b1f3a;box-shadow:0 -10px 30px rgba(0,0,0,.45);
+    padding-top:0;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px));overscroll-behavior:contain;
+    transform:translateY(50vh);transition:transform .28s cubic-bezier(.2,.8,.2,1);will-change:transform}
+  body.hoja-baja .panel{overflow:hidden}
+  .asa{display:flex;position:sticky;top:0;z-index:3;justify-content:center;align-items:center;height:44px;width:calc(100% + 36px);margin:0 -18px 0;
+    border:0;background:#0b1f3a;cursor:grab;touch-action:none;border-radius:20px 20px 0 0}
+  .asa span{width:44px;height:5px;border-radius:3px;background:rgba(255,255,255,.4)}
+  .asa:focus-visible span{background:var(--accent)}
+  #status{touch-action:none}
+  .timeline{bottom:calc(var(--hojaVisible,45vh) + 8px)}
+  .legend{bottom:calc(var(--hojaVisible,45vh) + 8px + var(--timelineH,90px) + 8px);width:170px}
+  body:not(.hoja-baja) .timeline,body:not(.hoja-baja) .legend{display:none!important}
+  body.hoja-alta .rail{display:none}
+  .rail{-webkit-mask-image:linear-gradient(90deg,#000 84%,transparent);mask-image:linear-gradient(90deg,#000 84%,transparent);padding-right:28px}
+  #baseSel{max-width:150px}
+}
+@media (max-width:820px) and (prefers-reduced-motion:reduce){ .panel{transition:none} }
 </style>
 </head>
 <body>
 <div id="map"></div>
+<script type="application/json" id="comunasGeo">{"type":"FeatureCollection","fuente":"GCBA, datos abiertos (data.buenosaires.gob.ar, dataset Comunas), simplificado","features":[{"type":"Feature","properties":{"comuna":1,"lat":-34.6059,"lon":-58.3691,"area_km2":17.8},"geometry":{"type":"MultiPolygon","coordinates":[[[[-58.38339,-34.63222],[-58.39035,-34.63412],[-58.39143,-34.62399],[-58.39181,-34.61128],[-58.39239,-34.60316],[-58.39293,-34.59964],[-58.38686,-34.59929],[-58.38727,-34.59475],[-58.38795,-34.59165],[-58.38369,-34.5875],[-58.3845,-34.58696],[-58.38533,-34.58538],[-58.38696,-34.58355],[-58.38839,-34.58248],[-58.39164,-34.58083],[-58.38986,-34.5782],[-58.38357,-34.57824],[-58.37984,-34.58016],[-58.37616,-34.57995],[-58.37512,-34.58052],[-58.37397,-34.5791],[-58.37671,-34.57755],[-58.37604,-34.57748],[-58.37603,-34.57772],[-58.37428,-34.5787],[-58.36793,-34.57821],[-58.36532,-34.5797],[-58.36525,-34.58015],[-58.37058,-34.58058],[-58.3706,-34.58079],[-58.36897,-34.58173],[-58.36162,-34.58115],[-58.36141,-34.58296],[-58.3661,-34.58333],[-58.36614,-34.58356],[-58.36494,-34.5845],[-58.35991,-34.58412],[-58.35972,-34.58592],[-58.36364,-34.58624],[-58.36352,-34.58746],[-58.3596,-34.58718],[-58.35946,-34.58808],[-58.36084,-34.58856],[-58.36074,-34.58894],[-58.36089,-34.58856],[-58.36799,-34.59001],[-58.36793,-34.59044],[-58.36652,-34.59097],[-58.36437,-34.59426],[-58.36483,-34.59446],[-58.36698,-34.5915],[-58.36736,-34.59145],[-58.36638,-34.59298],[-58.36692,-34.5932],[-58.36784,-34.59194],[-58.36715,-34.59331],[-58.36908,-34.59415],[-58.36791,-34.59747],[-58.36649,-34.59741],[-58.36637,-34.59822],[-58.36609,-34.5982],[-58.36615,-34.59738],[-58.36383,-34.5972],[-58.3644,-34.5955],[-58.3641,-34.59531],[-58.36342,-34.59666],[-58.36248,-34.5965],[-58.36038,-34.59552],[-58.36006,-34.59499],[-58.35414,-34.59466],[-58.35096,-34.59515],[-58.35411,-34.5947],[-58.35668,-34.59486],[-58.35685,-34.59494],[-58.35544,-34.59531],[-58.35344,-34.59669],[-58.35238,-34.59794],[-58.34703,-34.60203],[-58.34607,-34.605],[-58.34587,-34.6067],[-58.34146,-34.60987],[-58.34086,-34.61066],[-58.33998,-34.61387],[-58.33986,-34.61611],[-58.34085,-34.61694],[-58.34264,-34.61708],[-58.34479,-34.61773],[-58.34567,-34.61749],[-58.34663,-34.61768],[-58.34792,-34.61701],[-58.34907,-34.61683],[-58.35027,-34.61723],[-58.35081,-34.61817],[-58.34979,-34.61822],[-58.3501,-34.61848],[-58.34997,-34.61872],[-58.35072,-34.61855],[-58.35037,-34.61894],[-58.35068,-34.61917],[-58.35152,-34.61917],[-58.35192,-34.61962],[-58.35256,-34.61954],[-58.35269,-34.61977],[-58.35352,-34.61941],[-58.35407,-34.6197],[-58.35425,-34.61946],[-58.35514,-34.61955],[-58.35601,-34.61761],[-58.3632,-34.62514],[-58.36797,-34.6252],[-58.36795,-34.62714],[-58.37066,-34.62949],[-58.37096,-34.62665],[-58.37456,-34.6268],[-58.37904,-34.62933],[-58.37862,-34.6305],[-58.38014,-34.63303],[-58.38125,-34.63307],[-58.38133,-34.63085],[-58.38339,-34.63222]]],[[[-58.36854,-34.57365],[-58.36803,-34.57371],[-58.36749,-34.57391],[-58.35811,-34.57932],[-58.3554,-34.59176],[-58.35479,-34.59271],[-58.3555,-34.59166],[-58.35816,-34.57937],[-58.36764,-34.57389],[-58.36863,-34.57371],[-58.36975,-34.57404],[-58.36854,-34.57365]]]]}},{"type":"Feature","properties":{"comuna":2,"lat":-34.584,"lon":-58.3934,"area_km2":6.3},"geometry":{"type":"Polygon","coordinates":[[[-58.38023,-34.56984],[-58.38002,-34.57037],[-58.37906,-34.5703],[-58.37855,-34.57044],[-58.3711,-34.57483],[-58.37899,-34.57039],[-58.38036,-34.57047],[-58.3805,-34.57104],[-58.3783,-34.5723],[-58.37829,-34.57275],[-58.38355,-34.57318],[-58.38358,-34.57341],[-58.38181,-34.57441],[-58.37544,-34.57393],[-58.37076,-34.5766],[-58.3707,-34.57702],[-58.37671,-34.57755],[-58.37397,-34.5791],[-58.37512,-34.58052],[-58.37616,-34.57995],[-58.37984,-34.58016],[-58.38357,-34.57824],[-58.38986,-34.5782],[-58.39164,-34.58083],[-58.38839,-34.58248],[-58.38696,-34.58355],[-58.38533,-34.58538],[-58.3845,-34.58696],[-58.38369,-34.5875],[-58.38795,-34.59165],[-58.38727,-34.59475],[-58.38686,-34.59929],[-58.39872,-34.59976],[-58.40201,-34.59937],[-58.40451,-34.59804],[-58.416,-34.59785],[-58.41439,-34.59405],[-58.41008,-34.58906],[-58.40617,-34.58346],[-58.40194,-34.58343],[-58.40054,-34.58447],[-58.39656,-34.57851],[-58.40114,-34.57574],[-58.40265,-34.57414],[-58.39972,-34.57081],[-58.3997,-34.57002],[-58.40013,-34.56935],[-58.39521,-34.57219],[-58.39284,-34.57223],[-58.39298,-34.57198],[-58.38531,-34.5763],[-58.38344,-34.57617],[-58.38282,-34.57544],[-58.39126,-34.57061],[-58.39104,-34.57007],[-58.39032,-34.56934],[-58.38428,-34.56889],[-58.38311,-34.56838],[-58.38105,-34.56853],[-58.38071,-34.57011],[-58.38035,-34.5701],[-58.3804,-34.5686],[-58.3801,-34.56827],[-58.38023,-34.56984]]]}},{"type":"Feature","properties":{"comuna":3,"lat":-34.6144,"lon":-58.4023,"area_km2":6.4},"geometry":{"type":"Polygon","coordinates":[[[-58.41192,-34.598],[-58.40451,-34.59804],[-58.40201,-34.59937],[-58.39872,-34.59976],[-58.39293,-34.59964],[-58.39239,-34.60316],[-58.39181,-34.61128],[-58.39117,-34.62725],[-58.40836,-34.62952],[-58.41178,-34.63036],[-58.41233,-34.62303],[-58.41204,-34.62297],[-58.41244,-34.62188],[-58.41287,-34.61412],[-58.41447,-34.61074],[-58.41466,-34.60819],[-58.4141,-34.60791],[-58.41391,-34.60725],[-58.41192,-34.598]]]}},{"type":"Feature","properties":{"comuna":4,"lat":-34.6399,"lon":-58.3917,"area_km2":21.7},"geometry":{"type":"Polygon","coordinates":[[[-58.39035,-34.63412],[-58.38339,-34.63222],[-58.38133,-34.63085],[-58.38125,-34.63307],[-58.38014,-34.63303],[-58.37862,-34.6305],[-58.37904,-34.62933],[-58.37456,-34.6268],[-58.37096,-34.62665],[-58.37066,-34.62949],[-58.36795,-34.62714],[-58.36797,-34.6252],[-58.3632,-34.62514],[-58.35601,-34.61761],[-58.35514,-34.61955],[-58.35425,-34.61946],[-58.35407,-34.6197],[-58.35352,-34.61941],[-58.35291,-34.61975],[-58.35192,-34.61962],[-58.35152,-34.61917],[-58.35077,-34.61967],[-58.34957,-34.61979],[-58.34785,-34.61897],[-58.34459,-34.619],[-58.34467,-34.61963],[-58.34518,-34.61984],[-58.34632,-34.61921],[-58.34715,-34.61999],[-58.34697,-34.62099],[-58.34593,-34.62296],[-58.34609,-34.62201],[-58.34581,-34.62188],[-58.34575,-34.62211],[-58.34548,-34.62152],[-58.3447,-34.62134],[-58.34406,-34.62176],[-58.34433,-34.62043],[-58.34405,-34.61949],[-58.34285,-34.61857],[-58.33859,-34.61864],[-58.33806,-34.61896],[-58.33751,-34.62001],[-58.33692,-34.62181],[-58.33721,-34.62253],[-58.33796,-34.62281],[-58.33952,-34.62258],[-58.3419,-34.62282],[-58.34213,-34.62224],[-58.34303,-34.62271],[-58.34237,-34.62337],[-58.34188,-34.62303],[-58.34005,-34.62324],[-58.33823,-34.6247],[-58.33702,-34.62489],[-58.33515,-34.62645],[-58.33515,-34.6271],[-58.3362,-34.62818],[-58.33888,-34.62892],[-58.33928,-34.62889],[-58.33912,-34.62879],[-58.33975,-34.62783],[-58.34066,-34.62783],[-58.34244,-34.62617],[-58.34427,-34.62637],[-58.3414,-34.62889],[-58.34251,-34.62946],[-58.34332,-34.62922],[-58.34458,-34.628],[-58.34537,-34.62867],[-58.34705,-34.62728],[-58.34876,-34.62869],[-58.34844,-34.62895],[-58.34878,-34.62908],[-58.34844,-34.62986],[-58.34796,-34.62994],[-58.34831,-34.63027],[-58.34793,-34.63115],[-58.34769,-34.63093],[-58.34757,-34.63139],[-58.3461,-34.63166],[-58.34906,-34.63255],[-58.35014,-34.63232],[-58.35114,-34.63136],[-58.35238,-34.62901],[-58.35299,-34.62916],[-58.35397,-34.62809],[-58.36029,-34.62394],[-58.36086,-34.62424],[-58.36177,-34.62364],[-58.36191,-34.62379],[-58.36102,-34.62439],[-58.36126,-34.62468],[-58.35488,-34.629],[-58.35379,-34.63067],[-58.35276,-34.63356],[-58.35351,-34.63571],[-58.35414,-34.63652],[-58.35604,-34.63754],[-58.35696,-34.63857],[-58.35803,-34.6392],[-58.36035,-34.63919],[-58.36112,-34.6394],[-58.36144,-34.63987],[-58.3609,-34.64072],[-58.35813,-34.64187],[-58.35732,-34.64404],[-58.3576,-34.64498],[-58.35981,-34.64597],[-58.36239,-34.64815],[-58.36433,-34.64822],[-58.36966,-34.65133],[-58.37001,-34.6521],[-58.36979,-34.65358],[-58.37254,-34.65498],[-58.37412,-34.65677],[-58.37738,-34.65692],[-58.37922,-34.65747],[-58.38485,-34.6577],[-58.38644,-34.65871],[-58.3881,-34.66035],[-58.39075,-34.66101],[-58.3915,-34.66183],[-58.39248,-34.66218],[-58.39721,-34.66198],[-58.39792,-34.66122],[-58.40057,-34.66061],[-58.40107,-34.65993],[-58.40254,-34.6594],[-58.40721,-34.65994],[-58.41241,-34.65838],[-58.41456,-34.65861],[-58.42088,-34.66049],[-58.42404,-34.66205],[-58.42675,-34.65867],[-58.43443,-34.65311],[-58.43043,-34.64987],[-58.43492,-34.64624],[-58.43211,-34.64516],[-58.43234,-34.64174],[-58.41126,-34.6381],[-58.41049,-34.63524],[-58.41152,-34.63286],[-58.41178,-34.63036],[-58.40836,-34.62952],[-58.39117,-34.62725],[-58.39035,-34.63412]]]}},{"type":"Feature","properties":{"comuna":5,"lat":-34.6188,"lon":-58.4205,"area_km2":6.7},"geometry":{"type":"Polygon","coordinates":[[[-58.43333,-34.60267],[-58.43224,-34.60213],[-58.42943,-34.59913],[-58.42679,-34.59794],[-58.42284,-34.59771],[-58.41192,-34.598],[-58.41391,-34.60725],[-58.4141,-34.60791],[-58.41466,-34.60819],[-58.41447,-34.61074],[-58.41287,-34.61412],[-58.41244,-34.62188],[-58.41204,-34.62297],[-58.41233,-34.62303],[-58.41152,-34.63286],[-58.41049,-34.63524],[-58.41126,-34.6381],[-58.42349,-34.6402],[-58.4258,-34.63128],[-58.42925,-34.61511],[-58.43003,-34.61545],[-58.43067,-34.60594],[-58.43333,-34.60267]]]}},{"type":"Feature","properties":{"comuna":6,"lat":-34.6169,"lon":-58.4435,"area_km2":6.9},"geometry":{"type":"Polygon","coordinates":[[[-58.43067,-34.60594],[-58.43003,-34.61545],[-58.42925,-34.61511],[-58.42676,-34.627],[-58.45158,-34.63064],[-58.4627,-34.60737],[-58.45847,-34.60449],[-58.44625,-34.60762],[-58.4392,-34.60558],[-58.43333,-34.60267],[-58.43067,-34.60594]]]}},{"type":"Feature","properties":{"comuna":7,"lat":-34.6353,"lon":-58.4483,"area_km2":12.4},"geometry":{"type":"Polygon","coordinates":[[[-58.4604,-34.65681],[-58.46703,-34.65147],[-58.463,-34.64617],[-58.46924,-34.6414],[-58.47781,-34.62238],[-58.46864,-34.61756],[-58.45945,-34.61389],[-58.45158,-34.63064],[-58.42676,-34.627],[-58.42349,-34.6402],[-58.43234,-34.64174],[-58.43211,-34.64516],[-58.43492,-34.64624],[-58.43043,-34.64987],[-58.43801,-34.6558],[-58.44295,-34.6519],[-58.44332,-34.65119],[-58.44462,-34.65095],[-58.44883,-34.65118],[-58.45464,-34.65082],[-58.45506,-34.6523],[-58.4604,-34.65681]]]}},{"type":"Feature","properties":{"comuna":8,"lat":-34.6781,"lon":-58.4681,"area_km2":22.2},"geometry":{"type":"Polygon","coordinates":[[[-58.46443,-34.66005],[-58.45506,-34.6523],[-58.45464,-34.65082],[-58.44883,-34.65118],[-58.44462,-34.65095],[-58.44332,-34.65119],[-58.44295,-34.6519],[-58.43801,-34.6558],[-58.43443,-34.65311],[-58.42675,-34.65867],[-58.42404,-34.66205],[-58.42583,-34.66333],[-58.4279,-34.66545],[-58.46172,-34.70529],[-58.50253,-34.67451],[-58.49704,-34.67118],[-58.48895,-34.66335],[-58.48595,-34.66245],[-58.47882,-34.65784],[-58.47252,-34.66277],[-58.47057,-34.65843],[-58.46956,-34.65911],[-58.46766,-34.65752],[-58.46443,-34.66005]]]}},{"type":"Feature","properties":{"comuna":9,"lat":-34.6537,"lon":-58.4968,"area_km2":16.5},"geometry":{"type":"Polygon","coordinates":[[[-58.50252,-34.67451],[-58.52921,-34.6543],[-58.53036,-34.6348],[-58.5243,-34.63447],[-58.52069,-34.63382],[-58.52075,-34.63322],[-58.52024,-34.6328],[-58.51486,-34.6332],[-58.50883,-34.63555],[-58.50765,-34.63589],[-58.50682,-34.63581],[-58.50567,-34.63672],[-58.51051,-34.63737],[-58.50982,-34.64001],[-58.5023,-34.64582],[-58.49714,-34.64341],[-58.4953,-34.64485],[-58.47855,-34.63699],[-58.47607,-34.63893],[-58.47349,-34.63731],[-58.4713,-34.63666],[-58.46924,-34.6414],[-58.463,-34.64617],[-58.46703,-34.65147],[-58.4604,-34.65681],[-58.46443,-34.66005],[-58.46766,-34.65752],[-58.46956,-34.65911],[-58.47057,-34.65843],[-58.47252,-34.66277],[-58.47882,-34.65784],[-58.48595,-34.66245],[-58.48895,-34.66335],[-58.49704,-34.67118],[-58.50252,-34.67451]]]}},{"type":"Feature","properties":{"comuna":10,"lat":-34.6275,"lon":-58.5031,"area_km2":12.7},"geometry":{"type":"Polygon","coordinates":[[[-58.49557,-34.61439],[-58.48274,-34.62463],[-58.47781,-34.62238],[-58.4713,-34.63666],[-58.47349,-34.63731],[-58.47607,-34.63893],[-58.47855,-34.63699],[-58.4953,-34.64485],[-58.49714,-34.64341],[-58.5023,-34.64582],[-58.50982,-34.64001],[-58.51051,-34.63737],[-58.50567,-34.63672],[-58.50682,-34.63581],[-58.50765,-34.63589],[-58.50883,-34.63555],[-58.51486,-34.6332],[-58.52024,-34.6328],[-58.52075,-34.63322],[-58.52069,-34.63382],[-58.5243,-34.63447],[-58.53036,-34.6348],[-58.53152,-34.61549],[-58.52947,-34.6109],[-58.51695,-34.62022],[-58.51305,-34.61673],[-58.50019,-34.60913],[-58.49557,-34.61439]]]}},{"type":"Feature","properties":{"comuna":11,"lat":-34.603,"lon":-58.5008,"area_km2":14.1},"geometry":{"type":"Polygon","coordinates":[[[-58.50354,-34.59445],[-58.49718,-34.59682],[-58.48346,-34.59776],[-58.47883,-34.59967],[-58.47639,-34.6002],[-58.4775,-34.60083],[-58.47402,-34.60531],[-58.46891,-34.60186],[-58.45847,-34.60449],[-58.4627,-34.60737],[-58.45945,-34.61389],[-58.46864,-34.61756],[-58.4788,-34.62291],[-58.48274,-34.62463],[-58.49557,-34.61439],[-58.50019,-34.60913],[-58.51305,-34.61673],[-58.51695,-34.62022],[-58.52947,-34.6109],[-58.51554,-34.58127],[-58.51497,-34.58132],[-58.51452,-34.58174],[-58.50308,-34.59438],[-58.50354,-34.59445]]]}},{"type":"Feature","properties":{"comuna":12,"lat":-34.5663,"lon":-58.4906,"area_km2":15.6},"geometry":{"type":"Polygon","coordinates":[[[-58.48879,-34.58482],[-58.50347,-34.59395],[-58.51452,-34.58174],[-58.51497,-34.58132],[-58.51554,-34.58127],[-58.50055,-34.54949],[-58.47595,-34.53863],[-58.46819,-34.54894],[-58.47444,-34.55242],[-58.47087,-34.55703],[-58.46704,-34.56132],[-58.46768,-34.56169],[-58.46649,-34.56219],[-58.47337,-34.56666],[-58.46808,-34.57291],[-58.48879,-34.58482]]]}},{"type":"Feature","properties":{"comuna":13,"lat":-34.5548,"lon":-58.4542,"area_km2":14.7},"geometry":{"type":"Polygon","coordinates":[[[-58.44033,-34.54022],[-58.44024,-34.5392],[-58.44021,-34.53983],[-58.43928,-34.54012],[-58.4374,-34.53999],[-58.43756,-34.5398],[-58.43617,-34.54039],[-58.43494,-34.5419],[-58.4342,-34.54186],[-58.43492,-34.542],[-58.4346,-34.54263],[-58.43214,-34.54399],[-58.43134,-34.54478],[-58.43078,-34.54594],[-58.43073,-34.54733],[-58.43012,-34.54692],[-58.42986,-34.54732],[-58.43017,-34.54795],[-58.43059,-34.54751],[-58.43077,-34.54784],[-58.42917,-34.54904],[-58.42663,-34.5496],[-58.42617,-34.54899],[-58.42705,-34.54852],[-58.42678,-34.54816],[-58.42558,-34.54885],[-58.4259,-34.5495],[-58.42548,-34.54959],[-58.42676,-34.55202],[-58.4294,-34.55095],[-58.43098,-34.55112],[-58.43442,-34.55305],[-58.43465,-34.55359],[-58.43411,-34.55396],[-58.43598,-34.55486],[-58.4377,-34.55615],[-58.44016,-34.5571],[-58.44106,-34.5579],[-58.44139,-34.55882],[-58.44096,-34.55991],[-58.44033,-34.56056],[-58.43798,-34.56176],[-58.43496,-34.56179],[-58.43486,-34.56209],[-58.4354,-34.56254],[-58.44116,-34.56213],[-58.44254,-34.56369],[-58.44785,-34.56671],[-58.44904,-34.56785],[-58.44074,-34.57211],[-58.44397,-34.57536],[-58.44181,-34.57682],[-58.43994,-34.57855],[-58.44343,-34.5818],[-58.44445,-34.58317],[-58.45102,-34.58048],[-58.4554,-34.57907],[-58.45774,-34.57844],[-58.46022,-34.5783],[-58.46319,-34.57511],[-58.46736,-34.5725],[-58.46808,-34.57291],[-58.47337,-34.56666],[-58.46649,-34.56219],[-58.46768,-34.56169],[-58.46704,-34.56132],[-58.47087,-34.55703],[-58.47444,-34.55242],[-58.46819,-34.54894],[-58.47595,-34.53863],[-58.4638,-34.53326],[-58.46107,-34.53013],[-58.45925,-34.52714],[-58.45854,-34.52666],[-58.45762,-34.52649],[-58.45554,-34.52747],[-58.45336,-34.53016],[-58.45335,-34.53154],[-58.45365,-34.53217],[-58.45546,-34.53326],[-58.45512,-34.53426],[-58.45533,-34.53537],[-58.45885,-34.53712],[-58.45856,-34.53732],[-58.45392,-34.53508],[-58.45164,-34.53169],[-58.45092,-34.53254],[-58.45005,-34.53514],[-58.45075,-34.53567],[-58.453,-34.53574],[-58.45407,-34.53653],[-58.45485,-34.53743],[-58.45408,-34.53878],[-58.45217,-34.53957],[-58.45119,-34.53814],[-58.44988,-34.53736],[-58.45002,-34.53613],[-58.44898,-34.53554],[-58.44883,-34.53581],[-58.4494,-34.53631],[-58.44861,-34.53739],[-58.44763,-34.53649],[-58.44638,-34.536],[-58.44364,-34.53631],[-58.44386,-34.53614],[-58.44229,-34.53729],[-58.44229,-34.53703],[-58.44176,-34.5379],[-58.44158,-34.53762],[-58.44132,-34.53857],[-58.44108,-34.53833],[-58.4411,-34.53914],[-58.44083,-34.53914],[-58.44089,-34.5402],[-58.44033,-34.54022]]]}},{"type":"Feature","properties":{"comuna":14,"lat":-34.5743,"lon":-58.4227,"area_km2":15.8},"geometry":{"type":"Polygon","coordinates":[[[-58.42676,-34.55202],[-58.42625,-34.5519],[-58.41568,-34.5549],[-58.41114,-34.55735],[-58.40956,-34.5566],[-58.40943,-34.55713],[-58.41019,-34.55773],[-58.4102,-34.55807],[-58.40391,-34.56348],[-58.39879,-34.56075],[-58.39869,-34.56091],[-58.40395,-34.56357],[-58.4026,-34.56397],[-58.40098,-34.56338],[-58.4008,-34.56355],[-58.4011,-34.56404],[-58.40071,-34.5643],[-58.39932,-34.56369],[-58.39697,-34.56506],[-58.39687,-34.56583],[-58.40022,-34.56899],[-58.39992,-34.56918],[-58.3975,-34.5667],[-58.39698,-34.56667],[-58.39578,-34.56773],[-58.39521,-34.56896],[-58.39456,-34.56923],[-58.39284,-34.57223],[-58.39521,-34.57219],[-58.40013,-34.56935],[-58.3997,-34.57002],[-58.39972,-34.57081],[-58.40265,-34.57414],[-58.40114,-34.57574],[-58.39656,-34.57851],[-58.40054,-34.58447],[-58.40194,-34.58343],[-58.40617,-34.58346],[-58.41008,-34.58906],[-58.41439,-34.59405],[-58.416,-34.59785],[-58.42337,-34.59775],[-58.42695,-34.59621],[-58.44479,-34.58451],[-58.44445,-34.58317],[-58.44343,-34.5818],[-58.43994,-34.57855],[-58.44181,-34.57682],[-58.44397,-34.57536],[-58.44074,-34.57211],[-58.44904,-34.56785],[-58.44785,-34.56671],[-58.44254,-34.56369],[-58.44116,-34.56213],[-58.43643,-34.56258],[-58.4354,-34.56254],[-58.43486,-34.56209],[-58.43496,-34.56179],[-58.43662,-34.56193],[-58.43825,-34.56168],[-58.44049,-34.56042],[-58.44139,-34.55882],[-58.44106,-34.5579],[-58.44044,-34.5573],[-58.4377,-34.55615],[-58.43598,-34.55486],[-58.43411,-34.55396],[-58.43465,-34.55359],[-58.43442,-34.55305],[-58.43098,-34.55112],[-58.4294,-34.55095],[-58.42676,-34.55202]]]}},{"type":"Feature","properties":{"comuna":15,"lat":-34.5901,"lon":-58.4668,"area_km2":14.3},"geometry":{"type":"Polygon","coordinates":[[[-58.42602,-34.59661],[-58.42337,-34.59775],[-58.42679,-34.59794],[-58.42777,-34.59833],[-58.42943,-34.59913],[-58.43224,-34.60213],[-58.4392,-34.60558],[-58.44625,-34.60762],[-58.46891,-34.60186],[-58.47402,-34.60531],[-58.4775,-34.60083],[-58.47639,-34.6002],[-58.47883,-34.59967],[-58.48346,-34.59776],[-58.49718,-34.59682],[-58.50354,-34.59445],[-58.50308,-34.59438],[-58.50347,-34.59395],[-58.48879,-34.58482],[-58.46736,-34.5725],[-58.46319,-34.57511],[-58.46022,-34.5783],[-58.45774,-34.57844],[-58.4554,-34.57907],[-58.45102,-34.58048],[-58.4444,-34.58319],[-58.44479,-34.58451],[-58.44459,-34.58467],[-58.43028,-34.59416],[-58.42602,-34.59661]]]}}]}</script>
 <div class="corner"></div>
 <div class="loading" id="loading"><div><b></b>Cargando datos meteorológicos…</div></div>
 <div class="toast" id="toast"></div>
@@ -261,12 +317,15 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
 </div>
 
 <aside class="glass panel" id="panel">
+  <button class="asa" id="asa" type="button" aria-label="Subir el panel" aria-expanded="false"><span></span></button>
   <div class="status l0" id="status">
     <span class="st-dot"></span>
     <div style="flex:1;min-width:0"><div class="st-k">Estado de la Ciudad · próximas 48 h</div><div class="st-t" id="stTitle">Cargando…</div><div class="st-s" id="stSub"></div></div>
   </div>
+  <div class="resumen" id="resumen"></div>
   <div class="tabs" role="tablist">
     <button data-tab="ahora" class="on">Pronóstico</button>
+    <button data-tab="mapa">Mapa</button>
     <button data-tab="alertas">Alertas <span class="badge" id="tabBadge"></span></button>
     <button data-tab="telegram">Telegram</button>
   </div>
@@ -285,8 +344,8 @@ input[type=range]::-moz-range-thumb{width:12px;height:12px;border-radius:50%;bac
   <section data-pane="alertas" hidden>
     <div class="sec" style="margin-top:0"><h3>Oficiales · SMN <a href="https://www.smn.gob.ar/alertas" target="_blank" rel="noopener">smn.gob.ar ↗</a></h3><div id="official"></div></div>
     <div class="sec"><h3>Por pronóstico · criterios SMN</h3><div id="alerts"></div></div>
-    <div class="sec"><h3>Próximas horas por comuna <span style="text-transform:none;letter-spacing:0;font-weight:600" id="nhRango"></span></h3><div id="nhoras"></div></div>
-    <div class="sec"><h3>Perspectiva · próximos días <span style="text-transform:none;letter-spacing:0;font-weight:600" id="perspRango"></span></h3><div id="persp"></div></div>
+    <div class="sec" id="sec-comunas"><h3>Próximas horas por comuna <span style="text-transform:none;letter-spacing:0;font-weight:600" id="nhRango"></span></h3><div id="nhoras"></div></div>
+    <div class="sec" id="sec-perspectiva"><h3>Perspectiva · próximos días <span style="text-transform:none;letter-spacing:0;font-weight:600" id="perspRango"></span></h3><div id="persp"></div></div>
     <div class="sec"><h3>Umbrales de alerta</h3><div id="thresholds"></div></div>
   </section>
 
@@ -343,7 +402,7 @@ const RADAR_REFRESH_MIN = 5;    // radar y satélite
 const DEF_U = {
   lluvia:{acumulado_12h_mm:{amarillo:40,naranja:80}, acumulado_24h_mm:{rojo:150}, intensidad_horaria_mm:{amarillo:20,naranja:35,rojo:60}},
   viento:{sostenido_kmh:{amarillo:55,naranja:75,rojo:90}, rafagas_kmh:{amarillo:65,naranja:90,rojo:110}, horas_minimas:2},
-  tormenta:{usar_cape:true,cape_minimo:1500,probabilidad_minima:60,naranja:{lluvia_12h_mm:60,rafagas_kmh:90,granizo:true},rojo:{lluvia_12h_mm:100,rafagas_kmh:110}},
+  tormenta:{usar_cape:true,cape_minimo:1500,probabilidad_minima:60,naranja:{lluvia_12h_mm:60,rafagas_kmh:90,granizo:false},rojo:{lluvia_12h_mm:100,rafagas_kmh:110}},
   calor:{tmax:32.3,tmin:22.0,dias_consecutivos:{amarillo:2,naranja:3},rojo_tmax:38.0},
   frio:{activo:true,tmin:{amarillo:2,naranja:0,rojo:-3}}
 };
@@ -448,7 +507,7 @@ function colorAt(stops, v){
 /* =========================================================
    MAPA
    ========================================================= */
-const map = L.map('map',{zoomControl:false, attributionControl:true, minZoom:9, maxZoom:15, maxBounds:[[-35.6,-60.1],[-33.6,-56.9]], maxBoundsViscosity:0.8}).setView([-34.615,-58.445], 11);
+const map = L.map('map',{zoomControl:false, zoomSnap:0.25, zoomDelta:0.5, attributionControl:true, minZoom:9, maxZoom:15, maxBounds:[[-35.6,-60.1],[-33.6,-56.9]], maxBoundsViscosity:0.8}).setView([-34.615,-58.445], 11);
 L.control.zoom({position:'bottomright'}).addTo(map);
 /* ---------- MAPAS BASE ----------
    Vectoriales: OpenFreeMap (OpenStreetMap, sin clave) dibujados con MapLibre.
@@ -466,6 +525,17 @@ const BASEMAPS = {
   esri:   {label:'Gris oscuro (Esri)', raster:ESRI+'Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}', labels:ESRI+'Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}', attr:'Mapa base © Esri, HERE, Garmin, © OpenStreetMap'}
 };
 // Paleta GCBA aplicada sobre el estilo vectorial
+/* Calles y avenidas al 50 % de visibilidad (líneas y nombres), en todos los mapas vectoriales */
+function atenuarCalles(style){
+  const calle=/road|highway|street|motorway|trunk|primary|secondary|tertiary|minor|service|path|track|tunnel|bridge|transportation/;
+  const no=/water|boundary|admin|rail|transit|ferry|aeroway|pier/;
+  style.layers.forEach(l=>{ const id=(l.id+' '+(l['source-layer']||'')).toLowerCase(); if(!calle.test(id)||no.test(id)) return;
+    const p=(l.paint ||= {});
+    if(l.type==='line'){ const o=p['line-opacity']; p['line-opacity']= typeof o==='number' ? o*0.5 : 0.5; }
+    if(l.type==='symbol'){ const o=p['text-opacity']; p['text-opacity']= typeof o==='number' ? o*0.5 : 0.5; p['icon-opacity']=0.5; }
+  });
+  return style;
+}
 function gcbaTheme(style){
   const C={bg:'#0b1f3a',water:'#05111f',park:'#0e2a3f',res:'#0d2341',bldg:'#14315a',road:'#24456f',major:'#33598a',motor:'#4a73a8',rail:'#2a4468',bound:'#56739a',text:'#d6e2f2',textMuted:'#8ea6c6',halo:'#0b1f3a'};
   style.layers.forEach(l=>{ const id=l.id.toLowerCase(), p=(l.paint ||= {});
@@ -498,7 +568,7 @@ async function setBasemap(key){
   try{
     if(!window.maplibregl || !L.maplibreGL) throw new Error('MapLibre no disponible');
     const r=await fetch(OFM+b.vector); if(!r.ok) throw new Error('HTTP '+r.status);
-    let style=await r.json(); if(b.theme==='gcba') style=gcbaTheme(style);
+    let style=await r.json(); if(b.theme==='gcba') style=gcbaTheme(style); style=atenuarCalles(style);
     const symbols=style.layers.filter(l=>l.type==='symbol'), rest=style.layers.filter(l=>l.type!=='symbol');
     const attr='<a href="https://openfreemap.org" target="_blank">OpenFreeMap</a> © OpenStreetMap';
     baseLayers.push(L.maplibreGL({style:{...style,layers:rest},attributionControl:{customAttribution:attr}}).addTo(map));
@@ -528,7 +598,7 @@ map.on('zoomend',()=>{ if(S.com) updatePins(); });
 /* =========================================================
    ESTADO
    ========================================================= */
-const S = { layer:'radar', comuna:0, frames:[], frame:0, playing:false, com:null, grid:null, i0:0, radar:null, radarLayers:{}, satLayer:null };
+const S = { layer:'radar', comuna:-1, frames:[], frame:0, playing:false, com:null, grid:null, i0:0, radar:null, radarLayers:{}, satLayer:null };
 const fmt1 = v => v==null?'—':(Math.round(v*10)/10).toLocaleString('es-AR');
 const r0 = v => v==null?'—':Math.round(v);
 const hhmm = s => s.slice(11,16);
@@ -543,6 +613,22 @@ function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg
 const NOMBRE={lluvia:'Lluvias',viento:'Viento',tormenta:'Tormentas',calor:'Calor extremo',frio:'Frío extremo'};
 const ALERTA=['Sin alertas','Alerta amarilla','Alerta naranja','Alerta roja'];
 const esc = t => String(t??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/* Vista "Toda la Ciudad": el peor valor de las 15 comunas en cada hora (S.comuna = -1) */
+function armarCiudad(){
+  const n=S.com.length, H0=S.com[0].hourly, D0=S.com[0].daily, c0=S.com[0].current;
+  const mx=(arr)=>Math.max(...arr.filter(v=>v!=null)), mn=(arr)=>Math.min(...arr.filter(v=>v!=null)), avg=(arr)=>{const a=arr.filter(v=>v!=null); return a.reduce((x,y)=>x+y,0)/a.length;};
+  const hk=(k,f)=>H0.time.map((_,i)=>f(S.com.map(c=>c.hourly[k]?c.hourly[k][i]:null)));
+  const dk=(k,f)=>D0.time.map((_,i)=>f(S.com.map(c=>c.daily[k]?c.daily[k][i]:null)));
+  const ck=(k,f)=>f(S.com.map(c=>c.current[k]));
+  const peor=(k)=>{ let b=0; S.com.forEach((c,i)=>{ if((c.current[k]||0)>(S.com[b].current[k]||0)) b=i; }); return COMUNAS[b].n; };
+  const hourly={time:H0.time}; for(const k of Object.keys(H0)) if(k!=='time') hourly[k]= (k==='temperature_2m'||k==='wind_direction_10m') ? hk(k,avg) : hk(k,mx);
+  const daily={time:D0.time}; for(const k of Object.keys(D0)) if(k!=='time') daily[k]= k==='temperature_2m_min' ? dk(k,mn) : dk(k,mx);
+  const current={...c0}; for(const k of Object.keys(c0)) if(typeof c0[k]==='number') current[k]= ['temperature_2m','apparent_temperature','relative_humidity_2m','pressure_msl','wind_direction_10m'].includes(k) ? ck(k,avg) : ck(k,mx);
+  S.ciudad={hourly,daily,current,peor:{precipitation:peor('precipitation'),wind_gusts_10m:peor('wind_gusts_10m'),wind_speed_10m:peor('wind_speed_10m')}};
+  S.alertsCiudad=S.alerts[0].map((_,k)=>{ const l=Math.max(...S.alerts.map(a=>a[k]?a[k].l:0)); return {l}; });
+}
+const datosSel=()=>S.comuna<0?S.ciudad:S.com[S.comuna];
+const alertaSel=k=>S.comuna<0?S.alertsCiudad[k]:S.alerts[S.comuna][k];
 function nivelU(v,u){ let n=0; if(v==null||!u) return 0; ['amarillo','naranja','rojo'].forEach((k,i)=>{ if(u[k]!=null&&v>=u[k]) n=i+1; }); return n; }
 function maxRun(a){ let m=0,c=0; for(const x of a){ c=x?c+1:0; m=Math.max(m,c);} return m; }
 
@@ -637,8 +723,31 @@ function calcPerspectiva(){
   });
   return out;
 }
-const textoSenal = x => ({lluvia:`lluvia de hasta ${r0(x.valor)} mm en el día`, viento:`ráfagas de hasta ${r0(x.valor)} km/h`,
-  tormenta:`tormentas (probabilidad ${r0(x.valor)} %)`, calor:`máximas de hasta ${r0(x.valor)} °C`, frio:`mínimas de hasta ${r0(x.valor)} °C`}[x.fenomeno]);
+const textoSenal = x => x.origen==='ensambles' ? `${x.prob.nivel} % de los escenarios superan el umbral amarillo (el modelo principal no lo muestra)` : ({lluvia:`lluvia de hasta ${r0(x.valor)} mm en el día`, viento:`ráfagas de hasta ${r0(x.valor)} km/h`,
+  tormenta:`tormentas (probabilidad ${r0(x.valor)} %)`, calor:`máximas de hasta ${r0(x.valor)} °C`, frio:`mínimas de hasta ${r0(x.valor)} °C`}[x.fenomeno]) + (x.prob&&x.prob.nivel!=null?` · prob. ${x.prob.nivel} %`:'');
+/* Nombres de modelos en lenguaje común */
+function modelosTxt(ms){ const N={ecmwf:'europeo',gfs:'estadounidense',icon:'alemán',gem:'canadiense'};
+  const t=[...new Set((ms||[]).map(m=>{ const k=Object.keys(N).find(x=>String(m).toLowerCase().startsWith(x)); return k?N[k]:null; }).filter(Boolean))];
+  return t.length>1 ? t.slice(0,-1).join(', ')+' y '+t[t.length-1] : (t[0]||'de ensamble'); }
+/* 'Alerta naranja por tormentas' -> 'Tormentas' (el nivel ya se muestra) */
+function tituloSMN(o){ const t=(o.titulo||o.fenomeno||'Alerta').trim(), m=t.match(/^alerta\s+(amarilla|naranja|roja)\s+(por|de)\s+(.+)$/i);
+  return m ? m[3][0].toUpperCase()+m[3].slice(1) : t; }
+/* Lluvia del WRF-SMN (data/alertas.json) para una comuna en las próximas n horas */
+function wrfSuma(n,horas){ const W=S.sys&&S.sys.wrf; if(!W||!W.comunas[n]) return null;
+  const desde=S.com[0].hourly.time[S.i0], i0=W.tiempos.findIndex(t=>t>=desde); if(i0<0) return null;
+  return W.comunas[n].slice(i0,i0+horas).reduce((a,v)=>a+(v||0),0); }
+/* Convierte una alerta de data/alertas.json (generada por alertas.py) al formato que usa este tablero */
+function desdeSistema(e){
+  const H=S.com[0].hourly, ini=e.desde.slice(0,16), fin=e.hasta?e.hasta.slice(0,16):null;
+  if(e.fenomeno==='calor'||e.fenomeno==='frio'){
+    const ult=new Date(new Date(e.hasta).getTime()-864e5).toLocaleString('sv-SE',{timeZone:TZ}).slice(0,10);
+    return {...e, dDesde:e.desde.slice(0,10), dHasta:ult};
+  }
+  const k0=H.time.slice(S.i0).findIndex(t=>t>=ini);
+  let k1=fin?H.time.slice(S.i0).findIndex(t=>t>=fin)-1:k0;
+  if(k1<k0) k1=Math.min(HORIZ-1,H.time.length-S.i0-1);
+  return {...e, kDesde:Math.max(0,k0), kHasta:Math.max(0,k1)};
+}
 function detalle(ev){ const m=ev.max;
   return {lluvia:`acumulado hasta ${fmt1(m.lluvia_12h)} mm en 12 h · máx. ${fmt1(m.lluvia_1h)} mm/h`,
     viento:`viento medio hasta ${r0(m.viento)} km/h · ráfagas hasta ${r0(m.rafagas)} km/h`,
@@ -687,6 +796,7 @@ function evaluarTodo(){
   S.alerts=S.evals.map(e=>e.per.map(x=>{ const al=Object.entries(x).filter(([,v])=>v>0).map(([k,l])=>({k,l})); return {l:Math.max(0,...al.map(a=>a.l)), al}; }));
   S.events=agregarEventos(S.evals);
   S.persp=calcPerspectiva();
+  armarCiudad();
 }
 async function loadSistema(){
   // Archivo que genera el proceso de GitHub (alertas oficiales SMN, umbrales y estado del bot)
@@ -724,7 +834,7 @@ function buildFrames(){
   fr.forEach((f,i)=>{ const b=document.createElement('i');
     if(f.kind==='radar'){ b.className='past'; b.style.height='6px'; }
     else if(f.kind==='fc'){ const l=Math.max(0,...S.alerts.map(a=>a[f.k]?a[f.k].l:0)); if(l) b.className='l'+l;
-      const H=S.com[S.comuna].hourly; const v=H.precipitation[S.i0+f.k]||0; b.style.height=Math.min(14,2+v*1.2)+'px';
+      const H=datosSel().hourly; const v=H.precipitation[S.i0+f.k]||0; b.style.height=Math.min(14,2+v*1.2)+'px';
       const t=H.time[S.i0+f.k]; if(t && t.slice(11,13)==='00'){ const s=document.createElement('span'); s.textContent=dayName(t,true); s.style.left=(i/(fr.length-1)*100)+'%'; dm.appendChild(s);} }
     else { b.style.height='4px'; }
     tb.appendChild(b); });
@@ -882,42 +992,146 @@ function pinValue(ci){
     default: return r0(now?cur.temperature_2m:H.temperature_2m[i])+'°';
   }
 }
+/* Valor numérico de la capa activa en una comuna (para pintar su polígono) */
+function valorComuna(ci){
+  const f=S.frames[S.frame], L_=LAYERS[S.layer]; if(!f||f.kind!=='fc'||!L_.key) return null;
+  const H=S.com[ci].hourly, i=S.i0+f.k, W=S.sys&&S.sys.wrf;
+  if(S.layer==='precip' && W){ const j=W.tiempos.indexOf(H.time[i]); const v=j>=0?W.comunas[COMUNAS[ci].n][j]:null; if(v!=null) return v; }
+  return H[L_.key]?H[L_.key][i]:null;
+}
+let comunasGeo=null, capaComunas=null, bordeOscuro=null, bordeClaro=null, puntosComunas={};
+async function cargarComunas(){
+  try{ comunasGeo=JSON.parse(document.getElementById('comunasGeo').textContent); }catch(e){ comunasGeo=null; return; }
+  comunasGeo.features.forEach(f=>{ puntosComunas[f.properties.comuna]=[f.properties.lat,f.properties.lon]; });
+  map.createPane('comunas'); map.getPane('comunas').style.zIndex=440;
+  map.createPane('comunasBorde'); map.getPane('comunasBorde').style.zIndex=445; map.getPane('comunasBorde').style.pointerEvents='none';
+  capaComunas=L.geoJSON(comunasGeo,{pane:'comunas',style:()=>({stroke:false,fillOpacity:0,className:'comuna'}),
+    onEachFeature:(f,ly)=>ly.on('click',()=>selectComuna(COMUNAS.findIndex(c=>c.n===f.properties.comuna)))}).addTo(map);
+  bordeOscuro=L.geoJSON(comunasGeo,{pane:'comunasBorde',interactive:false,style:()=>({color:'#071629',weight:4.5,opacity:.75,fill:false})}).addTo(map);
+  bordeClaro=L.geoJSON(comunasGeo,{pane:'comunasBorde',interactive:false,style:()=>({color:'#ffffff',weight:2,opacity:.95,fill:false,dashArray:null})}).addTo(map);
+  pintarComunas(); updatePins();
+}
+function pintarComunas(){
+  if(!capaComunas) return;
+  const L_=LAYERS[S.layer], f=S.frames[S.frame], conRelleno= f&&f.kind==='fc' && L_.key && L_.stops && S.layer!=='clouds';
+  capaComunas.eachLayer(ly=>{ const n=ly.feature.properties.comuna, ci=COMUNAS.findIndex(c=>c.n===n);
+    let fill='#000', op=0;
+    if(conRelleno && ci>=0){ const v=valorComuna(ci), c=colorAt(L_.stops,v); fill=`rgb(${c[0]|0},${c[1]|0},${c[2]|0})`; op=Math.min(.8,(c[3]||0)+.15); }
+    ly.setStyle({fillColor:fill,fillOpacity:op}); });
+  if(bordeClaro) bordeClaro.eachLayer(ly=>{ const sel=COMUNAS.findIndex(c=>c.n===ly.feature.properties.comuna)===S.comuna;
+    ly.setStyle({color:sel?'#ffd400':'#ffffff',weight:sel?3.5:2}); if(sel) ly.bringToFront(); });
+}
 function updatePins(){
   if(!S.com) return;
   const f=S.frames[S.frame], k=f&&f.kind==='fc'?f.k:0;
   pins.forEach(m=>map.removeLayer(m)); pins=[];
-  const lejos=map.getZoom()<10;   // alejado: solo la comuna elegida, para que no se amontonen
   COMUNAS.forEach((c,ci)=>{
-    if(lejos && ci!==S.comuna) return;
-    const l=S.alerts[ci][k]?S.alerts[ci][k].l:0;
-    const html=`<div class="pin${ci===S.comuna?' sel':''}"><i class="b${l}"></i>${c.n} <small>·</small> ${pinValue(ci)}</div>`;
-    const m=L.marker([c.lat,c.lon],{icon:L.divIcon({className:'pinwrap',html,iconSize:[0,0]}),zIndexOffset:ci===S.comuna?1000:0}).addTo(map);
+    const l=S.alerts[ci][k]?S.alerts[ci][k].l:0, sel=ci===S.comuna, pt=puntosComunas[c.n]||[c.lat,c.lon];
+    const html=`<div class="pin2 l${l}${sel?' sel':''}" title="Comuna ${c.n}: ${pinValue(ci)}">${c.n}${sel?`<span>${pinValue(ci)}</span>`:''}</div>`;
+    const m=L.marker(pt,{icon:L.divIcon({className:'pinwrap',html,iconSize:[0,0]}),zIndexOffset:sel?1000:0,keyboard:false}).addTo(map);
     m.on('click',()=>selectComuna(ci)); pins.push(m);
   });
+  pintarComunas();
 }
 
-/* =========================================================
-   PANEL
-   ========================================================= */
-function selectComuna(ci){ S.comuna=ci; document.getElementById('comunaSel').value=ci; renderPanel(); buildFrames(); setFrame(S.frame);
-  document.getElementById('windyLink').href=`https://www.windy.com/${COMUNAS[ci].lat}/${COMUNAS[ci].lon}?${COMUNAS[ci].lat},${COMUNAS[ci].lon},11`; }
+/* 04 · encuadre: la Ciudad entra justo en el área del mapa que queda libre */
+function encuadrar(){
+  const B=[[-34.7053,-58.5315],[-34.5265,-58.3352]], movil=innerWidth<=820;
+  if(movil){ const vis=hojaVisible(), tl=HOJA.estado==='baja'?(document.getElementById('timeline').offsetHeight||90)+8:0;
+    map.fitBounds(B,{paddingTopLeft:[14,128],paddingBottomRight:[14,vis+tl+16]}); }
+  else { const pr=document.getElementById('panel').getBoundingClientRect().right, rw=document.getElementById('rail').offsetWidth||200, th=document.getElementById('timeline').offsetHeight||80;
+    map.fitBounds(B,{paddingTopLeft:[pr+16,80],paddingBottomRight:[rw+28,th+28]}); }
+}
+/* 01 · Hoja inferior en celular: tres alturas, se arrastra desde la barrita o el estado, o se toca la barrita */
+const HOJA={estado:'baja', pane:'ahora'}; let mapaMovido=false, arr=null, recienArrastrado=false;
+const esMovil=()=>innerWidth<=820, panelEl=()=>document.getElementById('panel');
+function alturasHoja(){
+  const H=panelEl().offsetHeight, nav=document.querySelector('.tabs').offsetHeight||64, st=document.getElementById('status').offsetHeight||90;
+  const asaH=document.getElementById('asa').offsetHeight||44, baja=Math.max(0,H-(asaH+st+14+nav)), media=Math.max(0,Math.min(baja,H-Math.round(innerHeight*0.5)));
+  return {alta:0, media, baja, H};
+}
+function hojaVisible(){ const a=alturasHoja(); return Math.max(0,a.H-a[HOJA.estado]); }
+function ponerHoja(est, animar=true){
+  const pn=panelEl(), asa=document.getElementById('asa');
+  if(!esMovil()){ pn.style.transform=''; document.body.classList.remove('hoja-baja','hoja-media','hoja-alta'); return; }
+  HOJA.estado=est; const a=alturasHoja();
+  pn.style.transition=animar?'':'none'; pn.style.transform=`translateY(${a[est]}px)`;
+  document.body.classList.remove('hoja-baja','hoja-media','hoja-alta'); document.body.classList.add('hoja-'+est);
+  document.documentElement.style.setProperty('--hojaVisible',(a.H-a[est])+'px');
+  document.documentElement.style.setProperty('--timelineH',(document.getElementById('timeline').offsetHeight||90)+'px');
+  asa.setAttribute('aria-expanded',String(est==='alta')); asa.setAttribute('aria-label',est==='alta'?'Bajar el panel':'Subir el panel');
+  if(est==='baja') pn.scrollTop=0;
+  marcarTab();
+  if(!mapaMovido && est!=='alta') setTimeout(encuadrar, animar?320:0);
+  if(animar) setTimeout(ponerHash,0);
+}
+function marcarTab(){ const t = esMovil()&&HOJA.estado==='baja' ? 'mapa' : HOJA.pane;
+  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x.dataset.tab===t)); }
+function iniciarArrastre(e){ if(!esMovil()||(e.button!=null&&e.button>0)) return;
+  arr={y0:e.clientY, t0:performance.now(), base:alturasHoja()[HOJA.estado], y:null, movio:false}; panelEl().style.transition='none';
+  try{ e.currentTarget.setPointerCapture(e.pointerId); }catch(_){} }
+function moverArrastre(e){ if(!arr) return; const dy=e.clientY-arr.y0; if(Math.abs(dy)>6) arr.movio=true; if(!arr.movio) return;
+  const a=alturasHoja(); arr.y=Math.max(0,Math.min(a.baja,arr.base+dy)); panelEl().style.transform=`translateY(${arr.y}px)`; }
+function soltarArrastre(e){ if(!arr) return; const r=arr; arr=null; if(!r.movio){ panelEl().style.transition=''; return; }
+  recienArrastrado=true; setTimeout(()=>recienArrastrado=false,50);
+  const a=alturasHoja(), v=(e.clientY-r.y0)/Math.max(1,performance.now()-r.t0), orden=['alta','media','baja'];
+  let dest; if(Math.abs(v)>0.5){ const i=orden.indexOf(HOJA.estado); dest=orden[Math.max(0,Math.min(2,i+(v>0?1:-1)))]; }
+  else dest=orden.reduce((m,k)=>Math.abs(a[k]-r.y)<Math.abs(a[m]-r.y)?k:m,'alta');
+  ponerHoja(dest); }
+['asa','status'].forEach(id=>{ const el=document.getElementById(id);
+  el.addEventListener('pointerdown',iniciarArrastre); el.addEventListener('pointermove',moverArrastre);
+  el.addEventListener('pointerup',soltarArrastre); el.addEventListener('pointercancel',soltarArrastre); });
+document.getElementById('asa').addEventListener('click',()=>{ if(recienArrastrado) return;
+  ponerHoja({baja:'media',media:'alta',alta:'media'}[HOJA.estado]); });
+map.on('dragstart',()=>{ mapaMovido=true; });
+
+let tEnc=null; addEventListener('resize',()=>{ clearTimeout(tEnc); tEnc=setTimeout(()=>{ ponerHoja(HOJA.estado,false); ajustarThead(); encuadrar(); },250); });
+function ajustarThead(){ const tb=document.querySelector('.tabs'), pn=document.getElementById('panel'), pt=parseFloat(getComputedStyle(pn).paddingTop)||0;
+  const fija=getComputedStyle(tb).position==='fixed', asa=document.getElementById('asa').offsetHeight;
+  document.documentElement.style.setProperty('--theadTop', (fija? asa-pt : tb.offsetHeight-pt)+'px'); }
+
+/* 12 · enlaces directos: #pronostico #mapa #alertas #comunas #perspectiva #telegram #ciudad #comuna-8 */
+function ponerHash(){
+  const t = esMovil()&&HOJA.estado==='baja' ? 'mapa' : HOJA.pane;
+  const vista={ahora:'pronostico',mapa:'mapa',alertas:'alertas',telegram:'telegram'}[t]||'';
+  const h = vista==='pronostico' ? (S.comuna<0?'ciudad':'comuna-'+COMUNAS[S.comuna].n) : vista;
+  try{ history.replaceState(null,'','#'+h); }catch(e){}
+}
+function irATab(t){ const b=document.querySelector(`.tabs button[data-tab=${t}]`); if(b) b.click(); }
+function aplicarHash(){
+  const h=(location.hash||'').slice(1); if(!h) return;
+  let m=h.match(/^comuna-(\d{1,2})$/);
+  if(m){ const ci=COMUNAS.findIndex(c=>c.n===+m[1]); if(ci>=0) selectComuna(ci,true); irATab('ahora'); return; }
+  if(h==='ciudad'){ selectComuna(-1,true); irATab('ahora'); return; }
+  if(h==='pronostico') return irATab('ahora');
+  if(h==='mapa' && innerWidth>820){ encuadrar(); return; }
+  if(h==='mapa'||h==='alertas'||h==='telegram') return irATab(h);
+  if(h==='comunas'||h==='perspectiva'){ irATab('alertas'); setTimeout(()=>{ const el=document.getElementById('sec-'+h); if(el) el.scrollIntoView({block:'start'}); },80); }
+}
+addEventListener('hashchange',aplicarHash);
+
+function selectComuna(ci, sinHash){ S.comuna=ci; document.getElementById('comunaSel').value=ci; renderPanel(); buildFrames(); setFrame(S.frame);
+  const c=ci<0?{lat:-34.615,lon:-58.445}:COMUNAS[ci];
+  document.getElementById('windyLink').href=`https://www.windy.com/${c.lat}/${c.lon}?${c.lat},${c.lon},11`;
+  if(!sinHash) ponerHash(); }
 
 function renderPanel(){
-  const C=COMUNAS[S.comuna], d=S.com[S.comuna], cur=d.current, H=d.hourly, D=d.daily;
-  document.getElementById('locName').textContent=`${C.name} · ${C.barrios}`;
+  const ciudad=S.comuna<0, d=datosSel(), cur=d.current, H=d.hourly, D=d.daily;
+  document.getElementById('locName').textContent= ciudad ? 'Toda la Ciudad · el peor valor de las 15 comunas (temperatura y humedad: promedio)' : `${COMUNAS[S.comuna].name} · ${COMUNAS[S.comuna].barrios}`;
   document.getElementById('nowTemp').innerHTML=`${r0(cur.temperature_2m)}<sup>°C</sup>`;
   const [desc,ic]=wmo(cur.weather_code); document.getElementById('nowIco').innerHTML=IC[ic]; document.getElementById('nowDesc').textContent=desc;
   document.getElementById('nowFeels').textContent=`Sensación térmica ${r0(cur.apparent_temperature)}° · Máx ${r0(D.temperature_2m_max[0])}° / Mín ${r0(D.temperature_2m_min[0])}°`;
   const dirs=['N','NE','E','SE','S','SO','O','NO'], dir=dirs[Math.round(cur.wind_direction_10m/45)%8];
-  const m=[['Viento',`${r0(cur.wind_speed_10m)}<small>km/h ${dir}</small>`],['Ráfagas',`${r0(cur.wind_gusts_10m)}<small>km/h</small>`],['Humedad',`${r0(cur.relative_humidity_2m)}<small>%</small>`],
-    ['Lluvia 1 h',`${fmt1(cur.precipitation)}<small>mm</small>`],['Lluvia hoy',`${fmt1(D.precipitation_sum[0])}<small>mm</small>`],['Presión',`${r0(cur.pressure_msl)}<small>hPa</small>`]];
+  const dnd=k=>ciudad&&cur[k]>0?` · C${S.ciudad.peor[k]}`:'';
+  const m=[['Viento',`${r0(cur.wind_speed_10m)}<small>km/h ${dir}${dnd('wind_speed_10m')}</small>`],['Ráfagas',`${r0(cur.wind_gusts_10m)}<small>km/h${dnd('wind_gusts_10m')}</small>`],['Humedad',`${r0(cur.relative_humidity_2m)}<small>%</small>`],
+    ['Lluvia 1 h',`${fmt1(cur.precipitation)}<small>mm${dnd('precipitation')}</small>`],['Lluvia hoy',`${fmt1(D.precipitation_sum[0])}<small>mm</small>`],['Presión',`${r0(cur.pressure_msl)}<small>hPa</small>`]];
   document.getElementById('metrics').innerHTML=m.map(([l,v])=>`<div class="metric"><div class="l">${l}</div><div class="v">${v}</div></div>`).join('');
 
   renderAlertas();
 
   // horas
   const hs=document.getElementById('hours'); hs.textContent='';
-  for(let k=0;k<24;k++){ const i=S.i0+k; const [,ic2]=wmo(H.weather_code[i]); const a=S.alerts[S.comuna][k];
+  for(let k=0;k<24;k++){ const i=S.i0+k; const [,ic2]=wmo(H.weather_code[i]); const a=alertaSel(k);
     const el=document.createElement('div'); el.className='hour'+(a&&a.l?' al':''); el.dataset.k=k;
     el.innerHTML=`<div class="h">${k===0?'Ahora':hhmm(H.time[i])}</div>${IC[ic2]}<div class="tt">${r0(H.temperature_2m[i])}°</div><div class="pp">${H.precipitation_probability[i]>=20?H.precipitation_probability[i]+'%':''}</div>`;
     el.addEventListener('click',()=>{ if(S.layer==='sat') setLayer('precip'); const idx=S.frames.findIndex(f=>f.kind==='fc'&&f.k===k); if(idx>=0) setFrame(idx); });
@@ -933,12 +1147,35 @@ function renderPanel(){
     ds.appendChild(el); });
   highlightHour();
 }
+/* 02 · Resumen operativo: próximas 6 h + una línea por alerta (cuándo, qué, dónde, confianza) */
+function renderResumen(oficiales, evs){
+  const R=document.getElementById('resumen'); if(!R||!S.com) return;
+  const H=S.com.map(c=>c.hourly), n6=Math.min(6,H[0].time.length-S.i0);
+  let lluvia=0, dl=null, raf=0, torm=false;
+  S.com.forEach((c,ci)=>{ let s_=0; for(let k=0;k<n6;k++){ const i=S.i0+k; s_+=c.hourly.precipitation[i]||0; raf=Math.max(raf,c.hourly.wind_gusts_10m[i]||0); if((c.hourly.weather_code[i]||0)>=95) torm=true; }
+    if(s_>lluvia){ lluvia=s_; dl=COMUNAS[ci].n; } });
+  const W=S.sys&&S.sys.wrf; let wtop=null;
+  if(W){ const t0=H[0].time[S.i0], j=W.tiempos.findIndex(t=>t>=t0); if(j>=0){ let b=0; for(const [n,pp] of Object.entries(W.comunas)){ const v=pp.slice(j,j+n6).reduce((a,x)=>a+(x||0),0); if(v>b){ b=v; wtop=[n,v]; } } } }
+  const prox = lluvia<0.5 && !(wtop&&wtop[1]>=0.5) ? 'Sin lluvia' : `Lluvia hasta ${fmt1(Math.max(lluvia, wtop?wtop[1]:0))} mm (más en Comuna ${wtop&&wtop[1]>=lluvia?wtop[0]:dl})`;
+  const filas=[`<a class="rs" href="#comunas"><span class="cu">Próx. 6 h</span><span>${prox} · ráfagas hasta ${r0(raf)} km/h${torm?' · <b>posibles tormentas</b>':''}</span></a>`];
+  const cuando=x=>{ const d=new Date(x); if(isNaN(d)) return '—'; const loc=d.toLocaleString('sv-SE',{timeZone:TZ}).replace(' ','T'); return `${dayName(loc,true)} ${loc.slice(11,13)} h`; };
+  const COL=['#cfdcee','#ffd400','#ff8c1a','#ff3b3b'];
+  oficiales.forEach(o=>filas.push(`<a class="rs" href="#alertas"><i style="background:${COL[o.nivel]}"></i><span class="cu">${cuando(o.desde)}</span><span><b>${esc(tituloSMN(o))}</b> · ${LEVELS[o.nivel].toLowerCase()} <span class="chip smn">oficial SMN</span></span></a>`));
+  evs.forEach(e=>{ const desde=e.desde || (e.kDesde!=null?H[0].time[S.i0+e.kDesde]:e.dDesde+'T00:00');
+    const rk=e.modelos&&e.modelos.wrf.ranking.length?` · más en ${e.modelos.wrf.ranking.slice(0,3).map(r=>'C'+r[0]).join(', ')}`:'';
+    const pb=e.prob&&e.prob.confianza?` <span class="chip ${e.prob.confianza}">confianza ${e.prob.confianza}</span>`:'';
+    filas.push(`<a class="rs" href="#alertas"><i style="background:${COL[e.nivel]}"></i><span class="cu">${cuando(desde)}</span><span><b>${NOMBRE[e.fenomeno]}</b> · ${LEVELS[e.nivel].toLowerCase()}${rk}${pb}</span></a>`); });
+  R.innerHTML=filas.slice(0,6).join('');
+}
 function renderAlertas(){
   const H=S.com[0].hourly;
   const oficiales=(S.sys&&S.sys.oficiales)||[];
-  const evs=S.events||[];
+  // Si el proceso automático corrió hace menos de 90 minutos, se muestran SUS alertas (las mismas que manda el bot).
+  // Si no, se calculan acá con la misma lógica, como respaldo.
+  const sysOk = S.sys && S.sys.pronostico && (Date.now()-new Date(S.sys.generado).getTime()) < 90*60e3;
+  const evs = sysOk ? S.sys.pronostico.map(desdeSistema).sort((a,b)=>b.nivel-a.nivel) : (S.events||[]);
   // --- estado general ---
-  const top=[...oficiales.map(o=>({n:o.nivel,t:o.titulo||o.fenomeno,src:'Oficial SMN',when:`desde ${fmtISO(o.desde).toLowerCase()}`})),
+  const top=[...oficiales.map(o=>({n:o.nivel,t:tituloSMN(o),src:'Oficial SMN',when:`desde ${fmtISO(o.desde).toLowerCase()}`})),
              ...evs.map(e=>({n:e.nivel,t:NOMBRE[e.fenomeno],src:'Por pronóstico',when:e.kDesde!=null?`desde ${dayName(H.time[S.i0+e.kDesde]).toLowerCase()} ${hhmm(H.time[S.i0+e.kDesde])}`:`desde ${dayName(e.dDesde+'T00').toLowerCase()}`}))]
              .sort((a,b)=>b.n-a.n || (a.src<b.src?-1:1));
   const st=document.getElementById('status'), lv=top.length?top[0].n:0;
@@ -954,6 +1191,7 @@ function renderAlertas(){
   const ll=(S.sys&&S.sys.lluvia)||{};
   if(ll.estado==='lloviendo'){ document.getElementById('stSub').textContent += ` · Llueve en la Ciudad${ll.comunas&&ll.comunas.length?` (${comTxt(ll.comunas)})`:''}`;
     if(!lv){ document.getElementById('stTitle').textContent='Sin alertas · está lloviendo'; } }
+  renderResumen(oficiales, evs);
   const sg=(S.sys&&S.sys.seguimiento)||{};
   if(sg.activo) document.getElementById('stSub').textContent += ` · Seguimiento activo: partes cada ${sg.cada_minutos||30} min`;
   document.getElementById('tabBadge').textContent = top.length||'';
@@ -963,7 +1201,7 @@ function renderAlertas(){
   if(!S.sys){ of.innerHTML='<div class="note">Las alertas oficiales del SMN (protocolo CAP) se muestran cuando el tablero está publicado junto con el proceso automático (GitHub Pages). Mientras tanto, consultalas en <a href="https://www.smn.gob.ar/alertas" target="_blank" rel="noopener" style="color:var(--accent)">smn.gob.ar/alertas</a>.</div>'; }
   else if(!oficiales.length){ of.innerHTML='<div class="calm">El SMN no tiene alertas vigentes para la Ciudad de Buenos Aires.</div>'; }
   oficiales.forEach(o=>{ const el=document.createElement('div'); el.className='off l'+o.nivel;
-    el.innerHTML=`<div class="hd"><div><div class="ttl">${esc(o.titulo||o.fenomeno)}<span class="src smn">SMN</span></div>
+    el.innerHTML=`<div class="hd"><div><div class="ttl">${esc(tituloSMN(o))}<span class="src smn">SMN</span></div>
       <div class="sub">${fmtISO(o.desde)}${o.hasta?' a '+fmtISO(o.hasta).toLowerCase():''} · ${comTxt(o.comunas||[])}</div></div><span class="lvl b${o.nivel}">${LEVELS[o.nivel]}</span></div>
       ${o.descripcion?`<p>${esc(o.descripcion)}</p>`:''}
       ${o.instrucciones?`<details><summary>Recomendaciones del SMN</summary><p>${esc(o.instrucciones)}</p></details>`:''}
@@ -972,7 +1210,10 @@ function renderAlertas(){
 
   // --- por pronóstico ---
   const al=document.getElementById('alerts'); al.textContent='';
-  if(!evs.length) al.innerHTML='<div class="calm">Sin umbrales superados en la Ciudad durante las próximas 48 horas.</div>';
+  if(S.sys && !sysOk) al.insertAdjacentHTML('beforeend',`<div class="note" style="margin-bottom:8px">⚠️ El proceso automático no se actualiza desde ${fmtISO(S.sys.generado).toLowerCase()}. Las alertas de abajo se calculan en este navegador y pueden no coincidir con las del bot.</div>`);
+  if(!evs.length) al.insertAdjacentHTML('beforeend','<div class="calm">Sin umbrales superados en la Ciudad durante las próximas 48 horas.</div>');
+  const pg=S.sys&&S.sys.probabilidad;
+  if(evs.length&&pg) al.insertAdjacentHTML('beforeend',`<div class="note" style="margin-bottom:8px">La probabilidad sale de ${pg.escenarios} escenarios de los modelos ${modelosTxt(pg.modelos)}. Confianza alta: 60 % o más · media: 30 a 59 % · baja: menos de 30 %.</div>`);
   evs.forEach(ev=>{ const el=document.createElement('div'); el.className='alert l'+ev.nivel;
     let span;
     if(ev.kDesde!=null){ const t1=H.time[S.i0+ev.kDesde], t2=H.time[S.i0+ev.kHasta];
@@ -980,7 +1221,11 @@ function renderAlertas(){
     else { span = ev.dDesde===ev.dHasta ? dayName(ev.dDesde+'T00') : `${dayName(ev.dDesde+'T00')} al ${dayName(ev.dHasta+'T00').toLowerCase()}`; }
     el.innerHTML=`<div style="flex:1"><div class="ttl"></div><div class="sub"></div></div><span class="lvl b${ev.nivel}">${LEVELS[ev.nivel]}</span>`;
     el.querySelector('.ttl').textContent=NOMBRE[ev.fenomeno];
-    el.querySelector('.sub').textContent=`${span} · ${detalle(ev)} · ${comTxt(ev.comunas)}`;
+    el.querySelector('.sub').textContent=`${span} · ${detalle(ev)} · ${comTxt(ev.comunas)}`+(ev.comunas.length<COMUNAS.length?' (orientativo)':'');
+    if(ev.modelos){ const M=ev.modelos, lv=n=>n?LEVELS[n].toLowerCase():'sin alerta';
+      el.querySelector('.sub').insertAdjacentHTML('beforeend',`<br>Modelos: WRF del SMN ${r0(M.wrf.lluvia_12h)} mm/12 h (${lv(M.wrf.nivel)}) · global ${r0(M.open_meteo.lluvia_12h)} mm/12 h (${lv(M.open_meteo.nivel)})${M.wrf.nivel===M.open_meteo.nivel?' · coinciden':' · <b>no coinciden</b>'}`
+        +(M.wrf.ranking.length?`<br>Más lluvia según el WRF: ${M.wrf.ranking.map(([n,v])=>`Comuna ${n} ${r0(v)} mm`).join(' · ')}`:'')); }
+    if(ev.prob&&ev.prob.nivel!=null) el.querySelector('.sub').insertAdjacentHTML('beforeend',`<br><span class="conf">confianza ${ev.prob.confianza}</span> ${ev.prob.nivel} % de probabilidad de llegar a ${LEVELS[ev.nivel].toLowerCase()}${ev.nivel>1&&ev.prob.amarillo!=null?` · ${ev.prob.amarillo} % de al menos amarillo`:''}`);
     el.addEventListener('click',()=>{ setLayer({lluvia:'precip',viento:'gust',tormenta:'storm',calor:'temp',frio:'temp'}[ev.fenomeno]);
       const k=ev.kDesde!=null?ev.kDesde:Math.max(0,H.time.slice(S.i0).findIndex(t=>t.slice(0,10)===ev.dDesde)+14);
       const idx=S.frames.findIndex(f=>f.kind==='fc'&&f.k===Math.min(47,k)); if(idx>=0) setFrame(idx); });
@@ -994,22 +1239,23 @@ function renderAlertas(){
   const filas=S.com.map((cm,ci)=>{ const H=cm.hourly; let ll=0,lm=0,hm=null,rf=0,pr=0,st=false,gr=false;
     for(let k=0;k<NH;k++){ const i=S.i0+k; if(i>=H.time.length) break; const p=H.precipitation[i]||0, g=H.wind_gusts_10m[i]||0, c=H.weather_code[i]||0;
       ll+=p; if(p>lm){lm=p;hm=H.time[i];} rf=Math.max(rf,g); pr=Math.max(pr,H.precipitation_probability[i]||0); if(c>=95) st=true; if(c===96||c===99) gr=true; }
-    return {ci,n:COMUNAS[ci].n,ll,lm,hm,rf,pr,st,gr}; });
+    return {ci,n:COMUNAS[ci].n,ll,lm,hm,rf,pr,st,gr,wr:wrfSuma(COMUNAS[ci].n,NH)}; });
+  const hayW=filas.some(f=>f.wr!=null);
   const cls=(v,u)=>{ const n=nivelU(v,u); return n?`v${n}`:''; };
-  nh.insertAdjacentHTML('beforeend',`<table class="nh"><colgroup><col style="width:22%"><col><col><col><col style="width:16%"></colgroup>
-    <thead><tr><th>Comuna</th><th>Lluvia</th><th>Máx/h</th><th>Ráfaga</th><th>Torm.</th></tr></thead><tbody>${
-    filas.map(f=>`<tr data-ci="${f.ci}"><td><b>${f.n}</b></td>
+  nh.insertAdjacentHTML('beforeend',`<table class="nh"><colgroup><col style="width:16%">${hayW?'<col>':''}<col><col><col><col style="width:14%"></colgroup>
+    <thead><tr><th>Com.</th>${hayW?'<th title="Modelo WRF del SMN, celdas de 4 km">WRF</th>':''}<th title="Modelo global (Open-Meteo), celdas de 10 a 25 km">${hayW?'Global':'Lluvia'}</th><th>Máx/h</th><th>Ráfaga</th><th>Torm.</th></tr></thead><tbody>${
+    filas.map(f=>`<tr data-ci="${f.ci}"><td><b>${f.n}</b></td>${hayW?`<td class="${f.wr==null||f.wr<0.5?'zero':''}"><b>${f.wr==null?'—':fmt1(f.wr)}</b><small>mm</small></td>`:''}
       <td class="${f.ll<0.5?'zero':''}">${fmt1(f.ll)}<small>mm</small></td>
       <td class="${f.lm<0.5?'zero':cls(f.lm,UIh)}">${fmt1(f.lm)}${f.hm&&f.lm>=0.5?`<small>${hhmm(f.hm).slice(0,2)}h</small>`:''}</td>
       <td class="${cls(f.rf,UGh)}">${r0(f.rf)}<small>km/h</small></td>
       <td>${f.st?(f.gr?'<span class="v2">sí · granizo</span>':'<span class="v1">sí</span>'):'<span class="zero">no</span>'}</td></tr>`).join('')}</tbody></table>
-    <div class="note" style="margin-top:8px">Pronóstico de las próximas ${NH} horas (Open-Meteo). En color, los valores que superan los umbrales de intensidad de lluvia o de ráfagas. Tocá una comuna para verla en el panel.</div>`);
+    <div class="note" style="margin-top:8px">Pronóstico de las próximas ${NH} horas. En color, los valores que superan los umbrales de intensidad de lluvia o de ráfagas. Tocá una comuna para verla en el panel.<br>${hayW?`<b>WRF</b>: modelo del SMN de alta resolución (celdas de 4 km, ${esc(S.sys.wrf.ciclo_txt||'')}), distingue mejor entre comunas. <b>Global</b>: modelo global, celdas de 10 a 25 km. `:'<b>Orientativo:</b> el modelo trabaja con celdas de 10 a 25 km y no distingue bien entre comunas vecinas. '}La ubicación exacta de una tormenta siempre es incierta: para saber dónde está lloviendo ahora, mirá la capa de radar.</div>`);
   nh.querySelectorAll('tbody tr').forEach(tr=>tr.addEventListener('click',()=>{ selectComuna(+tr.dataset.ci);
     document.querySelector('.tabs button[data-tab=ahora]').click(); }));
 
   // --- perspectiva extendida ---
   const pe=document.getElementById('persp'); pe.textContent='';
-  const pd=S.persp||[];
+  const pd=(sysOk&&S.sys.perspectiva&&S.sys.perspectiva.length)?S.sys.perspectiva:(S.persp||[]);
   document.getElementById('perspRango').textContent = pd.length?`· días ${P.dias_desde||3} a ${P.dias_hasta||7}`:'';
   if(!pd.length) pe.innerHTML='<div class="note">La perspectiva extendida está desactivada en config.yaml.</div>';
   else pe.insertAdjacentHTML('beforeend','<div class="note" style="margin-bottom:8px">Pronóstico extendido de <b>menor certeza</b>: no dispara alertas, sirve para anticipar y planificar.</div>');
@@ -1020,7 +1266,7 @@ function renderAlertas(){
       <div class="pt"><b>${r0(r.tmax)}°</b> / ${r0(r.tmin)}°</div></div>`;
     if(d.senales.length){ const ch=document.createElement('div'); ch.className='chips';
       d.senales.forEach(x=>{ const c=document.createElement('div'); c.className='chip'; c.innerHTML=`<i class="b${x.nivel}"></i><span></span>`;
-        c.querySelector('span').textContent=`${NOMBRE[x.fenomeno]} · ${LEVELS[x.nivel].toLowerCase()}: ${textoSenal(x)} · ${comTxt(x.comunas)}`; ch.appendChild(c); });
+        c.querySelector('span').textContent=`${NOMBRE[x.fenomeno]} · ${LEVELS[x.nivel].toLowerCase()}: ${textoSenal(x)}`+(x.origen==='ensambles'?'':` · ${comTxt(x.comunas)}`); ch.appendChild(c); });
       el.appendChild(ch); }
     else el.insertAdjacentHTML('beforeend','<div class="pquiet">Sin fenómenos a vigilar.</div>');
     pe.appendChild(el); });
@@ -1064,17 +1310,30 @@ function highlightHour(){ const f=S.frames[S.frame]; document.querySelectorAll('
    CONTROLES
    ========================================================= */
 document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',()=>{
-  document.querySelectorAll('.tabs button').forEach(x=>x.classList.toggle('on',x===b));
+  const esMapa=b.dataset.tab==='mapa';
+  if(esMapa){ mapaMovido=false; ponerHoja('baja'); setTimeout(ponerHash,0); return; }
+  HOJA.pane=b.dataset.tab;
   document.querySelectorAll('[data-pane]').forEach(p=>p.hidden = p.dataset.pane!==b.dataset.tab);
+  document.getElementById('panel').scrollTop=0;
+  if(esMovil() && HOJA.estado==='baja') ponerHoja('media'); else marcarTab();
+  setTimeout(()=>{ ponerHash(); ajustarThead(); },0);
 }));
+/* En celular las pestañas van fuera de la hoja: si quedaran adentro, se moverían con ella */
+const TABS=document.querySelector('.tabs'), ANCLA_TABS=document.createComment('tabs');
+TABS.parentNode.insertBefore(ANCLA_TABS,TABS);
+function ubicarTabs(){ if(esMovil()){ if(TABS.parentNode!==document.body) document.body.appendChild(TABS); }
+  else if(TABS.parentNode===document.body) ANCLA_TABS.parentNode.insertBefore(TABS,ANCLA_TABS.nextSibling); }
+ubicarTabs(); addEventListener('resize',ubicarTabs);
+ponerHoja('baja',false);
 const rail=document.getElementById('rail');
 Object.entries(LAYERS).forEach(([k,v])=>{ const b=document.createElement('button'); b.className='lay'; b.dataset.k=k; b.title=v.label;
   b.innerHTML=LAYER_ICONS[k]+`<span>${v.label}</span>`; b.addEventListener('click',()=>setLayer(k)); rail.appendChild(b); });
 const sel=document.getElementById('comunaSel');
+{ const o=document.createElement('option'); o.value=-1; o.textContent='Toda la Ciudad'; sel.appendChild(o); }
 COMUNAS.forEach((c,i)=>{ const o=document.createElement('option'); o.value=i; o.textContent=c.name; sel.appendChild(o); });
 sel.addEventListener('change',()=>selectComuna(+sel.value));
 const baseSel=document.getElementById('baseSel');
-Object.entries(BASEMAPS).forEach(([k,b])=>{ const o=document.createElement('option'); o.value=k; o.textContent='Mapa: '+b.label; baseSel.appendChild(o); });
+Object.entries(BASEMAPS).forEach(([k,b])=>{ const o=document.createElement('option'); o.value=k; o.textContent=(innerWidth<=820?'':'Mapa: ')+b.label; baseSel.appendChild(o); });
 baseSel.addEventListener('change',()=>setBasemap(baseSel.value));
 let savedBase='gcba'; try{ savedBase=localStorage.getItem('clima-caba-base')||'gcba'; }catch(e){}
 setBasemap(savedBase);
@@ -1096,7 +1355,7 @@ async function refreshAll(first){
     await loadSistema();
     await Promise.all([loadModel(), loadRadar()]);
     S._wf=null;
-    if(first){ selectComuna(0); setLayer('radar'); }
+    if(first){ selectComuna(-1, true); setLayer('radar'); ponerHoja(HOJA.estado,false); aplicarHash(); encuadrar(); cargarComunas(); ajustarThead(); }
     else { renderPanel(); setLayer(S.layer); }
   }catch(e){
     toast('No se pudo actualizar el pronóstico ('+e.message+'). Se reintenta en el próximo ciclo.');
