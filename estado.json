@@ -1,0 +1,385 @@
+{
+ "cap_cache": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Cordillera_alertas_alertas_1.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Cordillera_alertas_alertas_2.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Cordillera_alertas_alertas_3.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Cordillera_alertas_alertas_4.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_1.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_10.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_11.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_12.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_13.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_14.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_15.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_16.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_17.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_18.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_19.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_2.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_20.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_21.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_22.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_3.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_4.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_5.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_6.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_7.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_8.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101938_Tormenta_Llanura_alertas_alertas_9.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Lluvia_Patagonia_alertas_alertas_1.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Lluvia_Patagonia_alertas_alertas_2.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Lluvia_Patagonia_alertas_alertas_3.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_1.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_10.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_11.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_12.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_2.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_3.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_4.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_5.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_6.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_7.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_8.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Cordillera_alertas_alertas_9.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Llanura_alertas_alertas_1.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Llanura_alertas_alertas_2.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Llanura_alertas_alertas_3.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Llanura_alertas_alertas_4.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Llanura_alertas_alertas_5.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Viento_Llanura_alertas_alertas_6.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104101939_Zonda_Cordillera_alertas_alertas_1.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_04_1833_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_04_1845_cap_es.xml": {
+   "caba": false
+  }
+ },
+ "eventos": {},
+ "seguimiento": {},
+ "ultimo_envio": {
+  "fecha": "2026-11-04T10:28:57.774195-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nViernes 06/11 · 15° / 26° · 💧 84 %\nSábado 07/11 · 11° / 19° · 💧 57 %\nDomingo 08/11 · 9° / 23°\nLunes 09/11 · 13° / 24°\nMartes 10/11 · 17° / 25°\n\n✅ Sin señales de eventos significativos en estos días."
+ },
+ "resumen_fecha": "2026-11-04",
+ "tg_offset": 253065123,
+ "lluvia": {
+  "estado": "seco",
+  "seco_desde": "2026-11-04T10:28:57.347483-03:00"
+ },
+ "ensambles": {
+  "calculado": "2026-11-04T16:40:25.006777-03:00",
+  "modelos": [
+   "ecmwf_ifs025 (51)",
+   "gfs_seamless (31)",
+   "icon_seamless (40)"
+  ],
+  "escenarios": 122,
+  "horizonte": {
+   "lluvia": {
+    "amarillo": 0,
+    "naranja": 0,
+    "rojo": 0,
+    "escenarios": 122
+   },
+   "viento": {
+    "amarillo": 0,
+    "naranja": 0,
+    "rojo": 0,
+    "escenarios": 82
+   },
+   "calor": {
+    "amarillo": 0,
+    "naranja": 0,
+    "rojo": 0,
+    "escenarios": 82
+   },
+   "frio": {
+    "amarillo": 0,
+    "naranja": 0,
+    "rojo": 0,
+    "escenarios": 82
+   }
+  },
+  "dias": {
+   "2026-11-04": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-05": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-06": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-07": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-08": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-09": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-10": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   }
+  }
+ }
+}
