@@ -1,6 +1,5 @@
 # Alertas meteorológicas CABA
 
-**GCBA · Jefatura de Gabinete de Ministros**
 
 Sistema automático de monitoreo y alertas meteorológicas para la Ciudad de Buenos Aires:
 
