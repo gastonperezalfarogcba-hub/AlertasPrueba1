@@ -1,0 +1,5 @@
+numpy>=1.26
+h5py>=3.10
+netCDF4>=1.6
+requests>=2.31
+PyYAML>=6.0

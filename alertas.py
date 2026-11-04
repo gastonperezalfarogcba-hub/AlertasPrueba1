@@ -28,6 +28,7 @@ import json
 import os
 import re
 import sys
+import time
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 from pathlib import Path
@@ -46,6 +47,14 @@ NOMBRE_FENOMENO = {
 }
 UA = {"User-Agent": "alertas-clima-caba/1.0 (+https://github.com)"}
 ROOT = Path(__file__).resolve().parent
+URL_TABLERO = ""   # se completa en main() con general.url_tablero
+
+
+def enlace_tablero(vista: str, texto: str) -> list[str]:
+    """Link a una vista del tablero: #alertas, #comunas, #perspectiva, #mapa, #comuna-8…"""
+    if not URL_TABLERO or "TU-USUARIO" in URL_TABLERO:
+        return []
+    return ["", f'<a href="{html.escape(URL_TABLERO.split("#")[0], quote=True)}#{vista}">{texto}</a>']
 
 
 # ---------------------------------------------------------------------------
@@ -131,6 +140,26 @@ def descargar_open_meteo(comunas: list[dict], dias: int = 7) -> list[dict]:
 # 2. Evaluación con criterios tipo SMN
 #    (la misma lógica está replicada en docs/index.html)
 # ---------------------------------------------------------------------------
+def niveles_lluvia(t: list, p: list, UL: dict, i0: int, horizonte: int) -> dict:
+    """Nivel de alerta de lluvia en cada hora del horizonte (lo usan Open-Meteo y el WRF-SMN)."""
+    def suma(i, n):
+        return sum(p[max(0, i - n + 1): i + 1])
+    fin = min(i0 + horizonte, len(t))
+    # nivel del acumulado que termina en cada hora (12 h y 24 h hacia atrás)
+    acum = {}
+    for i in range(i0, min(fin + 23, len(t))):
+        acum[i] = max(nivel_por_umbral(suma(i, 12), UL["acumulado_12h_mm"]),
+                      nivel_por_umbral(suma(i, 24), UL["acumulado_24h_mm"]))
+    niv, r12m, r24m, rhm = [], 0, 0, 0
+    for i in range(i0, fin):
+        r12, r24, rh = suma(i, 12), suma(i, 24), p[i]
+        r12m, r24m, rhm = max(r12m, r12), max(r24m, r24), max(rhm, rh)
+        # una hora con lluvia queda en alerta si forma parte de un acumulado que supera el umbral
+        n_acum = max((acum.get(j, 0) for j in range(i, i + 24)), default=0) if rh >= 1 else 0
+        niv.append(max(n_acum, nivel_por_umbral(rh, UL.get("intensidad_horaria_mm", {}))))
+    return {"niveles": niv, "max": {"lluvia_12h": r12m, "lluvia_24h": r24m, "lluvia_1h": rhm}}
+
+
 def evaluar_comuna(d: dict, U: dict, horizonte: int, dias: int) -> dict:
     """Devuelve, para una comuna, el nivel por hora de cada fenómeno y sus máximos."""
     H = d["hourly"]
@@ -145,22 +174,7 @@ def evaluar_comuna(d: dict, U: dict, horizonte: int, dias: int) -> dict:
 
     out = {"horas": [t[i] for i in rng]}
 
-    # --- lluvia ---
-    UL = U["lluvia"]
-    # nivel del acumulado que termina en cada hora (12 h y 24 h hacia atrás)
-    fin = min(i0 + horizonte, len(t))
-    acum = {}
-    for i in range(i0, min(fin + 23, len(t))):
-        acum[i] = max(nivel_por_umbral(suma(i, 12), UL["acumulado_12h_mm"]),
-                      nivel_por_umbral(suma(i, 24), UL["acumulado_24h_mm"]))
-    niv, r12m, r24m, rhm = [], 0, 0, 0
-    for i in rng:
-        r12, r24, rh = suma(i, 12), suma(i, 24), p[i]
-        r12m, r24m, rhm = max(r12m, r12), max(r24m, r24), max(rhm, rh)
-        # una hora con lluvia queda en alerta si forma parte de un acumulado que supera el umbral
-        n_acum = max((acum.get(j, 0) for j in range(i, i + 24)), default=0) if rh >= 1 else 0
-        niv.append(max(n_acum, nivel_por_umbral(rh, UL.get("intensidad_horaria_mm", {}))))
-    out["lluvia"] = {"niveles": niv, "max": {"lluvia_12h": r12m, "lluvia_24h": r24m, "lluvia_1h": rhm}}
+    out["lluvia"] = niveles_lluvia(t, p, U["lluvia"], i0, horizonte)
 
     # --- viento (con duración mínima) ---
     UV = U["viento"]
@@ -356,14 +370,19 @@ DIAS_SEMANA = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", 
 
 def texto_senal(s_: dict) -> str:
     v, f = s_.get("valor"), s_["fenomeno"]
-    return {"lluvia": f"lluvia de hasta {num(v)} mm en el día", "viento": f"ráfagas de hasta {num(v)} km/h",
+    pb = s_.get("prob") or {}
+    if s_.get("origen") == "ensambles":
+        return f"{pb.get('nivel')} % de los escenarios superan el umbral amarillo (el modelo principal no lo muestra)"
+    base = {"lluvia": f"lluvia de hasta {num(v)} mm en el día", "viento": f"ráfagas de hasta {num(v)} km/h",
             "tormenta": f"tormentas (probabilidad {num(v)} %)", "calor": f"máximas de hasta {num(v)} °C",
             "frio": f"mínimas de hasta {num(v)} °C"}.get(f, f)
+    return base + (f" · prob. {pb['nivel']} %" if pb.get("nivel") is not None else "")
 
 
 def msg_perspectiva(dias: list[dict], total: int) -> str:
     lineas = ["🗓️ <b>Perspectiva · próximos días</b>",
-              "<i>Pronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.</i>", ""]
+              "<i>Pronóstico extendido de menor certeza. No es una alerta: sirve para anticipar. "
+              "La probabilidad sale de los modelos de ensamble.</i>", ""]
     hay = any(d["senales"] for d in dias)
     for d in dias:
         f = datetime.fromisoformat(d["fecha"])
@@ -375,17 +394,18 @@ def msg_perspectiva(dias: list[dict], total: int) -> str:
         if d["senales"]:
             for s_ in d["senales"]:
                 lineas.append(f"   {ICONO[s_['nivel']]} {NOMBRE_FENOMENO.get(s_['fenomeno'], s_['fenomeno'])}: "
-                              f"{texto_senal(s_)} · {lista_comunas(s_['comunas'], total)}")
+                              f"{texto_senal(s_)}" + ("" if s_.get("origen") == "ensambles" else f" · {lista_comunas(s_['comunas'], total)}"))
             lineas.append(f"   <i>confianza {d['confianza']}</i>")
     if not hay:
         lineas += ["", "✅ Sin señales de eventos significativos en estos días."]
+    lineas += enlace_tablero("perspectiva", "Ver la perspectiva en el tablero")
     return "\n".join(lineas)
 
 
 # ---------------------------------------------------------------------------
 # 2c. Seguimiento · próximas horas por comuna (para partes cada 30 minutos)
 # ---------------------------------------------------------------------------
-def resumen_proximas_horas(datos: list[dict], comunas: list[dict], horas: int) -> dict:
+def resumen_proximas_horas(datos: list[dict], comunas: list[dict], horas: int, w: dict | None = None) -> dict:
     filas = []
     hora_actual = ahora().replace(minute=0, second=0, microsecond=0)
     for c, d in zip(comunas, datos):
@@ -414,7 +434,10 @@ def resumen_proximas_horas(datos: list[dict], comunas: list[dict], horas: int) -
         ciudad.append({"t": hk[0]["t"], "p": max(h["p"] for h in hk), "g": max(h["g"] for h in hk),
                        "pr": max(h["pr"] for h in hk), "tormenta": any(h["c"] >= 95 for h in hk),
                        "comunas_lluvia": sum(1 for h in hk if h["p"] >= 0.5)})
-    return {"filas": filas, "ciudad": ciudad}
+    res = {"filas": filas, "ciudad": ciudad}
+    if w:
+        res["wrf"], res["wrf_ciclo"] = wrf_proximas(w, horas), ciclo_txt(w)
+    return res
 
 
 def msg_seguimiento(res: dict, motivo: str, U: dict, total: int, prev: dict | None, cfg: dict, prueba=False) -> str:
@@ -425,7 +448,8 @@ def msg_seguimiento(res: dict, motivo: str, U: dict, total: int, prev: dict | No
     if prueba:
         L.append("🧪 <b>PRUEBA DE SEGUIMIENTO</b>")
     L += [f"📡 <b>Seguimiento · {e(motivo)}</b>",
-          f"<i>Parte de las {ahora():%H:%M} · próximas {len(C)} h · pronóstico por comuna (Open-Meteo)</i>", ""]
+          f"<i>{ahora():%H:%M} · próximas {len(C)} h · " + ("WRF-SMN y Open-Meteo" if res.get("wrf") else "Open-Meteo")
+          + " · por comuna, aproximado</i>", ""]
 
     # esta hora
     llueve = [f for f in F if f["ahora_lluvia"] >= 0.5]
@@ -439,15 +463,29 @@ def msg_seguimiento(res: dict, motivo: str, U: dict, total: int, prev: dict | No
 
     # lluvia
     con = sorted([f for f in F if f["lluvia"] >= 2], key=lambda f: -f["lluvia"])
-    if con:
+    RW = res.get("wrf")
+    if RW:   # con WRF-SMN: ranking por comuna según el modelo de 4 km, con el valor de Open-Meteo al lado
+        om = {f["comuna"]: f["lluvia"] for f in F}
+        cw = sorted([(n, r) for n, r in RW.items() if r["lluvia"] >= 2 or om.get(n, 0) >= 2], key=lambda x: -x[1]["lluvia"])
+        if cw:
+            L.append("🌧️ <b>Lluvia por comuna</b> (WRF · Open-Meteo):")
+            for n, r in cw[:4]:
+                nv = nivel_por_umbral(r["lluvia_max"], UI)
+                pico = f" · pico {hh(r['hora_lluvia_max'])}" if r["lluvia_max"] >= 0.5 else ""
+                L.append(f"   {ICONO[nv] if nv else '•'} Comuna {n}: {num(r['lluvia'])} · {num(om.get(n, 0))} mm{pico}")
+            if len(cw) > 4:
+                resto = [r["lluvia"] for _, r in cw[4:]]
+                L.append(f"   • Otras {len(resto)} comunas: entre {num(min(resto))} y {num(max(resto))} mm (WRF-SMN)")
+        else:
+            L.append("🌧️ <b>Lluvia:</b> ninguno de los dos modelos espera lluvia significativa.")
+    elif con:
         pico = max(C, key=lambda h: h["p"])
         L.append(f"🌧️ <b>Lluvia:</b> {len(con)} comuna(s) con lluvia; lo más intenso cerca de las {hh(pico['t'])}.")
-        for f in con[:5]:
+        for f in con[:4]:
             n = nivel_por_umbral(f["lluvia_max"], UI)
-            L.append(f"   {ICONO[n] if n else '•'} Comuna {f['comuna']}: {num(f['lluvia'])} mm "
-                     f"(máx. {num(f['lluvia_max'], 1)} mm/h a las {hh(f['hora_lluvia_max'])})")
-        if len(con) > 5:
-            resto = con[5:]
+            L.append(f"   {ICONO[n] if n else '•'} Comuna {f['comuna']}: {num(f['lluvia'])} mm · pico {hh(f['hora_lluvia_max'])}")
+        if len(con) > 4:
+            resto = con[4:]
             a_, b_ = num(min(f['lluvia'] for f in resto)), num(max(f['lluvia'] for f in resto))
             L.append(f"   • Otras {len(resto)} comunas: " + (f"alrededor de {a_} mm" if a_ == b_ else f"entre {a_} y {b_} mm"))
     else:
@@ -461,7 +499,7 @@ def msg_seguimiento(res: dict, motivo: str, U: dict, total: int, prev: dict | No
         L.append(f"💨 <b>Viento:</b> {ICONO[nv]} ráfagas de hasta {num(gmax['rafaga'])} km/h cerca de las {hh(gmax['hora_rafaga'])} · "
                  f"{lista_comunas(fuertes, total)}")
     else:
-        L.append(f"💨 <b>Viento:</b> ráfagas de hasta {num(gmax['rafaga'])} km/h, por debajo de los umbrales.")
+        L.append(f"💨 <b>Viento:</b> ráfagas de hasta {num(gmax['rafaga'])} km/h (sin alerta)")
 
     # tormenta
     st = [f for f in F if f["tormenta"]]
@@ -472,13 +510,13 @@ def msg_seguimiento(res: dict, motivo: str, U: dict, total: int, prev: dict | No
         gr = " · posible granizo" if any(f["granizo"] for f in st) else ""
         L.append(f"⛈️ <b>Tormentas:</b> probables {franja} · {lista_comunas([f['comuna'] for f in st], total)}{gr}")
     else:
-        L.append("⛈️ <b>Tormentas:</b> el modelo no pronostica tormentas en este lapso.")
+        pass   # sin tormentas: no se agrega una línea
 
     # temperatura
     ta = [f["temp_ahora"] for f in F if f["temp_ahora"] is not None]
     tm = [f["temp_min"] for f in F if f["temp_min"] is not None]
     if ta and tm:
-        L.append(f"🌡️ <b>Temperatura:</b> {num(sum(ta) / len(ta))}° ahora, mínima de {num(min(tm))}° en las próximas horas")
+        L.append(f"🌡️ {num(sum(ta) / len(ta))}° ahora · mínima {num(min(tm))}°")
 
     # tendencia
     lluvia_top = con[0]["lluvia"] if con else 0
@@ -490,17 +528,16 @@ def msg_seguimiento(res: dict, motivo: str, U: dict, total: int, prev: dict | No
         dg = gmax["rafaga"] - prev.get("rafaga_max", 0)
         if abs(dg) >= 10:
             cambios.append(("⬆️ ráfagas más fuertes" if dg > 0 else "⬇️ ráfagas más débiles") + f" ({'+' if dg > 0 else ''}{num(dg)} km/h)")
-        L.append("📈 <b>Respecto del parte anterior:</b> " + ("; ".join(cambios) if cambios else "sin cambios importantes."))
+        if cambios:
+            L.append("📈 <b>Desde el parte anterior:</b> " + "; ".join(cambios))
 
     # hora por hora
-    L += ["", "<b>Hora por hora</b> (máximo en la Ciudad):"]
+    L += ["", "<b>Hora por hora</b> (máx. en la Ciudad):"]
     for h in C:
         ic = "⛈️" if h["tormenta"] else "🌧️" if h["p"] >= 0.5 else "☁️" if h["pr"] >= 30 else "🌤️"
         extra = f" · {h['comunas_lluvia']} com." if h["p"] >= 0.5 else ""
         L.append(f"<code>{h['t']:%H}h</code> {ic} {num(h['p'], 1)} mm · 💨 {num(h['g'])} km/h{extra}")
-    url = cfg["general"].get("url_tablero")
-    if url and "TU-USUARIO" not in url:
-        L += ["", f'<a href="{e(url)}">Ver mapa y radar en el tablero</a>']
+    L += enlace_tablero("comunas", "Ver la lluvia por comuna en el tablero")
     return "\n".join(L)
 
 
@@ -532,7 +569,311 @@ def motivo_seguimiento(oficiales: list[dict], eventos: list[dict], S_: dict) -> 
 
 
 # ---------------------------------------------------------------------------
-# 2d. Aviso de lluvia (sin alerta) · METAR observado + pronóstico por comuna
+# 2d. Probabilidad por ensambles (Open-Meteo Ensemble API)
+#     Un "ensamble" es el mismo modelo corrido decenas de veces con condiciones
+#     iniciales levemente distintas. La proporción de escenarios que superan un
+#     umbral es la probabilidad de que ocurra. Sirve para medir qué tan confiable
+#     es cada alerta por pronóstico.
+# ---------------------------------------------------------------------------
+ENS_URL = "https://ensemble-api.open-meteo.com/v1/ensemble"
+ENS_VARS = ("precipitation", "wind_gusts_10m", "temperature_2m")
+PUNTOS_ENS = [  # tres puntos alcanzan: la resolución de los ensambles es de 25 a 50 km
+    {"nombre": "Norte", "lat": -34.56, "lon": -58.47},
+    {"nombre": "Centro", "lat": -34.61, "lon": -58.43},
+    {"nombre": "Sur", "lat": -34.66, "lon": -58.46},
+]
+
+
+def confianza(p) -> str | None:
+    if p is None:
+        return None
+    return "alta" if p >= 60 else "media" if p >= 30 else "baja"
+
+
+def descargar_ensambles(PR: dict, dias: int) -> dict:
+    """Descarga los ensambles (un pedido por modelo) y los alinea en un eje de tiempo común.
+    Devuelve {"tiempos": [...], "miembros": [{"modelo", "precipitation": [[pto][hora]], ...}], "modelos": [...]}"""
+    puntos = PR.get("puntos") or PUNTOS_ENS
+    modelos = [m.strip() for m in str(PR.get("modelos", "ecmwf_ifs025,gfs_seamless,icon_seamless")).split(",") if m.strip()]
+    base = {
+        "latitude": ",".join(str(p["lat"]) for p in puntos),
+        "longitude": ",".join(str(p["lon"]) for p in puntos),
+        "hourly": ",".join(ENS_VARS), "forecast_days": dias,
+        "timezone": "America/Argentina/Buenos_Aires", "wind_speed_unit": "kmh",
+    }
+    tiempos, miembros, usados, fallas = None, [], [], []
+    for mod in modelos:
+        try:
+            r = requests.get(ENS_URL, params={**base, "models": mod}, headers=UA, timeout=60)
+            r.raise_for_status()
+            data = r.json()
+            data = data if isinstance(data, list) else [data]
+        except Exception as ex:          # si un modelo falla, se sigue con los demás
+            fallas.append(f"{mod}: {ex}")
+            log("Ensamble no disponible:", mod, ex)
+            continue
+        t_mod = data[0]["hourly"]["time"]
+        if tiempos is None:
+            tiempos = t_mod
+        pos = {t: i for i, t in enumerate(t_mod)}
+        idx = [pos.get(t) for t in tiempos]
+        # agrupa las series por miembro: "precipitation" (control), "precipitation_member01", ...
+        grupos: dict[str, dict] = {}
+        for var in ENS_VARS:
+            patron = re.compile(rf"^{var}(_member\d+)?$")
+            for k in data[0]["hourly"]:
+                m = patron.match(k)
+                if m:
+                    grupos.setdefault(m.group(1) or "_control", {})[var] = k
+        n_mod = 0
+        for suf, claves in grupos.items():
+            if len(claves) < len(ENS_VARS):
+                continue
+            mb = {"modelo": mod}
+            for var, k in claves.items():
+                mb[var] = [[(d["hourly"][k][i] if i is not None else None) for i in idx] for d in data]
+            miembros.append(mb)
+            n_mod += 1
+        if n_mod:
+            usados.append(f"{mod} ({n_mod})")
+    if not miembros:
+        raise RuntimeError("ningún modelo de ensamble respondió" + (f" · {'; '.join(fallas)}" if fallas else ""))
+    return {"tiempos": tiempos, "miembros": miembros, "modelos": usados, "fallas": fallas}
+
+
+def _pct(lista: list[int], nivel: int) -> int | None:
+    return round(100 * sum(1 for x in lista if x >= nivel) / len(lista)) if lista else None
+
+
+def calcular_probabilidades(ens: dict, U: dict, G: dict, P: dict) -> dict:
+    """Para cada fenómeno, porcentaje de escenarios que alcanzan amarillo, naranja y rojo.
+    Se toma el peor de los tres puntos de la Ciudad en cada escenario."""
+    t = [parse_local(x) for x in ens["tiempos"]]
+    hora_actual = ahora().replace(minute=0, second=0, microsecond=0)
+    i0 = next((i for i, x in enumerate(t) if x >= hora_actual), 0)
+    i1 = min(i0 + int(G.get("horizonte_horas", 48)), len(t))
+    UL, UV, UC, UF = U["lluvia"], U["viento"], U["calor"], U.get("frio", {})
+    hoy = ahora().date()
+    fechas = sorted({x.date() for x in t if x.date() >= hoy})
+    niv = {"lluvia": [], "viento": [], "calor": [], "frio": []}
+    por_dia: dict[str, dict[str, list[int]]] = {f.isoformat(): {"lluvia": [], "viento": [], "calor": [], "frio": []} for f in fechas}
+    u_dia = {"amarillo": UL["acumulado_12h_mm"].get("amarillo"), "naranja": UL["acumulado_12h_mm"].get("naranja"),
+             "rojo": UL["acumulado_24h_mm"].get("rojo")}
+
+    for mb in ens["miembros"]:
+        pr, gu, te = mb["precipitation"], mb["wind_gusts_10m"], mb["temperature_2m"]
+        # --- lluvia: peor acumulado de 12 h y de 24 h dentro del horizonte (solo lluvia por venir) ---
+        ok = all(v is not None for serie in pr for v in serie[i0:i1])
+        if ok and i1 > i0:
+            n = 0
+            for serie in pr:
+                for i in range(i0, i1):
+                    s12 = sum(serie[max(i0, i - 11): i + 1])
+                    s24 = sum(serie[max(i0, i - 23): i + 1])
+                    n = max(n, nivel_por_umbral(s12, UL["acumulado_12h_mm"]), nivel_por_umbral(s24, UL["acumulado_24h_mm"]))
+            niv["lluvia"].append(n)
+        # --- viento: ráfagas con duración mínima ---
+        ok = all(v is not None for serie in gu for v in serie[i0:i1])
+        if ok and i1 > i0:
+            horaria = [max(nivel_por_umbral(serie[i], UV["rafagas_kmh"]) for serie in gu) for i in range(i0, i1)]
+            n = 0
+            for L in (3, 2, 1):
+                if max_racha([x >= L for x in horaria]) >= UV.get("horas_minimas", 1):
+                    n = L
+                    break
+            niv["viento"].append(n)
+        # --- valores diarios por punto (para calor, frío y perspectiva) ---
+        diarios = []   # por punto: {fecha: (tmax, tmin, lluvia, rafaga)}
+        for k in range(len(pr)):
+            d: dict = {}
+            for i, x in enumerate(t):
+                f = x.date()
+                if f < hoy:
+                    continue
+                d.setdefault(f, {"t": [], "p": [], "g": []})
+                d[f]["t"].append(te[k][i])
+                d[f]["p"].append(pr[k][i])
+                d[f]["g"].append(gu[k][i])
+            res = {}
+            for f, v in d.items():
+                completo = len(v["t"]) >= 20 and all(x is not None for x in v["t"] + v["p"] + v["g"])
+                res[f] = (max(v["t"]), min(v["t"]), sum(v["p"]), max(v["g"])) if completo else None
+            diarios.append(res)
+        dias_ok = [f for f in fechas if all(dp.get(f) for dp in diarios)]
+        if not dias_ok:
+            continue
+        # calor: rachas calculadas por punto con todos los días disponibles
+        calor_pt = [rachas_calor([dp[f][0] for f in dias_ok], [dp[f][1] for f in dias_ok], UC) for dp in diarios]
+        frio_pt = [[(3 if dp[f][1] <= UF["tmin"]["rojo"] else 2 if dp[f][1] <= UF["tmin"]["naranja"]
+                     else 1 if dp[f][1] <= UF["tmin"]["amarillo"] else 0) if UF.get("activo", True) else 0
+                    for f in dias_ok] for dp in diarios]
+        horiz = dias_ok[: int(G.get("horizonte_dias", 5))]
+        niv["calor"].append(max(calor_pt[k][j] for k in range(len(diarios)) for j in range(len(horiz))))
+        niv["frio"].append(max(frio_pt[k][j] for k in range(len(diarios)) for j in range(len(horiz))))
+        for j, f in enumerate(dias_ok):
+            pd = por_dia[f.isoformat()]
+            pd["lluvia"].append(max(nivel_por_umbral(dp[f][2], u_dia) for dp in diarios))
+            pd["viento"].append(max(nivel_por_umbral(dp[f][3], UV["rafagas_kmh"]) for dp in diarios))
+            pd["calor"].append(max(calor_pt[k][j] for k in range(len(diarios))))
+            pd["frio"].append(max(frio_pt[k][j] for k in range(len(diarios))))
+
+    resumen = lambda lst: {"amarillo": _pct(lst, 1), "naranja": _pct(lst, 2), "rojo": _pct(lst, 3), "escenarios": len(lst)}
+    return {
+        "calculado": ahora().isoformat(), "modelos": ens["modelos"], "escenarios": len(ens["miembros"]),
+        "horizonte": {f: resumen(v) for f, v in niv.items()},
+        "dias": {f: {k: resumen(v) for k, v in d.items()} for f, d in por_dia.items() if any(d.values())},
+    }
+
+
+def prob_de(probs: dict | None, fenomeno: str, nivel: int, dia: str | None = None) -> dict | None:
+    """Probabilidad de alcanzar `nivel` (y de alcanzar al menos amarillo) para un fenómeno."""
+    if not probs or fenomeno not in ("lluvia", "viento", "calor", "frio"):
+        return None
+    r = (probs.get("dias", {}).get(dia, {}) if dia else probs.get("horizonte", {})).get(fenomeno)
+    if not r or not r.get("escenarios"):
+        return None
+    clave = ["amarillo", "amarillo", "naranja", "rojo"][max(1, min(3, nivel))]
+    p = r.get(clave)
+    return {"nivel": p, "amarillo": r.get("amarillo"), "escenarios": r["escenarios"], "confianza": confianza(p)}
+
+
+def texto_prob(pb: dict | None, nivel: int) -> str | None:
+    """Frase corta de confianza para la línea de fuente, p. ej. 'confianza media (52 %)'."""
+    if not pb or pb.get("nivel") is None:
+        return None
+    p = pb["nivel"]
+    if p < 15:   # el modelo principal lo ve, pero casi ningún escenario del ensamble: se dice en palabras
+        return "confianza baja: los escenarios no lo confirman"
+    return f"confianza {pb['confianza']} ({p} %)"
+
+
+def agregar_prob_perspectiva(persp: list[dict], probs: dict | None, comunas: list[dict], P: dict):
+    """Agrega la probabilidad a cada señal de la perspectiva, y suma las señales que ve el
+    ensamble aunque el modelo determinístico no las muestre."""
+    if not persp or not probs:
+        return
+    umbral = int(P.get("prob_senal", 30))
+    for d in persp:
+        if d["fecha"] not in probs.get("dias", {}):
+            continue
+        presentes = {s_["fenomeno"] for s_ in d["senales"]}
+        for s_ in d["senales"]:
+            s_["prob"] = prob_de(probs, s_["fenomeno"], s_["nivel"], d["fecha"])
+        for fen in ("lluvia", "viento", "calor", "frio"):
+            if fen in presentes:
+                continue
+            pb = prob_de(probs, fen, 1, d["fecha"])
+            if pb and pb["nivel"] is not None and pb["nivel"] >= umbral:
+                d["senales"].append({"fenomeno": fen, "nivel": 1, "comunas": [c["n"] for c in comunas],
+                                     "valor": None, "origen": "ensambles", "prob": pb})
+        d["senales"].sort(key=lambda x: -x["nivel"])
+
+
+# ---------------------------------------------------------------------------
+# 2e. WRF-SMN 4 km (lo descarga wrf.py una vez por hora en wrf/wrf.json)
+#     Segundo modelo para la lluvia, con más detalle por comuna que Open-Meteo.
+# ---------------------------------------------------------------------------
+def cargar_wrf(path: Path, W: dict, errores: list) -> dict | None:
+    if not W.get("activo", True) or not path.exists():
+        return None
+    try:
+        w = json.loads(path.read_text(encoding="utf-8"))
+        ciclo = datetime.fromisoformat(w["ciclo"].replace("Z", "+00:00"))
+    except (ValueError, KeyError, OSError) as ex:
+        errores.append(f"WRF-SMN: archivo ilegible ({ex})")
+        return None
+    edad = (ahora() - ciclo).total_seconds() / 3600
+    if edad > float(W.get("max_antiguedad_horas", 30)):
+        errores.append(f"WRF-SMN: el último ciclo disponible es de hace {edad:.0f} h; no se usa")
+        return None
+    w["_ciclo_local"] = ciclo.astimezone(TZ)
+    return w
+
+
+def ciclo_txt(w: dict) -> str:
+    c = w["_ciclo_local"].astimezone(ZoneInfo("UTC"))
+    return f"ciclo {c:%H} UTC del {c:%d/%m}"
+
+
+def evaluar_wrf(w: dict, comunas: list[dict], U: dict, horizonte: int) -> dict:
+    """Nivel de lluvia por comuna y hora según el WRF-SMN."""
+    t = [parse_local(x) for x in w["tiempos"]]
+    hora_actual = ahora().replace(minute=0, second=0, microsecond=0)
+    i0 = next((i for i, x in enumerate(t) if x >= hora_actual), len(t))
+    out = {}
+    for c in comunas:
+        p = [x or 0 for x in w["comunas"][str(c["n"])]["pp"]]
+        r = niveles_lluvia(t, p, U["lluvia"], i0, horizonte)
+        r["horas"] = t[i0:i0 + len(r["niveles"])]
+        out[c["n"]] = r
+    return out
+
+
+def combinar_wrf(eventos: list[dict], ev_wrf: dict, evals: list[dict] | None, comunas: list[dict], w: dict):
+    """Junta la lluvia de Open-Meteo y del WRF-SMN en una sola alerta (id int:lluvia).
+    El nivel es el mayor de los dos modelos; el mensaje muestra lo que dice cada uno."""
+    afect, nivel, ini, fin, m12, m1 = [], 0, None, None, 0, 0
+    for c in comunas:
+        r = ev_wrf[c["n"]]
+        m12, m1 = max(m12, r["max"]["lluvia_12h"]), max(m1, r["max"]["lluvia_1h"])
+        horas = [h for h, n in zip(r["horas"], r["niveles"]) if n >= 1]
+        if horas:
+            afect.append(c["n"])
+            nivel = max(nivel, max(r["niveles"]))
+            ini = min(ini, horas[0]) if ini else horas[0]
+            fin = max(fin, horas[-1]) if fin else horas[-1]
+    ranking = sorted(((c["n"], round(ev_wrf[c["n"]]["max"]["lluvia_12h"], 1)) for c in comunas), key=lambda x: -x[1])
+    info_w = {"nivel": nivel, "lluvia_12h": round(m12, 1), "lluvia_1h": round(m1, 1), "comunas": afect,
+              "ranking": [x for x in ranking if x[1] >= 5][:5], "ciclo": ciclo_txt(w)}
+    om12 = max((e["lluvia"]["max"]["lluvia_12h"] for e in evals), default=0) if evals else None
+    ev = next((e for e in eventos if e["id"] == "int:lluvia"), None)
+    if ev:
+        info_om = {"nivel": ev["nivel"], "lluvia_12h": round(ev["max"].get("lluvia_12h", 0), 1), "comunas": list(ev["comunas"])}
+        if nivel:
+            ev["nivel"] = max(ev["nivel"], nivel)
+            ev["comunas"] = sorted(set(ev["comunas"]) | set(afect))
+            ev["desde"] = min(datetime.fromisoformat(ev["desde"]), ini).isoformat()
+            ev["hasta"] = max(datetime.fromisoformat(ev["hasta"]), fin + timedelta(hours=1)).isoformat()
+        ev["modelos"] = {"open_meteo": info_om, "wrf": info_w}
+    elif nivel:
+        eventos.append({"id": "int:lluvia", "fuente": "pronostico", "fenomeno": "lluvia", "nivel": nivel,
+                        "desde": ini.isoformat(), "hasta": (fin + timedelta(hours=1)).isoformat(), "comunas": afect,
+                        "max": {"lluvia_12h": m12, "lluvia_1h": m1},
+                        "modelos": {"open_meteo": {"nivel": 0, "lluvia_12h": round(om12 or 0, 1), "comunas": []}, "wrf": info_w}})
+
+
+def texto_modelos(ev: dict) -> list[str]:
+    M = ev.get("modelos")
+    if not M:
+        return []
+    om, wr = M["open_meteo"], M["wrf"]
+    marca = lambda n: ICONO[n] if n else "⚪"
+    linea = (f"🧮 WRF-SMN {num(wr['lluvia_12h'])} mm {marca(wr['nivel'])} · "
+             f"Open-Meteo {num(om['lluvia_12h'])} mm {marca(om['nivel'])}")
+    if wr["ranking"]:
+        top = [n for n, _ in wr["ranking"][:3]]
+        linea += " · más lluvia en " + ("Comuna " if len(top) == 1 else "Comunas ") + ", ".join(map(str, top))
+    if wr["nivel"] != om["nivel"]:
+        linea += " · ⚠️ no coinciden"
+    return [linea]
+
+
+def wrf_proximas(w: dict, horas: int) -> dict:
+    """Lluvia del WRF-SMN por comuna en las próximas N horas."""
+    t = [parse_local(x) for x in w["tiempos"]]
+    hora_actual = ahora().replace(minute=0, second=0, microsecond=0)
+    i0 = next((i for i, x in enumerate(t) if x >= hora_actual), len(t))
+    rng = range(i0, min(i0 + horas, len(t)))
+    out = {}
+    for n, d in w["comunas"].items():
+        pp = [d["pp"][i] or 0 for i in rng]
+        k = max(range(len(pp)), key=lambda j: pp[j]) if pp else None
+        out[int(n)] = {"lluvia": sum(pp), "lluvia_max": pp[k] if pp else 0, "hora_lluvia_max": t[i0 + k] if pp else None}
+    return out
+
+
+# ---------------------------------------------------------------------------
+# 2f. Aviso de lluvia (sin alerta) · METAR observado + pronóstico por comuna
 # ---------------------------------------------------------------------------
 NOMBRE_ESTACION = {"SABE": "Aeroparque", "SADF": "San Fernando", "SADP": "El Palomar", "SAEZ": "Ezeiza", "SADM": "Morón"}
 
@@ -631,10 +972,13 @@ def msg_lluvia(sit: dict, tipo: str, total: int, cfg: dict, desde: str | None = 
             L.append(f"Llovió desde las {datetime.fromisoformat(desde):%H:%M}.")
         L.append("<i>Información, no es una alerta.</i>")
         return "\n".join(L)
-    titulo = {"empieza": "🌦️ <b>AVISO · Está lloviendo en la Ciudad</b>",
+    # "Está lloviendo" solo si una estación lo observa; si lo dice únicamente el modelo, se aclara
+    confirmado = bool(sit.get("observado"))
+    titulo = {"empieza": "🌦️ <b>AVISO · Está lloviendo en la Ciudad</b>" if confirmado else
+                         "🌦️ <b>AVISO · Lluvia probable en este momento</b> <i>(según el pronóstico, sin confirmar)</i>",
               "sigue": "🌧️ <b>AVISO · Sigue lloviendo en la Ciudad</b>",
               "anticipado": "🌂 <b>AVISO · Se espera lluvia en la próxima hora</b>"}[tipo]
-    L += [titulo, "<i>Información, no es una alerta.</i>", ""]
+    L += [titulo, "<i>Información, no es una alerta.</i>"]
     lista = sit["proxima_hora"] if tipo == "anticipado" else sit["comunas"]
     if lista:
         n_max, mm_max = max(lista, key=lambda x: x[1])
@@ -646,9 +990,7 @@ def msg_lluvia(sit: dict, tipo: str, total: int, cfg: dict, desde: str | None = 
         top = max(sit["mas_mm"].items(), key=lambda x: x[1])
         L.append(f"⏳ <b>Próximas horas:</b> lluvia hasta las {sit['hasta']:%H} h aprox. · "
                  f"hasta {num(top[1])} mm más (Comuna {top[0]})")
-    url = cfg["general"].get("url_tablero")
-    if url and "TU-USUARIO" not in url:
-        L += ["", f'<a href="{e(url)}">Ver el radar en el tablero</a>']
+    L += enlace_tablero("mapa", "Ver el radar en el tablero")
     return "\n".join(L)
 
 
@@ -772,37 +1114,64 @@ def descargar_smn(cfg: dict, estado: dict) -> list[dict]:
 class Telegram:
     def __init__(self, token: str | None, chat_ids: list[str], dry: bool):
         self.token, self.chat_ids, self.dry = token, chat_ids, dry or not token
+        self.fallos: list[str] = []
 
     def api(self, metodo: str, **datos):
-        r = requests.post(f"https://api.telegram.org/bot{self.token}/{metodo}", json=datos, timeout=30)
-        j = r.json()
-        if not j.get("ok"):
-            raise RuntimeError(f"Telegram {metodo}: {j.get('description')}")
-        return j["result"]
+        """Llama a la API de Telegram con hasta 4 intentos (respeta el 'retry_after' de Telegram)."""
+        err = "sin respuesta"
+        for intento in range(4):
+            espera = 2 ** intento
+            try:
+                r = requests.post(f"https://api.telegram.org/bot{self.token}/{metodo}", json=datos, timeout=30)
+                j = r.json()
+            except (requests.RequestException, ValueError) as ex:
+                err = str(ex)
+            else:
+                if j.get("ok"):
+                    return j["result"]
+                err, code = j.get("description"), j.get("error_code") or 0
+                if code == 429:
+                    espera = int((j.get("parameters") or {}).get("retry_after", 5))
+                elif 400 <= code < 500:      # token o chat mal configurados: reintentar no sirve
+                    raise RuntimeError(f"Telegram {metodo}: {err}")
+            if intento < 3:
+                time.sleep(min(espera, 30))
+        raise RuntimeError(f"Telegram {metodo}: {err}")
 
-    def enviar(self, texto: str, chat_ids: list[str] | None = None):
+    def enviar(self, texto: str, chat_ids: list[str] | None = None) -> bool:
+        """Devuelve True si el mensaje llegó al menos a un destino."""
+        if len(texto) > 4000:                 # límite de Telegram: 4096 caracteres
+            texto = texto[:3900].rsplit("\n", 1)[0] + "\n…"
         destinos = chat_ids or self.chat_ids
         if self.dry or not destinos:
             print("\n----- MENSAJE (no enviado) -----\n" + re.sub(r"<[^>]+>", "", texto) + "\n--------------------------------")
             return True
-        ok = True
+        llego = False
         for cid in destinos:
             try:
                 self.api("sendMessage", chat_id=cid, text=texto, parse_mode="HTML", disable_web_page_preview=True)
                 log("Enviado a", cid)
+                llego = True
             except Exception as ex:
+                if "parse" in str(ex).lower() or "entit" in str(ex).lower():
+                    try:   # el formato HTML fue rechazado: se manda como texto simple
+                        self.api("sendMessage", chat_id=cid, text=sin_html(texto), disable_web_page_preview=True)
+                        log("Enviado sin formato a", cid)
+                        llego = True
+                        continue
+                    except Exception as ex2:
+                        ex = ex2
                 log("ERROR enviando a", cid, ex)
-                try:   # segundo intento sin formato, por si el problema fue el HTML
-                    self.api("sendMessage", chat_id=cid, text=re.sub(r"<[^>]+>", "", texto), disable_web_page_preview=True)
-                    log("Enviado sin formato a", cid)
-                except Exception as ex2:
-                    log("ERROR (2º intento) enviando a", cid, ex2)
-                    ok = False
-        return ok
+                self.fallos.append(f"{cid}: {ex}")
+        return llego
 
 
 def e(s) -> str:
     return html.escape(str(s or ""), quote=False)
+
+
+def sin_html(texto: str) -> str:
+    return re.sub(r"<[^>]+>", "", texto)
 
 
 def cuando_txt(ev, desde, hasta) -> str:
@@ -817,30 +1186,38 @@ def msg_evento(ev: dict, cfg: dict, cambio: str, total: int, simulacro=False) ->
     n = ev["nivel"]
     desde, hasta = datetime.fromisoformat(ev["desde"]), datetime.fromisoformat(ev["hasta"]) if ev.get("hasta") else None
     oficial = ev["fuente"] == "smn"
-    nombre = ev["titulo"] if oficial else NOMBRE_FENOMENO.get(ev["fenomeno"], ev["fenomeno"])
+    nombre = titulo_smn(ev) if oficial else NOMBRE_FENOMENO.get(ev["fenomeno"], ev["fenomeno"])
     encabezado = {"nueva": "", "sube": "⬆️ SUBE A ", "baja": "⬇️ BAJA A "}[cambio]
     lineas = []
     if simulacro:
         lineas.append("🧪 <b>SIMULACRO · MENSAJE DE PRUEBA</b>")
     lineas += [
         f"{ICONO[n]} <b>{encabezado}{ALERTA[n]} · {e(nombre)}</b>",
-        "🏛️ <b>Oficial SMN</b>" if oficial else "📊 Pronóstico · criterios tipo SMN (no es alerta oficial)",
-        "",
+        "🏛️ <b>Oficial SMN</b>" if oficial else
+        "📊 Por pronóstico (no oficial)" + (f" · {tp}" if (tp := texto_prob(ev.get("prob"), n)) else ""),
         cuando_txt(ev, desde, hasta),
-        f"📍 <b>Dónde:</b> {lista_comunas(ev['comunas'], total)}",
+        f"📍 <b>Dónde:</b> {lista_comunas(ev['comunas'], total)}"
+        + ("" if oficial or len(ev["comunas"]) == total else " <i>(aprox.)</i>"),
     ]
     if oficial:
         if ev.get("descripcion"):
             lineas += ["", e(ev["descripcion"])]
         if ev.get("instrucciones"):
-            instr = e(ev["instrucciones"])
-            lineas += ["", "<b>Recomendaciones del SMN:</b>", instr[:900] + ("…" if len(instr) > 900 else "")]
-        lineas += ["", f'<a href="{e(ev["web"])}">Ver alerta en el SMN</a>']
+            instr = ev["instrucciones"].strip()
+            corto = instr if len(instr) <= 260 else instr[:260].rsplit(" ", 1)[0] + "…"
+            lineas += [f"<b>Qué hacer:</b> {e(corto)}"]
+        lineas += [f'<a href="{e(ev["web"])}">Alerta completa y recomendaciones en el SMN</a>']
     else:
-        lineas += [f"🌧️ <b>Detalle:</b> {e(detalle_evento(ev))}"]
-    url = cfg["general"].get("url_tablero")
-    if url and "TU-USUARIO" not in url:
-        lineas += ["", f'<a href="{e(url)}">Abrir tablero de monitoreo</a>']
+        icono = {"lluvia": "🌧️", "viento": "💨", "tormenta": "⛈️", "calor": "🌡️", "frio": "🌡️"}.get(ev["fenomeno"], "•")
+        det = detalle_evento(ev)
+        lineas += [f"{icono} {e(det[:1].upper() + det[1:])}"]
+        lineas += texto_modelos(ev)
+    if oficial:
+        pass                                    # ya lleva el enlace al SMN
+    elif (ev.get("modelos") or {}).get("wrf", {}).get("ranking"):
+        lineas += enlace_tablero("comunas", "Ver la lluvia por comuna en el tablero")
+    else:
+        lineas += enlace_tablero("alertas", "Abrir las alertas en el tablero")
     return "\n".join(lineas)
 
 
@@ -858,6 +1235,9 @@ def msg_estado(eventos: list[dict], total: int) -> str:
     for ev in sorted(eventos, key=lambda x: (-x["nivel"], x["fuente"] != "smn")):
         nombre = ev.get("titulo") if ev["fuente"] == "smn" else NOMBRE_FENOMENO.get(ev["fenomeno"])
         origen = "SMN oficial" if ev["fuente"] == "smn" else "pronóstico"
+        pb = ev.get("prob") or {}
+        if pb.get("nivel") is not None:
+            origen += f", prob. {pb['nivel']} %"
         desde = datetime.fromisoformat(ev["desde"])
         lineas.append(f"{ICONO[ev['nivel']]} <b>{e(nombre)}</b> · {NIVELES[ev['nivel']]} ({origen})\n"
                       f"    desde {fmt_hora(desde)} · {lista_comunas(ev['comunas'], total)}")
@@ -872,7 +1252,9 @@ def msg_umbrales(U: dict) -> str:
         f"🌧️ Intensidad 1 h: {' / '.join(str(L.get('intensidad_horaria_mm', {}).get(k, '—')) for k in ('amarillo', 'naranja', 'rojo'))} mm",
         f"💨 Viento medio: {' / '.join(str(V['sostenido_kmh'][k]) for k in ('amarillo', 'naranja', 'rojo'))} km/h",
         f"💨 Ráfagas: {' / '.join(str(V['rafagas_kmh'][k]) for k in ('amarillo', 'naranja', 'rojo'))} km/h (mín. {V['horas_minimas']} h)",
-        f"⛈️ Tormenta: naranja con ≥{T['naranja']['lluvia_12h_mm']} mm/12 h, ráfagas ≥{T['naranja']['rafagas_kmh']} km/h o granizo; rojo con ≥{T['rojo']['lluvia_12h_mm']} mm o ≥{T['rojo']['rafagas_kmh']} km/h",
+        f"⛈️ Tormenta: naranja con ≥{T['naranja']['lluvia_12h_mm']} mm/12 h, ráfagas ≥{T['naranja']['rafagas_kmh']} km/h"
+        + (" o granizo" if T["naranja"].get("granizo") else "")
+        + f"; rojo con ≥{T['rojo']['lluvia_12h_mm']} mm o ≥{T['rojo']['rafagas_kmh']} km/h",
         f"🌡️ Calor: Tmáx ≥{C['tmax']} °C y Tmín ≥{C['tmin']} °C durante {C['dias_consecutivos']['amarillo']} / {C['dias_consecutivos']['naranja']} días (rojo si Tmáx ≥{C['rojo_tmax']} °C)",
     ])
 
@@ -886,12 +1268,15 @@ def responder_comandos(tg: Telegram, estado: dict, eventos: list[dict], U: dict,
     except Exception as ex:
         log("No se pudieron leer comandos:", ex)
         return
+    limite = ahora().timestamp() - 30 * 60
     for u in updates:
         estado["tg_offset"] = u["update_id"] + 1
         m = u.get("message") or u.get("channel_post") or {}
         texto = (m.get("text") or "").strip().lower()
         cid = m.get("chat", {}).get("id")
         if not cid or not texto.startswith("/"):
+            continue
+        if m.get("date", 0) < limite:     # comandos viejos (por ejemplo, si se perdió el estado): no se responden
             continue
         cmd = texto.split()[0].split("@")[0]
         if cmd in ("/estado", "/alertas"):
@@ -904,15 +1289,40 @@ def responder_comandos(tg: Telegram, estado: dict, eventos: list[dict], U: dict,
             tg.enviar(msg_perspectiva(persp, total) if persp else "La perspectiva extendida no está disponible en este momento.", [cid])
         elif cmd in ("/start", "/ayuda", "/help"):
             tg.enviar("👋 <b>Bot de alertas meteorológicas CABA</b>\nGCBA · Jefatura de Gabinete\n\n"
-                      "/estado · alertas vigentes\n/ahora · próximas horas por comuna\n/perspectiva · próximos días (3 a 7)\n/umbrales · criterios que usa el sistema\n/ayuda · este mensaje\n\n"
+                      "/estado · alertas vigentes\n/ahora · próximas horas por comuna\n/perspectiva · próximos días (3 a 7)\n"
+                      "/umbrales · criterios que usa el sistema\n/ayuda · este mensaje\n\n"
                       "Las respuestas pueden demorar hasta 15 minutos.", [cid])
 
 
 # ---------------------------------------------------------------------------
 # 5. Ciclo principal
 # ---------------------------------------------------------------------------
+def titulo_smn(ev: dict) -> str:
+    """El SMN titula 'Alerta naranja por tormentas'; como el nivel ya se muestra, queda 'Tormentas'."""
+    t = (ev.get("titulo") or ev.get("fenomeno") or "Alerta").strip()
+    m = re.match(r"(?i)^alerta\s+(amarilla|naranja|roja)\s+(por|de)\s+(.+)$", t)
+    return m.group(3)[:1].upper() + m.group(3)[1:] if m else t
+
+
 def nombre_evento(ev):
     return ev.get("titulo") if ev["fuente"] == "smn" else NOMBRE_FENOMENO.get(ev["fenomeno"], ev["fenomeno"])
+
+
+def leer_json(path: Path, defecto):
+    try:
+        return json.loads(path.read_text(encoding="utf-8")) if path.exists() else defecto
+    except (ValueError, OSError) as ex:
+        log("No se pudo leer", path, ex)
+        return defecto
+
+
+def salida_github(**valores):
+    """Deja valores para los pasos siguientes del workflow de GitHub Actions."""
+    destino = os.environ.get("GITHUB_OUTPUT")
+    if destino:
+        with open(destino, "a", encoding="utf-8") as f:
+            for k, v in valores.items():
+                f.write(f"{k}={v}\n")
 
 
 def main():
@@ -920,32 +1330,44 @@ def main():
     ap.add_argument("--config", default=str(ROOT / "config.yaml"))
     ap.add_argument("--estado", default=str(ROOT / "estado" / "estado.json"))
     ap.add_argument("--salida", default=str(ROOT / "docs" / "data" / "alertas.json"))
+    ap.add_argument("--wrf", default=str(ROOT / "wrf" / "wrf.json"))
     ap.add_argument("--modo", default="normal", choices=["normal", "prueba", "simulacro", "perspectiva", "seguimiento"])
     ap.add_argument("--dry-run", action="store_true", help="no envía nada, muestra los mensajes")
     a = ap.parse_args()
 
     cfg = yaml.safe_load(Path(a.config).read_text(encoding="utf-8"))
     G, U, comunas = cfg["general"], cfg["umbrales"], cfg["comunas"]
+    global URL_TABLERO
+    URL_TABLERO = G.get("url_tablero") or ""
+    P = cfg.get("perspectiva", {}) or {}
+    S_ = cfg.get("seguimiento", {}) or {}
+    PR = cfg.get("probabilidad", {}) or {}
+    W = cfg.get("wrf", {}) or {}
+    A_ = cfg.get("aviso_lluvia", {}) or {}
     total = len(comunas)
     estado_path, salida_path = Path(a.estado), Path(a.salida)
+    historial_path = estado_path.parent / "historial.json"
     estado_path.parent.mkdir(parents=True, exist_ok=True)
     salida_path.parent.mkdir(parents=True, exist_ok=True)
-    estado = json.loads(estado_path.read_text(encoding="utf-8")) if estado_path.exists() else {}
+    estado = leer_json(estado_path, {})
+    historial = leer_json(historial_path, [])
 
     chat_ids = [x.strip() for x in os.environ.get("TELEGRAM_CHAT_IDS", "").split(",") if x.strip()]
     tg = Telegram(os.environ.get("TELEGRAM_BOT_TOKEN"), chat_ids, a.dry_run)
     if tg.dry and not a.dry_run:
         log("Sin TELEGRAM_BOT_TOKEN: los mensajes se muestran en pantalla y no se envían.")
+    enviados = []
+
+    def registrar(texto: str):
+        enviados.append({"fecha": ahora().isoformat(), "texto": sin_html(texto)})
+        estado["ultimo_envio"] = enviados[-1]
 
     if a.modo == "prueba":
-        tg.enviar("✅ <b>Bot de alertas conectado</b>\nEste canal va a recibir las alertas meteorológicas para CABA.\n"
+        tg.enviar("✅ <b>Bot de alertas conectado</b>\nEste chat va a recibir las alertas meteorológicas para CABA.\n"
                   f"GCBA · Jefatura de Gabinete · {ahora():%d/%m/%Y %H:%M}")
-        return
 
-    P = cfg.get("perspectiva", {}) or {}
-    S_ = cfg.get("seguimiento", {}) or {}
-    A_ = cfg.get("aviso_lluvia", {}) or {}
-    errores, eventos, persp, datos = [], [], [], None
+    # --- 1. pronóstico determinístico (Open-Meteo) ---
+    errores, eventos, persp, datos, evals = [], [], [], None, None
     if cfg["fuentes"].get("open_meteo", True):
         try:
             dias_pedidos = max(7, min(16, int(P.get("dias_hasta", 7)) if P.get("activa", True) else 7))
@@ -953,12 +1375,64 @@ def main():
             evals = [evaluar_comuna(d, U, G["horizonte_horas"], G["horizonte_dias"]) for d in datos]
             eventos += agregar_eventos(evals, comunas)
             log(f"Open-Meteo OK · {len(eventos)} alerta(s) por pronóstico")
+        except Exception as ex:
+            errores.append(f"Open-Meteo: {ex}")
+            log("ERROR Open-Meteo:", ex)
+    # --- 1b. WRF-SMN 4 km: segundo modelo para la lluvia, con más detalle por comuna ---
+    w = cargar_wrf(Path(a.wrf), W, errores)
+    if w:
+        try:
+            combinar_wrf(eventos, evaluar_wrf(w, comunas, U, G["horizonte_horas"]), evals, comunas, w)
+            log(f"WRF-SMN OK · {ciclo_txt(w)}")
+        except Exception as ex:
+            errores.append(f"WRF-SMN: {ex}")
+            log("ERROR WRF-SMN:", ex)
+            w = None
+    if datos:
+        try:
             if P.get("activa", True):
                 persp = calcular_perspectiva(datos, comunas, U, P)
                 log(f"Perspectiva OK · {sum(1 for d in persp if d['senales'])} día(s) con señales")
         except Exception as ex:
-            errores.append(f"Open-Meteo: {ex}")
-            log("ERROR Open-Meteo:", ex)
+            errores.append(f"Perspectiva: {ex}")
+            log("ERROR perspectiva:", ex)
+
+    # --- 2. probabilidad por ensambles (se recalcula cada N minutos; los ensambles cambian cada 6-12 h) ---
+    probs = None
+    if PR.get("activa", True):
+        guardado = estado.get("ensambles") or {}
+        try:
+            edad = ahora() - datetime.fromisoformat(guardado["calculado"]) if guardado.get("calculado") else None
+        except ValueError:
+            edad = None
+        if edad is not None and edad < timedelta(minutes=int(PR.get("cada_minutos", 60)) - 3):
+            probs = guardado
+        else:
+            try:
+                ens = descargar_ensambles(PR, max(7, min(15, int(P.get("dias_hasta", 7)))))
+                probs = calcular_probabilidades(ens, U, G, P)
+                estado["ensambles"] = probs
+                log(f"Ensambles OK · {probs['escenarios']} escenarios · {', '.join(probs['modelos'])}")
+                if ens["fallas"]:
+                    errores.append("Ensambles (parcial): " + "; ".join(ens["fallas"]))
+            except Exception as ex:
+                errores.append(f"Ensambles: {ex}")
+                log("ERROR ensambles:", ex)
+                probs = guardado or None      # si falla, se usa el último cálculo disponible
+    for ev in eventos:
+        ev["prob"] = prob_de(probs, ev["fenomeno"], ev["nivel"])
+    agregar_prob_perspectiva(persp, probs, comunas, P)
+
+    # --- 2b. observaciones de aeropuertos (METAR): no es crítico, si falla se sigue con el pronóstico ---
+    metar = []
+    if A_.get("activo", True):
+        try:
+            metar = descargar_metar(A_.get("estaciones_metar", ["SABE"]))
+            log("METAR OK · " + ", ".join(f"{m['estacion']} {m['wx'] or 'sin fenómenos'}" for m in metar))
+        except Exception as ex:
+            log("METAR no disponible:", ex)
+
+    # --- 3. alertas oficiales del SMN ---
     oficiales = []
     if cfg["fuentes"].get("smn_cap", True):
         try:
@@ -968,186 +1442,190 @@ def main():
             errores.append(f"SMN: {ex}")
             log("ERROR SMN:", ex)
     eventos += oficiales
-    metar = []
-    if A_.get("activo", True):
-        try:
-            metar = descargar_metar(A_.get("estaciones_metar", ["SABE"]))
-            log("METAR OK · " + ", ".join(f"{m['estacion']} {m['wx'] or 'sin fenómenos'}" for m in metar))
-        except Exception as ex:   # no es crítico: seguimos con el pronóstico
-            log("METAR no disponible:", ex)
+    fuente_ok = {"pronostico": not any(x.startswith("Open-Meteo") for x in errores),
+                 "smn": not any(x.startswith("SMN") for x in errores)}
 
+    # --- modos manuales: mandan su mensaje y NO tocan el estado de las alertas ---
     if a.modo == "perspectiva":
         if persp:
             tg.enviar(msg_perspectiva(persp, total))
         else:
             log("No hay datos de perspectiva (¿falló Open-Meteo o está desactivada?)")
-        return
-
-    if a.modo == "seguimiento":
-        if not datos:
-            log("No hay datos de Open-Meteo para armar el parte.")
-            return
-        motivo = motivo_seguimiento(oficiales, eventos, S_) or "sin alerta vigente (parte de prueba)"
-        res = resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6)))
-        tg.enviar(msg_seguimiento(res, motivo, U, total, None, cfg, prueba=True))
-        return
-
-    if a.modo == "simulacro":
-        t0 = ahora().replace(minute=0, second=0, microsecond=0) + timedelta(hours=3)
-        fake = {"id": "sim", "fuente": "pronostico", "fenomeno": "tormenta", "nivel": 2,
-                "desde": t0.isoformat(), "hasta": (t0 + timedelta(hours=6)).isoformat(),
-                "comunas": [1, 4, 8, 9], "max": {"granizo": True}}
-        tg.enviar(msg_evento(fake, cfg, "nueva", total, simulacro=True))
-        return
-
-    # --- comparar con el ciclo anterior y avisar solo lo nuevo ---
-    previos = estado.get("eventos", {})
-    nuevos_estado = {}
-    enviados = []
-    minimo = G.get("nivel_minimo_envio", 1)
-    fuente_ok = {"pronostico": not any(x.startswith("Open-Meteo") for x in errores),
-                 "smn": not any(x.startswith("SMN") for x in errores)}
-    for ev in eventos:
-        prev = previos.get(ev["id"])
-        nivel_prev = prev["nivel"] if prev else 0
-        cambio = None
-        if ev["nivel"] >= minimo and nivel_prev < minimo:
-            cambio = "nueva"
-        elif ev["nivel"] > nivel_prev and ev["nivel"] >= minimo:
-            cambio = "sube"
-        elif ev["nivel"] < nivel_prev and G.get("avisar_bajas", True) and ev["nivel"] >= minimo:
-            cambio = "baja"
-        if cambio:
-            texto = msg_evento(ev, cfg, cambio, total)
-            tg.enviar(texto)
-            enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
-        nuevos_estado[ev["id"]] = {"nivel": ev["nivel"], "nombre": nombre_evento(ev), "ausente": 0,
-                                   "notificado": (ahora().isoformat() if cambio else (prev or {}).get("notificado"))}
-    for k, prev in previos.items():
-        if k in nuevos_estado:
-            continue
-        fuente = "smn" if k.startswith("smn:") else "pronostico"
-        if not fuente_ok[fuente]:            # si la fuente falló, no damos por terminada la alerta
-            nuevos_estado[k] = prev
-            continue
-        ausente = prev.get("ausente", 0) + 1
-        if ausente >= G.get("ciclos_para_cerrar", 2):
-            if prev.get("nivel", 0) >= minimo:
-                texto = msg_fin(prev, k)
-                tg.enviar(texto)
-                enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
+    elif a.modo == "seguimiento":
+        if datos:
+            motivo = motivo_seguimiento(oficiales, eventos, S_) or "sin alerta vigente (parte de prueba)"
+            res = resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6)), w)
+            tg.enviar(msg_seguimiento(res, motivo, U, total, None, cfg, prueba=True))
         else:
-            nuevos_estado[k] = dict(prev, ausente=ausente)
-    estado["eventos"] = nuevos_estado
-    if enviados:
-        estado["ultimo_envio"] = enviados[-1]
+            log("No hay datos de Open-Meteo para armar el parte.")
+    elif a.modo == "simulacro":
+        t0 = ahora().replace(minute=0, second=0, microsecond=0) + timedelta(hours=3)
+        fake = {"id": "sim", "fuente": "pronostico", "fenomeno": "lluvia", "nivel": 2,
+                "desde": t0.isoformat(), "hasta": (t0 + timedelta(hours=6)).isoformat(),
+                "comunas": [4, 8, 9, 10], "max": {"lluvia_12h": 85, "lluvia_1h": 32.5},
+                "prob": {"nivel": 35, "amarillo": 70, "escenarios": 122, "confianza": "media"}}
+        tg.enviar(msg_evento(fake, cfg, "nueva", total, simulacro=True))
 
-    # --- seguimiento: partes cada N minutos mientras haya alerta del SMN vigente ---
     motivo, sit = None, None
-    try:
-        seg = estado.setdefault("seguimiento", {})
-        motivo = motivo_seguimiento(oficiales, eventos, S_) if S_.get("activo", True) else None
-        if motivo:
-            ultimo = seg.get("ultimo")
-            intervalo = max(15, int(S_.get("cada_minutos", 30)))
-            toca = not ultimo or ahora() - datetime.fromisoformat(ultimo) >= timedelta(minutes=intervalo - 3)
-            if toca and datos:
-                res = resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6)))
-                texto = msg_seguimiento(res, motivo, U, total, seg.get("prev"), cfg)
-                tg.enviar(texto)
-                enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
-                estado["ultimo_envio"] = enviados[-1]
-                con = [f["lluvia"] for f in res["filas"]]
-                seg.update(ultimo=ahora().isoformat(),
-                           prev={"lluvia_max": max(con) if max(con) >= 2 else 0, "rafaga_max": max(f["rafaga"] for f in res["filas"])})
-            seg.update(activo=True, motivo=motivo, ausente=0)
-        elif seg.get("activo") and fuente_ok["smn"] and (fuente_ok["pronostico"] or not S_.get("tambien_por_pronostico")) \
-                and seg.get("ausente", 0) + 1 < G.get("ciclos_para_cerrar", 2):
-            seg["ausente"] = seg.get("ausente", 0) + 1     # igual que las alertas: esperamos antes de darlo por terminado
-        elif seg.get("activo") and fuente_ok["smn"] and (fuente_ok["pronostico"] or not S_.get("tambien_por_pronostico")):
-            texto = ("📡 <b>Seguimiento finalizado</b>\nYa no hay alertas vigentes para la Ciudad. "
-                     "Se dejan de enviar los partes cada " + str(S_.get("cada_minutos", 30)) + " minutos.")
-            tg.enviar(texto)
-            enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
-            estado["ultimo_envio"] = enviados[-1]
-            estado["seguimiento"] = {"activo": False}
-    except Exception as ex:   # un error acá no frena el resto del ciclo
-        log("ERROR en seguimiento:", repr(ex))
-        errores.append("seguimiento: " + str(ex))
-
-    # --- aviso de lluvia (información, aunque no haya alertas) ---
-    try:
-        LL = estado.setdefault("lluvia", {"estado": "seco"})
-        sit = None
-        if A_.get("activo", True) and datos:
-            sit = situacion_lluvia(datos, comunas, metar, A_)
-            silenciar = A_.get("silenciar_con_seguimiento", True) and estado.get("seguimiento", {}).get("activo")
-
-            def mandar(texto):
-                if silenciar:
-                    log("Aviso de lluvia omitido (hay seguimiento activo)")
-                    return
-                tg.enviar(texto)
-                enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
-                estado["ultimo_envio"] = enviados[-1]
-
-            if sit["llueve"]:
-                if LL.get("estado") != "lloviendo":
-                    mandar(msg_lluvia(sit, "empieza", total, cfg))
-                    LL.update(estado="lloviendo", desde=ahora().isoformat(), ultimo=ahora().isoformat())
-                else:
-                    cada = int(A_.get("actualizar_cada_minutos", 60))
-                    if cada and ahora() - datetime.fromisoformat(LL.get("ultimo", ahora().isoformat())) >= timedelta(minutes=cada - 3):
-                        mandar(msg_lluvia(sit, "sigue", total, cfg))
-                        LL["ultimo"] = ahora().isoformat()
-                LL["secos"] = 0
+    if a.modo == "normal":
+        # --- 4. comparar con el ciclo anterior y avisar solo lo nuevo ---
+        previos = estado.get("eventos", {})
+        nuevos_estado = {}
+        minimo = G.get("nivel_minimo_envio", 1)
+        prob_min = int(PR.get("prob_minima_envio", 0) or 0)
+        for ev in eventos:
+            prev = previos.get(ev["id"])
+            nivel_prev = prev["nivel"] if prev else 0
+            cambio = None
+            if ev["nivel"] >= minimo and nivel_prev < minimo:
+                cambio = "nueva"
+            elif ev["nivel"] > nivel_prev and ev["nivel"] >= minimo:
+                cambio = "sube"
+            elif ev["nivel"] < nivel_prev and G.get("avisar_bajas", True) and ev["nivel"] >= minimo:
+                cambio = "baja"
+            pb = ev.get("prob") or {}
+            if cambio in ("nueva", "sube") and prob_min and pb.get("amarillo") is not None and pb["amarillo"] < prob_min:
+                log(f"No se avisa {ev['id']}: probabilidad {pb['amarillo']} % < {prob_min} %")
+                cambio, omitida = None, True
             else:
-                if LL.get("estado") == "lloviendo":
-                    LL["secos"] = LL.get("secos", 0) + 1
-                    if LL["secos"] >= G.get("ciclos_para_cerrar", 2):
-                        if A_.get("avisar_cuando_para", True):
-                            mandar(msg_lluvia(sit, "para", total, cfg, LL.get("desde")))
-                        estado["lluvia"] = LL = {"estado": "seco", "seco_desde": ahora().isoformat()}
-                elif sit["proxima_hora"] and A_.get("avisar_anticipado", True) and LL.get("estado") != "anticipado" \
-                        and len(sit["proxima_hora"]) >= int(A_.get("comunas_minimas", 2)):
-                    mandar(msg_lluvia(sit, "anticipado", total, cfg))
-                    LL.update(estado="anticipado", anticipado=ahora().isoformat())
-                elif LL.get("estado") == "anticipado" and not sit["proxima_hora"] and \
-                        ahora() - datetime.fromisoformat(LL.get("anticipado")) >= timedelta(hours=2):
-                    estado["lluvia"] = LL = {"estado": "seco"}   # la lluvia esperada no llegó: se rearma el aviso
-    except Exception as ex:   # un error acá no frena el resto del ciclo
-        log("ERROR en aviso de lluvia:", repr(ex))
-        errores.append("aviso de lluvia: " + str(ex))
+                omitida = False
+            llego = True
+            if cambio:
+                texto = msg_evento(ev, cfg, cambio, total)
+                llego = tg.enviar(texto)
+                if llego:
+                    registrar(texto)
+                    historial.append({"fecha": ahora().isoformat(), "aviso": cambio, **{k: ev.get(k) for k in
+                                      ("id", "fuente", "fenomeno", "nivel", "desde", "hasta", "comunas", "max", "prob")}})
+            if (cambio and not llego) or omitida:
+                # no llegó o se omitió: se guarda el nivel anterior para volver a intentarlo en el próximo ciclo
+                nuevos_estado[ev["id"]] = dict(prev, ausente=0) if prev else {"nivel": 0, "nombre": nombre_evento(ev), "ausente": 0}
+            else:
+                nuevos_estado[ev["id"]] = {"nivel": ev["nivel"], "nombre": nombre_evento(ev), "ausente": 0,
+                                           "notificado": (ahora().isoformat() if cambio else (prev or {}).get("notificado"))}
+        for k, prev in previos.items():
+            if k in nuevos_estado:
+                continue
+            fuente = "smn" if k.startswith("smn:") else "pronostico"
+            if not fuente_ok[fuente]:            # si la fuente falló, no damos por terminada la alerta
+                nuevos_estado[k] = prev
+                continue
+            ausente = prev.get("ausente", 0) + 1
+            if ausente >= G.get("ciclos_para_cerrar", 2) and prev.get("nivel", 0) >= minimo:
+                texto = msg_fin(prev, k)
+                if tg.enviar(texto):
+                    registrar(texto)
+                    historial.append({"fecha": ahora().isoformat(), "aviso": "fin", "id": k, "nivel": 0})
+                else:
+                    nuevos_estado[k] = dict(prev, ausente=ausente)   # se reintenta en el próximo ciclo
+            elif ausente < G.get("ciclos_para_cerrar", 2):
+                nuevos_estado[k] = dict(prev, ausente=ausente)
+        estado["eventos"] = nuevos_estado
 
-    # --- resumen diario de perspectiva (una vez por día, desde la hora configurada) ---
-    try:
-        hoy_txt = ahora().date().isoformat()
-        if (persp and P.get("resumen_diario", True) and ahora().hour >= int(P.get("hora_resumen", 8))
-                and estado.get("resumen_fecha") != hoy_txt):
-            enviado_ok = True
-            if any(d["senales"] for d in persp) or not P.get("solo_si_hay_senales", False):
-                texto = msg_perspectiva(persp, total)
-                enviado_ok = tg.enviar(texto)
-                if enviado_ok:
-                    enviados.append({"fecha": ahora().isoformat(), "texto": re.sub(r"<[^>]+>", "", texto)})
-                    estado["ultimo_envio"] = enviados[-1]
-            if enviado_ok:                     # si falló, se reintenta en la próxima corrida
-                estado["resumen_fecha"] = hoy_txt
-                log("Resumen diario de perspectiva enviado")
-        elif persp:
-            log(f"Resumen diario: ya enviado hoy ({estado.get('resumen_fecha')}) o antes de las {P.get('hora_resumen', 8)} h")
-        elif P.get("activa", True):
-            log("Resumen diario: sin datos de perspectiva en esta corrida")
-    except Exception as ex:   # un error acá no frena el resto del ciclo
-        log("ERROR en resumen diario:", repr(ex))
-        errores.append("resumen diario: " + str(ex))
+        # --- 5. seguimiento: partes cada N minutos mientras haya alerta del SMN vigente ---
+        try:
+            seg = estado.setdefault("seguimiento", {})
+            motivo = motivo_seguimiento(oficiales, eventos, S_) if S_.get("activo", True) else None
+            fuentes_ok_seg = fuente_ok["smn"] and (fuente_ok["pronostico"] or not S_.get("tambien_por_pronostico"))
+            if motivo:
+                ultimo = seg.get("ultimo")
+                intervalo = max(15, int(S_.get("cada_minutos", 30)))
+                toca = not ultimo or ahora() - datetime.fromisoformat(ultimo) >= timedelta(minutes=intervalo - 3)
+                if toca and datos:
+                    res = resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6)), w)
+                    texto = msg_seguimiento(res, motivo, U, total, seg.get("prev"), cfg)
+                    if tg.enviar(texto):
+                        registrar(texto)
+                        con = [f["lluvia"] for f in res["filas"]]
+                        seg.update(ultimo=ahora().isoformat(),
+                                   prev={"lluvia_max": max(con) if max(con) >= 2 else 0, "rafaga_max": max(f["rafaga"] for f in res["filas"])})
+                seg.update(activo=True, motivo=motivo, ausente=0)
+            elif seg.get("activo") and fuentes_ok_seg and seg.get("ausente", 0) + 1 < G.get("ciclos_para_cerrar", 2):
+                seg["ausente"] = seg.get("ausente", 0) + 1     # igual que las alertas: esperamos antes de darlo por terminado
+            elif seg.get("activo") and fuentes_ok_seg:
+                texto = ("📡 <b>Seguimiento finalizado</b>\nYa no hay alertas vigentes para la Ciudad. "
+                         "Se dejan de enviar los partes cada " + str(S_.get("cada_minutos", 30)) + " minutos.")
+                if tg.enviar(texto):
+                    registrar(texto)
+                    estado["seguimiento"] = {"activo": False}
+        except Exception as ex:   # un error acá no frena el resto del ciclo
+            log("ERROR en seguimiento:", repr(ex))
+            errores.append("seguimiento: " + str(ex))
 
-    if cfg["telegram"].get("responder_comandos", True):
-        parte = (lambda: msg_seguimiento(resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6))),
-                                         motivo or "consulta a pedido", U, total, None, cfg)) if datos else None
-        responder_comandos(tg, estado, eventos, U, total, persp, parte)
+        # --- 6. resumen diario de perspectiva (una vez por día, desde la hora configurada) ---
+        try:
+            hoy_txt = ahora().date().isoformat()
+            if (persp and P.get("resumen_diario", True) and ahora().hour >= int(P.get("hora_resumen", 8))
+                    and estado.get("resumen_fecha") != hoy_txt):
+                if any(d["senales"] for d in persp) or not P.get("solo_si_hay_senales", False):
+                    texto = msg_perspectiva(persp, total)
+                    if tg.enviar(texto):
+                        registrar(texto)
+                        estado["resumen_fecha"] = hoy_txt
+                else:
+                    estado["resumen_fecha"] = hoy_txt
+        except Exception as ex:   # un error acá no frena el resto del ciclo
+            log("ERROR en resumen diario:", repr(ex))
+            errores.append("resumen diario: " + str(ex))
 
-    # --- archivo para el tablero ---
+        # --- 6b. aviso de lluvia (información, aunque no haya alertas) ---
+        try:
+            LL = estado.setdefault("lluvia", {"estado": "seco"})
+            if A_.get("activo", True) and datos:
+                sit = situacion_lluvia(datos, comunas, metar, A_)
+                silenciar = A_.get("silenciar_con_seguimiento", True) and estado.get("seguimiento", {}).get("activo")
+
+                def mandar(texto) -> bool:
+                    if silenciar:
+                        log("Aviso de lluvia omitido (hay seguimiento activo)")
+                        return True
+                    if tg.enviar(texto):
+                        registrar(texto)
+                        return True
+                    return False          # no llegó: no se cambia el estado y se reintenta en el próximo ciclo
+
+                if sit["llueve"]:
+                    if LL.get("estado") != "lloviendo":
+                        if mandar(msg_lluvia(sit, "empieza", total, cfg)):
+                            LL.update(estado="lloviendo", desde=ahora().isoformat(), ultimo=ahora().isoformat())
+                    else:
+                        cada = int(A_.get("actualizar_cada_minutos", 60))
+                        if cada and ahora() - datetime.fromisoformat(LL.get("ultimo", ahora().isoformat())) >= timedelta(minutes=cada - 3):
+                            if mandar(msg_lluvia(sit, "sigue", total, cfg)):
+                                LL["ultimo"] = ahora().isoformat()
+                    LL["secos"] = 0
+                else:
+                    if LL.get("estado") == "lloviendo":
+                        LL["secos"] = LL.get("secos", 0) + 1
+                        if LL["secos"] >= G.get("ciclos_para_cerrar", 2):
+                            if not A_.get("avisar_cuando_para", True) or mandar(msg_lluvia(sit, "para", total, cfg, LL.get("desde"))):
+                                estado["lluvia"] = LL = {"estado": "seco", "seco_desde": ahora().isoformat()}
+                    elif sit["proxima_hora"] and A_.get("avisar_anticipado", True) and LL.get("estado") != "anticipado" \
+                            and len(sit["proxima_hora"]) >= int(A_.get("comunas_minimas", 2)):
+                        if mandar(msg_lluvia(sit, "anticipado", total, cfg)):
+                            LL.update(estado="anticipado", anticipado=ahora().isoformat())
+                    elif LL.get("estado") == "anticipado" and not sit["proxima_hora"] and \
+                            ahora() - datetime.fromisoformat(LL.get("anticipado")) >= timedelta(hours=2):
+                        estado["lluvia"] = LL = {"estado": "seco"}   # la lluvia esperada no llegó: se rearma el aviso
+        except Exception as ex:   # un error acá no frena el resto del ciclo
+            log("ERROR en aviso de lluvia:", repr(ex))
+            errores.append("aviso de lluvia: " + str(ex))
+
+        # --- 7. comandos del bot ---
+        try:
+            if cfg["telegram"].get("responder_comandos", True):
+                parte = (lambda: msg_seguimiento(resumen_proximas_horas(datos, comunas, int(S_.get("horas_adelante", 6)), w),
+                                                 motivo or "consulta a pedido", U, total, None, cfg)) if datos else None
+                responder_comandos(tg, estado, eventos, U, total, persp, parte)
+        except Exception as ex:   # un error acá no frena el resto del ciclo
+            log("ERROR en comandos:", repr(ex))
+            errores.append("comandos: " + str(ex))
+
+    # --- 8. archivo para el tablero (se escribe en todos los modos) ---
+    if tg.fallos:
+        errores.append("Telegram: " + "; ".join(tg.fallos[:3]))
+    seg_e = estado.get("seguimiento", {})
+    sit_txt = sit if (A_.get("activo", True) and datos and a.modo == "normal") else None
     salida = {
         "generado": ahora().isoformat(),
         "errores": errores,
@@ -1156,22 +1634,29 @@ def main():
         "pronostico": [x for x in eventos if x["fuente"] == "pronostico"],
         "perspectiva": persp,
         "perspectiva_config": P,
-        "lluvia": {"estado": estado.get("lluvia", {}).get("estado", "seco"), "desde": estado.get("lluvia", {}).get("desde"),
-                   "comunas": [n for n, _ in sit["comunas"]] if sit else []},
-        "observado": [{k: (v.isoformat() if isinstance(v, datetime) else v) for k, v in m.items()} for m in metar],
-        "seguimiento": {"activo": bool(estado.get("seguimiento", {}).get("activo")),
-                        "motivo": estado.get("seguimiento", {}).get("motivo"),
-                        "ultimo": estado.get("seguimiento", {}).get("ultimo"),
+        "wrf": ({"fuente": w["fuente"], "ciclo": w["ciclo"], "ciclo_txt": ciclo_txt(w),
+                 "tiempos": w["tiempos"], "comunas": {n: d["pp"] for n, d in w["comunas"].items()}} if w else None),
+        "probabilidad": ({k: probs.get(k) for k in ("calculado", "modelos", "escenarios", "horizonte")} if probs else None),
+        "seguimiento": {"activo": bool(seg_e.get("activo")), "motivo": seg_e.get("motivo"), "ultimo": seg_e.get("ultimo"),
                         "cada_minutos": S_.get("cada_minutos", 30), "horas": S_.get("horas_adelante", 6),
                         "configurado": bool(S_.get("activo", True))},
+        "lluvia": {"estado": estado.get("lluvia", {}).get("estado", "seco"), "desde": estado.get("lluvia", {}).get("desde"),
+                   "comunas": [n for n, _ in sit_txt["comunas"]] if sit_txt else []},
+        "observado": [{k: (v.isoformat() if isinstance(v, datetime) else v) for k, v in m.items()} for m in metar],
         "telegram": {"url_canal": cfg["telegram"].get("url_canal"), "usuario_bot": cfg["telegram"].get("usuario_bot"),
                      "ultimo_envio": estado.get("ultimo_envio")},
     }
     salida_path.write_text(json.dumps(salida, ensure_ascii=False, indent=1), encoding="utf-8")
     estado_path.write_text(json.dumps(estado, ensure_ascii=False, indent=1), encoding="utf-8")
-    log(f"Listo · {len(enviados)} mensaje(s) · {len(errores)} error(es)")
-    if errores and not eventos:
-        sys.exit(1)
+    historial_path.write_text(json.dumps(historial[-1000:], ensure_ascii=False, indent=1), encoding="utf-8")
+    log(f"Listo · {len(enviados)} mensaje(s) · {len(errores)} aviso(s) de error")
+
+    # Falla grave = no llegó algún mensaje, o se cayeron las dos fuentes. El workflow marca la corrida en rojo
+    # (GitHub avisa por mail) pero recién después de publicar el tablero y guardar el estado.
+    grave = bool(tg.fallos) or (not fuente_ok["pronostico"] and not fuente_ok["smn"])
+    salida_github(fallo="true" if grave else "false")
+    if grave:
+        print("::error::" + " | ".join(errores))
 
 
 if __name__ == "__main__":
