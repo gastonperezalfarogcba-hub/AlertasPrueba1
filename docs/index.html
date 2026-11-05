@@ -136,8 +136,8 @@ button,select{font-family:inherit}
 .qr{background:#fff;border-radius:14px;padding:10px;display:inline-block;margin-bottom:14px;min-height:20px}
 .qr img,.qr canvas{display:block}
 .tgbtns{display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.tgbtn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:700;font-size:13px;padding:10px 14px;border-radius:999px;background:#29a8eb;color:#fff}
-.tgbtn.alt{background:rgba(255,255,255,.1)}
+.tgbtn{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:700;font-size:13px;padding:10px 14px;border-radius:999px;background:#29a8eb;color:#06223a;min-height:44px}
+.tgbtn.alt{background:rgba(255,255,255,.1);color:#fff}
 .cmds{display:grid;grid-template-columns:auto 1fr;gap:6px 12px;font-size:13px}
 .cmds code{color:var(--accent);font-weight:700}
 .lastmsg{white-space:pre-wrap;font-size:12px;line-height:1.5;background:rgba(0,0,0,.2);border-radius:12px;padding:12px;color:#dbe6f5}
@@ -284,9 +284,13 @@ a.rs:hover{background:rgba(255,255,255,.09)}
     padding-top:0;padding-bottom:calc(84px + env(safe-area-inset-bottom,0px));overscroll-behavior:contain;
     transform:translateY(50vh);transition:transform .28s cubic-bezier(.2,.8,.2,1);will-change:transform}
   body.hoja-baja .panel{overflow:hidden}
-  .asa{display:flex;position:sticky;top:0;z-index:3;justify-content:center;align-items:center;height:44px;width:calc(100% + 36px);margin:0 -18px 0;
+  .asa{display:flex;position:sticky;top:0;z-index:3;justify-content:center;align-items:center;height:52px;width:calc(100% + 36px);margin:0 -18px 0;
     border:0;background:#0b1f3a;cursor:grab;touch-action:none;border-radius:20px 20px 0 0}
   .asa span{width:44px;height:5px;border-radius:3px;background:rgba(255,255,255,.4)}
+  .asa{flex-direction:column;gap:5px}
+  .asa em{display:none;font:600 12px Montserrat,sans-serif;font-style:normal;color:#dbe6f5;align-items:center;gap:6px;white-space:nowrap;max-width:90%;overflow:hidden;text-overflow:ellipsis}
+  .asa em i{width:8px;height:8px;border-radius:50%;background:#2ecc71;flex:0 0 8px}
+  body.hoja-baja .asa em{display:flex}
   .asa:focus-visible span{background:var(--accent)}
   #status{touch-action:none}
   .timeline{bottom:calc(var(--hojaVisible,45vh) + 8px)}
@@ -297,6 +301,7 @@ a.rs:hover{background:rgba(255,255,255,.09)}
   #baseSel{max-width:150px}
 }
 @media (max-width:820px) and (prefers-reduced-motion:reduce){ .panel{transition:none} }
+@media (max-width:820px){ input[type=range]{height:44px} }
 </style>
 </head>
 <body>
@@ -317,7 +322,7 @@ a.rs:hover{background:rgba(255,255,255,.09)}
 </div>
 
 <aside class="glass panel" id="panel">
-  <button class="asa" id="asa" type="button" aria-label="Subir el panel" aria-expanded="false"><span></span></button>
+  <button class="asa" id="asa" type="button" aria-label="Subir el panel" aria-expanded="false"><span></span><em id="asaTxt"><i></i><b></b></em></button>
   <div class="status l0" id="status">
     <span class="st-dot"></span>
     <div style="flex:1;min-width:0"><div class="st-k">Estado de la Ciudad · próximas 48 h</div><div class="st-t" id="stTitle">Cargando…</div><div class="st-s" id="stSub"></div></div>
@@ -1047,13 +1052,13 @@ const HOJA={estado:'baja', pane:'ahora'}; let mapaMovido=false, arr=null, recien
 const esMovil=()=>innerWidth<=820, panelEl=()=>document.getElementById('panel');
 function alturasHoja(){
   const H=panelEl().offsetHeight, nav=document.querySelector('.tabs').offsetHeight||64, st=document.getElementById('status').offsetHeight||90;
-  const asaH=document.getElementById('asa').offsetHeight||44, baja=Math.max(0,H-(asaH+st+14+nav)), media=Math.max(0,Math.min(baja,H-Math.round(innerHeight*0.5)));
+  const asaH=document.getElementById('asa').offsetHeight||44, baja=Math.max(0,H-(asaH+nav+2)), media=Math.max(0,Math.min(baja,H-Math.round(innerHeight*0.5)));
   return {alta:0, media, baja, H};
 }
 function hojaVisible(){ const a=alturasHoja(); return Math.max(0,a.H-a[HOJA.estado]); }
 function ponerHoja(est, animar=true){
   const pn=panelEl(), asa=document.getElementById('asa');
-  if(!esMovil()){ pn.style.transform=''; document.body.classList.remove('hoja-baja','hoja-media','hoja-alta'); return; }
+  if(!esMovil()){ pn.style.transform=''; document.body.classList.remove('hoja-baja','hoja-media','hoja-alta'); marcarTab(); return; }
   HOJA.estado=est; const a=alturasHoja();
   pn.style.transition=animar?'':'none'; pn.style.transform=`translateY(${a[est]}px)`;
   document.body.classList.remove('hoja-baja','hoja-media','hoja-alta'); document.body.classList.add('hoja-'+est);
@@ -1181,6 +1186,8 @@ function renderAlertas(){
   const st=document.getElementById('status'), lv=top.length?top[0].n:0;
   st.className='status l'+lv;
   document.getElementById('stTitle').textContent = lv ? `${ALERTA[lv]} · ${top[0].t}` : 'Sin alertas';
+  { const at=document.getElementById('asaTxt'); if(at){ at.querySelector('b').textContent = lv ? `${ALERTA[lv]} · ${top[0].t}` : 'Sin alertas en la Ciudad';
+    at.querySelector('i').style.background=['#2ecc71','#ffd400','#ff8c1a','#ff3b3b'][lv]; } }
   document.getElementById('stSub').textContent = lv ? `${top[0].src} · ${top[0].when}`+(top.length>1?` · ${top.length-1} alerta(s) más`:'') : 'Ningún umbral se supera en la Ciudad.';
   // observación real de Aeroparque (METAR) y aviso de lluvia
   const ob=((S.sys&&S.sys.observado)||[]).find(x=>x.estacion==='SABE');
@@ -1314,7 +1321,9 @@ document.querySelectorAll('.tabs button').forEach(b=>b.addEventListener('click',
   if(esMapa){ mapaMovido=false; ponerHoja('baja'); setTimeout(ponerHash,0); return; }
   HOJA.pane=b.dataset.tab;
   document.querySelectorAll('[data-pane]').forEach(p=>p.hidden = p.dataset.pane!==b.dataset.tab);
-  document.getElementById('panel').scrollTop=0;
+  const pn=document.getElementById('panel');
+  if(esMovil()) pn.scrollTop=0;
+  else { const tb=document.querySelector('.tabs'); pn.scrollTo({top:Math.max(0,tb.offsetTop-18),behavior:'smooth'}); }
   if(esMovil() && HOJA.estado==='baja') ponerHoja('media'); else marcarTab();
   setTimeout(()=>{ ponerHash(); ajustarThead(); },0);
 }));

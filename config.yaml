@@ -50,7 +50,7 @@ perspectiva:
   dias_desde: 3            # hoy = día 1
   dias_hasta: 7            # máximo 16 (Open-Meteo); más allá de 7 la confianza es baja
   resumen_diario: true     # mandar un resumen por Telegram una vez por día
-  hora_resumen: 8          # hora local (0 a 23) a partir de la cual se manda
+  hora_resumen: [8, 20]    # horas locales (0 a 23) en que se manda; una sola hora también vale, ej. 8
   solo_si_hay_senales: false   # true = mandar el resumen solo si hay algún fenómeno a vigilar
   prob_min_tormenta: 50    # % mínimo de probabilidad de lluvia para marcar tormenta
   prob_senal: 30           # si el ensamble da este % o más de superar amarillo, se muestra como señal aunque

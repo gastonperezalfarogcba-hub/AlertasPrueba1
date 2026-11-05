@@ -1,5 +1,20 @@
 # Cambios
 
+## Actualización 8 · noviembre 2026
+
+### Perspectiva dos veces por día
+- La perspectiva de los días 3 a 7 se manda **a las 8 y a las 20 h**. El segundo envío dice "actualización de la tarde".
+- Las horas se cambian en `config.yaml`, en `perspectiva → hora_resumen`. Puede ser una lista, como `[8, 20]`, o una sola hora, como `8`.
+- Si una corrida llega tarde, por ejemplo a las 21 h sin haber mandado el de las 8, se manda uno solo, no dos seguidos.
+
+### Tablero
+- **Celular:** "Mapa" deja la hoja cerrada. Queda solo la barrita, con una línea de estado ("Sin alertas en la Ciudad" o la alerta vigente), y el mapa casi completo. Así abre el tablero.
+- **Computadora:** al tocar una pestaña, el panel se desplaza para mostrar su contenido enseguida.
+- **Computadora:** si el tablero se abre con la ventana angosta y después se agranda, se marca la pestaña correcta.
+- **Telegram:** se corrigió el contraste de los botones "Unirme al canal" y "Abrir el bot".
+- **Celular:** la barra de tiempo tiene un área táctil de 44 px.
+
+
 ## Actualización 6 · noviembre 2026 · integración y seguridad
 
 Revisión de las actualizaciones 3 a 5 antes de subirlas. Se probó todo con datos simulados: alertas, fin de alertas, seguimiento, avisos de lluvia, perspectiva, comandos, WRF y tablero (escritorio y celular).

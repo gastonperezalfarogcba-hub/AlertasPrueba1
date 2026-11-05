@@ -379,10 +379,9 @@ def texto_senal(s_: dict) -> str:
     return base + (f" · prob. {pb['nivel']} %" if pb.get("nivel") is not None else "")
 
 
-def msg_perspectiva(dias: list[dict], total: int) -> str:
-    lineas = ["🗓️ <b>Perspectiva · próximos días</b>",
-              "<i>Pronóstico extendido de menor certeza. No es una alerta: sirve para anticipar. "
-              "La probabilidad sale de los modelos de ensamble.</i>", ""]
+def msg_perspectiva(dias: list[dict], total: int, tarde: bool = False) -> str:
+    lineas = ["🗓️ <b>Perspectiva · próximos días</b>" + (" · actualización de la tarde" if tarde else ""),
+              "<i>Pronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.</i>", ""]
     hay = any(d["senales"] for d in dias)
     for d in dias:
         f = datetime.fromisoformat(d["fecha"])
@@ -1552,18 +1551,25 @@ def main():
             log("ERROR en seguimiento:", repr(ex))
             errores.append("seguimiento: " + str(ex))
 
-        # --- 6. resumen diario de perspectiva (una vez por día, desde la hora configurada) ---
+        # --- 6. resumen de perspectiva (una o más veces por día, en las horas configuradas) ---
         try:
             hoy_txt = ahora().date().isoformat()
-            if (persp and P.get("resumen_diario", True) and ahora().hour >= int(P.get("hora_resumen", 8))
-                    and estado.get("resumen_fecha") != hoy_txt):
+            hr = P.get("hora_resumen", 8)
+            horas_res = sorted(int(h) for h in (hr if isinstance(hr, list) else [hr]))
+            vencidas = [h for h in horas_res if ahora().hour >= h]
+            turno = f"{hoy_txt}@{vencidas[-1]}" if vencidas else None   # el último turno que ya corresponde
+            # compatibilidad con la versión anterior, que solo guardaba la fecha del envío de la mañana
+            if turno and not estado.get("resumen_turno") and estado.get("resumen_fecha") == hoy_txt and len(vencidas) == 1:
+                estado["resumen_turno"] = turno
+            if persp and P.get("resumen_diario", True) and turno and estado.get("resumen_turno") != turno:
                 if any(d["senales"] for d in persp) or not P.get("solo_si_hay_senales", False):
-                    texto = msg_perspectiva(persp, total)
+                    texto = msg_perspectiva(persp, total, tarde=len(vencidas) > 1)
                     if tg.enviar(texto):
                         registrar(texto)
-                        estado["resumen_fecha"] = hoy_txt
+                        estado["resumen_turno"], estado["resumen_fecha"] = turno, hoy_txt
+                        log(f"Resumen de perspectiva enviado (turno de las {vencidas[-1]} h)")
                 else:
-                    estado["resumen_fecha"] = hoy_txt
+                    estado["resumen_turno"], estado["resumen_fecha"] = turno, hoy_txt
         except Exception as ex:   # un error acá no frena el resto del ciclo
             log("ERROR en resumen diario:", repr(ex))
             errores.append("resumen diario: " + str(ex))
