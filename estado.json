@@ -227,13 +227,13 @@
   "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nViernes 06/11 · 15° / 26° · 💧 84 %\nSábado 07/11 · 11° / 19° · 💧 57 %\nDomingo 08/11 · 9° / 23°\nLunes 09/11 · 13° / 24°\nMartes 10/11 · 17° / 25°\n\n✅ Sin señales de eventos significativos en estos días."
  },
  "resumen_fecha": "2026-11-04",
- "tg_offset": 253065125,
+ "tg_offset": 253065126,
  "lluvia": {
   "estado": "seco",
   "seco_desde": "2026-11-04T10:28:57.347483-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-04T23:40:22.090758-03:00",
+  "calculado": "2026-11-05T00:40:23.804521-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -267,32 +267,6 @@
    }
   },
   "dias": {
-   "2026-11-04": {
-    "lluvia": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "viento": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "calor": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "frio": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    }
-   },
    "2026-11-05": {
     "lluvia": {
      "amarillo": 0,
@@ -426,6 +400,32 @@
    "2026-11-10": {
     "lluvia": {
      "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-11": {
+    "lluvia": {
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
