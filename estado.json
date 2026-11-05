@@ -197,6 +197,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261105085423_Lluvia_Patagonia_alertas_alertas_5.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_05_1848_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {},
