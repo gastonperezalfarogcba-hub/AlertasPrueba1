@@ -212,6 +212,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261104204445_Zonda_Cordillera_alertas_alertas_1.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_05_0150_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {},
