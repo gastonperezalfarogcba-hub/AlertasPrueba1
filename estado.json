@@ -313,10 +313,10 @@
  "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-05T20:00:28.764559-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nSábado 07/11 · 12° / 19° · 💧 37 %\nDomingo 08/11 · 9° / 22°\nLunes 09/11 · 12° / 25°\nMartes 10/11 · 16° / 27°\nMiércoles 11/11 · 19° / 29°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-06T08:00:25.790598-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nDomingo 08/11 · 10° / 22°\nLunes 09/11 · 13° / 25°\nMartes 10/11 · 16° / 28°\nMiércoles 11/11 · 19° / 32° · 💧 31 %\nJueves 12/11 · 20° / 32°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
  },
- "resumen_fecha": "2026-11-05",
+ "resumen_fecha": "2026-11-06",
  "tg_offset": 253065127,
  "lluvia": {
   "estado": "seco",
@@ -541,5 +541,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-05@20"
+ "resumen_turno": "2026-11-06@8"
 }
