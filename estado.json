@@ -1,99 +1,81 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Llanura_alertas_alertas_1.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Lluvia_Patagonia_alertas_alertas_1.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Llanura_alertas_alertas_2.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Cordillera_alertas_alertas_1.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Llanura_alertas_alertas_3.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Cordillera_alertas_alertas_2.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Llanura_alertas_alertas_4.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Cordillera_alertas_alertas_3.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Llanura_alertas_alertas_5.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Cordillera_alertas_alertas_4.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Llanura_alertas_alertas_6.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_1.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Llanura_alertas_alertas_7.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_10.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Llanura_alertas_alertas_8.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_11.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Patagonia_alertas_alertas_1.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_12.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Patagonia_alertas_alertas_2.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_13.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Patagonia_alertas_alertas_3.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_14.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Patagonia_alertas_alertas_4.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_15.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Patagonia_alertas_alertas_5.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_16.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Patagonia_alertas_alertas_6.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_17.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Patagonia_alertas_alertas_7.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_18.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090329_Tormenta_Patagonia_alertas_alertas_8.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_19.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Cordillera_alertas_alertas_1.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_2.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Cordillera_alertas_alertas_2.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_3.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Llanura_alertas_alertas_1.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_4.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Llanura_alertas_alertas_2.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_5.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Llanura_alertas_alertas_3.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_6.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Llanura_alertas_alertas_4.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_7.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Llanura_alertas_alertas_5.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_8.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Llanura_alertas_alertas_6.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203426_Viento_Patagonia_alertas_alertas_9.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Llanura_alertas_alertas_7.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203428_Nevada_Cordillera_alertas_alertas_1.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Llanura_alertas_alertas_8.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Patagonia_alertas_alertas_1.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Patagonia_alertas_alertas_2.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Patagonia_alertas_alertas_3.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Patagonia_alertas_alertas_4.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Patagonia_alertas_alertas_5.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107090330_Viento_Patagonia_alertas_alertas_6.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261107203428_Nevada_Cordillera_alertas_alertas_2.xml": {
    "caba": false
   }
  },
