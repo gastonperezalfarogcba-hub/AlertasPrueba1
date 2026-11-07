@@ -220,8 +220,8 @@
  "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-07T04:00:23.935838-03:00",
-  "texto": "🌦️ AVISO · Está lloviendo en la Ciudad\nInformación, no es una alerta.\n🛩️ Aeroparque (03:50, observado): llovizna débil\n🛩️ Ezeiza (03:11, observado): llovizna fuerte\n\nVer el radar en el tablero"
+  "fecha": "2026-11-07T05:00:29.422428-03:00",
+  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n📍 Dónde: Toda la Ciudad\n💧 Intensidad: débil (hasta 1,2 mm/h en Comuna 1)\n🛩️ Aeroparque (04:00, observado): llovizna débil\n🛩️ San Fernando (04:20, observado): llovizna débil\n🛩️ El Palomar (04:00, observado): lluvia débil\n⏳ Próximas horas: lluvia hasta las 06 h aprox. · hasta 1 mm más (Comuna 1)\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-06",
  "tg_offset": 253065127,
@@ -229,7 +229,7 @@
   "estado": "lloviendo",
   "seco_desde": "2026-11-06T22:10:37.123784-03:00",
   "desde": "2026-11-07T04:00:23.935978-03:00",
-  "ultimo": "2026-11-07T04:00:23.935986-03:00",
+  "ultimo": "2026-11-07T05:00:29.422549-03:00",
   "secos": 0
  },
  "ensambles": {
