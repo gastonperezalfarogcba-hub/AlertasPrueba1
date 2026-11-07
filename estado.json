@@ -212,6 +212,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261106205324_Tormenta_Llanura_alertas_alertas_9.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_07_0711_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {},
