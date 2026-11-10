@@ -95,7 +95,7 @@
   "seco_desde": "2026-11-07T07:20:28.415357-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-10T11:40:21.097003-03:00",
+  "calculado": "2026-11-10T12:40:24.841529-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -235,7 +235,7 @@
    },
    "2026-11-14": {
     "lluvia": {
-     "amarillo": 1,
+     "amarillo": 0,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -261,9 +261,9 @@
    },
    "2026-11-15": {
     "lluvia": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
+     "amarillo": 1,
+     "naranja": 1,
+     "rojo": 1,
      "escenarios": 82
     },
     "viento": {
