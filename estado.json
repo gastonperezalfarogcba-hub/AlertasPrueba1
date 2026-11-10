@@ -310,8 +310,8 @@
  "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-10T20:00:26.861023-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nJueves 12/11 · 19° / 31°\nViernes 13/11 · 20° / 31°\nSábado 14/11 · 20° / 33° · 💧 41 %\nDomingo 15/11 · 15° / 25°\nLunes 16/11 · 16° / 22°\n   🟡 Viento: ráfagas de hasta 68 km/h · prob. 1 % · Comunas 1, 2, 3, 4, 5, 6, 7, 12, 13, 14, 15\n   confianza baja\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-10T20:10:27.286083-03:00",
+  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n🛩️ Aeroparque (20:00, observado): lluvia débil\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-10",
  "tg_offset": 253065130,
@@ -319,7 +319,7 @@
   "estado": "lloviendo",
   "seco_desde": "2026-11-07T07:20:28.415357-03:00",
   "desde": "2026-11-10T18:10:23.346307-03:00",
-  "ultimo": "2026-11-10T19:10:22.536379-03:00",
+  "ultimo": "2026-11-10T20:10:27.286264-03:00",
   "secos": 0
  },
  "ensambles": {
