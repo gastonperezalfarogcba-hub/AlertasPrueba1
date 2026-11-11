@@ -295,8 +295,8 @@
  "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-11T08:00:25.672197-03:00",
-  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nViernes 13/11 · 21° / 32°\nSábado 14/11 · 21° / 31° · 💧 31 %\nDomingo 15/11 · 15° / 25° · 💧 31 %\nLunes 16/11 · 16° / 23° · 💧 39 %\nMartes 17/11 · 16° / 24°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-11T20:00:29.074813-03:00",
+  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nViernes 13/11 · 20° / 31°\nSábado 14/11 · 21° / 31° · 💧 41 %\nDomingo 15/11 · 16° / 27°\nLunes 16/11 · 17° / 29° · 💧 35 %\nMartes 17/11 · 19° / 29° · 💧 49 %\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
  },
  "resumen_fecha": "2026-11-11",
  "tg_offset": 253065130,
@@ -305,7 +305,7 @@
   "seco_desde": "2026-11-10T22:50:23.108808-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-11T19:00:47.934277-03:00",
+  "calculado": "2026-11-11T20:00:27.403042-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -425,7 +425,7 @@
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 0,
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -497,8 +497,8 @@
    },
    "2026-11-17": {
     "lluvia": {
-     "amarillo": 0,
-     "naranja": 0,
+     "amarillo": 2,
+     "naranja": 1,
      "rojo": 0,
      "escenarios": 82
     },
@@ -523,5 +523,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-11@8"
+ "resumen_turno": "2026-11-11@20"
 }
