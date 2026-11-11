@@ -310,17 +310,14 @@
  "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-10T20:10:27.286083-03:00",
-  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n🛩️ Aeroparque (20:00, observado): lluvia débil\n\nVer el radar en el tablero"
+  "fecha": "2026-11-10T21:20:29.477693-03:00",
+  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 18:10.\nInformación, no es una alerta."
  },
  "resumen_fecha": "2026-11-10",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "lloviendo",
-  "seco_desde": "2026-11-07T07:20:28.415357-03:00",
-  "desde": "2026-11-10T18:10:23.346307-03:00",
-  "ultimo": "2026-11-10T20:10:27.286264-03:00",
-  "secos": 1
+  "estado": "seco",
+  "seco_desde": "2026-11-10T21:20:29.477797-03:00"
  },
  "ensambles": {
   "calculado": "2026-11-10T20:40:28.972059-03:00",
