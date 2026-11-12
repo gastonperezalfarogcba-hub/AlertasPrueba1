@@ -441,9 +441,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261112153043_Viento_Llanura_alertas_alertas_4.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_12_1758_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_12_1910_cap_es.xml": {
    "caba": false
   },
@@ -471,7 +468,7 @@
   "seco_desde": "2026-11-10T22:50:23.108808-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-12T16:00:28.182381-03:00",
+  "calculado": "2026-11-12T17:00:27.846828-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
