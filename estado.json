@@ -341,17 +341,17 @@
  },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-12T04:30:23.059895-03:00",
-  "texto": "🟡 ALERTA AMARILLA · Tormentas\n📊 Por pronóstico (no oficial)\n🕒 Cuándo: 14/11 03:00 a 14/11 04:00\n📍 Dónde: Comuna 8 (aprox.)\n⛈️ Tormentas\n\nAbrir las alertas en el tablero"
+  "fecha": "2026-11-12T08:00:38.640508-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nSábado 14/11 · 20° / 28° · 💧 78 %\n   🟡 Tormentas: tormentas (probabilidad 78 %) · Comuna 8\n   confianza media\nDomingo 15/11 · 18° / 27°\nLunes 16/11 · 20° / 29° · 💧 31 %\nMartes 17/11 · 18° / 27° · 💧 78 %\nMiércoles 18/11 · 18° / 30°\n\nVer la perspectiva en el tablero"
  },
- "resumen_fecha": "2026-11-11",
+ "resumen_fecha": "2026-11-12",
  "tg_offset": 253065130,
  "lluvia": {
   "estado": "seco",
   "seco_desde": "2026-11-10T22:50:23.108808-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-12T07:00:27.524985-03:00",
+  "calculado": "2026-11-12T08:00:29.410576-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -360,7 +360,7 @@
   "escenarios": 122,
   "horizonte": {
    "lluvia": {
-    "amarillo": 0,
+    "amarillo": 2,
     "naranja": 0,
     "rojo": 0,
     "escenarios": 122
@@ -439,13 +439,13 @@
    },
    "2026-11-14": {
     "lluvia": {
-     "amarillo": 0,
+     "amarillo": 2,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 0,
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -491,7 +491,7 @@
    },
    "2026-11-16": {
     "lluvia": {
-     "amarillo": 2,
+     "amarillo": 0,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -517,8 +517,8 @@
    },
    "2026-11-17": {
     "lluvia": {
-     "amarillo": 4,
-     "naranja": 0,
+     "amarillo": 2,
+     "naranja": 1,
      "rojo": 0,
      "escenarios": 82
     },
@@ -569,5 +569,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-11@20"
+ "resumen_turno": "2026-11-12@8"
 }
