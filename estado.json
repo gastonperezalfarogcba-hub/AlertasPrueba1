@@ -502,8 +502,8 @@
  "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-12T18:20:23.033519-03:00",
-  "texto": "✅ FINALIZÓ · Lluvias · por pronóstico\nYa no se prevén condiciones de alerta para la Ciudad."
+  "fecha": "2026-11-12T20:00:26.261948-03:00",
+  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nSábado 14/11 · 20° / 28° · 💧 86 %\nDomingo 15/11 · 19° / 28°\nLunes 16/11 · 21° / 30°\nMartes 17/11 · 19° / 26° · 💧 78 %\n   🟡 Tormentas: tormentas (probabilidad 76 %) · Comunas 12, 13, 14, 15\n   confianza baja\nMiércoles 18/11 · 17° / 27°\n   🟡 Viento: ráfagas de hasta 66 km/h · prob. 9 % · Comunas 12, 13, 14, 15\n   confianza baja\n\nVer la perspectiva en el tablero"
  },
  "resumen_fecha": "2026-11-12",
  "tg_offset": 253065130,
@@ -512,7 +512,7 @@
   "seco_desde": "2026-11-10T22:50:23.108808-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-12T19:00:29.331640-03:00",
+  "calculado": "2026-11-12T20:00:25.073328-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -710,7 +710,7 @@
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 7,
+     "amarillo": 9,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -730,5 +730,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-12@8"
+ "resumen_turno": "2026-11-12@20"
 }
