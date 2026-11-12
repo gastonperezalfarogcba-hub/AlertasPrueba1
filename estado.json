@@ -326,17 +326,17 @@
   }
  },
  "eventos": {
-  "int:tormenta": {
-   "nivel": 1,
-   "nombre": "Tormentas",
-   "ausente": 0,
-   "notificado": "2026-11-12T04:30:23.060034-03:00"
-  },
   "int:lluvia": {
    "nivel": 2,
    "nombre": "Lluvias",
    "ausente": 0,
    "notificado": "2026-11-12T01:20:23.938624-03:00"
+  },
+  "int:tormenta": {
+   "nivel": 1,
+   "nombre": "Tormentas",
+   "ausente": 1,
+   "notificado": "2026-11-12T04:30:23.060034-03:00"
   }
  },
  "seguimiento": {},
