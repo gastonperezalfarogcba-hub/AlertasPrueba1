@@ -320,6 +320,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261112091514_Viento_Patagonia_alertas_alertas_6.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_12_1439_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
