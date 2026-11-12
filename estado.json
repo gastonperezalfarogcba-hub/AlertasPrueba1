@@ -455,7 +455,7 @@
   "int:lluvia": {
    "nivel": 1,
    "nombre": "Lluvias",
-   "ausente": 0,
+   "ausente": 1,
    "notificado": "2026-11-12T10:20:22.858955-03:00"
   }
  },
