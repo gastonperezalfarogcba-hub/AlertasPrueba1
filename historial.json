@@ -58,5 +58,36 @@
   "aviso": "fin",
   "id": "int:tormenta",
   "nivel": 0
+ },
+ {
+  "fecha": "2026-11-12T10:20:22.858943-03:00",
+  "aviso": "baja",
+  "id": "int:lluvia",
+  "fuente": "pronostico",
+  "fenomeno": "lluvia",
+  "nivel": 1,
+  "desde": "2026-11-14T00:00:00-03:00",
+  "hasta": "2026-11-14T01:00:00-03:00",
+  "comunas": [
+   1,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10
+  ],
+  "max": {
+   "lluvia_12h": 33.8,
+   "lluvia_1h": 25.7
+  },
+  "prob": {
+   "nivel": 2,
+   "amarillo": 2,
+   "escenarios": 122,
+   "confianza": "baja"
+  }
  }
 ]

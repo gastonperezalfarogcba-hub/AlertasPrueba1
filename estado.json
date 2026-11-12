@@ -327,16 +327,16 @@
  },
  "eventos": {
   "int:lluvia": {
-   "nivel": 2,
+   "nivel": 1,
    "nombre": "Lluvias",
    "ausente": 0,
-   "notificado": "2026-11-12T01:20:23.938624-03:00"
+   "notificado": "2026-11-12T10:20:22.858955-03:00"
   }
  },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-12T09:40:22.284495-03:00",
-  "texto": "✅ FINALIZÓ · Tormentas · por pronóstico\nYa no se prevén condiciones de alerta para la Ciudad."
+  "fecha": "2026-11-12T10:20:22.858834-03:00",
+  "texto": "🟡 ⬇️ BAJA A ALERTA AMARILLA · Lluvias\n📊 Por pronóstico (no oficial) · confianza baja: los escenarios no lo confirman\n🕒 Cuándo: 14/11 00:00 a 14/11 01:00\n📍 Dónde: Comunas 1, 3, 4, 5, 6, 7, 8, 9, 10 (aprox.)\n🌧️ Acumulado hasta 34 mm en 12 h (máx. 25,7 mm en 1 h)\n🧮 WRF-SMN 34 mm 🟡 · Open-Meteo 1 mm ⚪ · más lluvia en Comunas 4, 8, 1 · ⚠️ no coinciden\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-12",
  "tg_offset": 253065130,
