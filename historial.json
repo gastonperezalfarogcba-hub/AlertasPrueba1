@@ -35,5 +35,22 @@
    "escenarios": 122,
    "confianza": "baja"
   }
+ },
+ {
+  "fecha": "2026-11-12T04:30:23.060022-03:00",
+  "aviso": "nueva",
+  "id": "int:tormenta",
+  "fuente": "pronostico",
+  "fenomeno": "tormenta",
+  "nivel": 1,
+  "desde": "2026-11-14T03:00:00-03:00",
+  "hasta": "2026-11-14T04:00:00-03:00",
+  "comunas": [
+   8
+  ],
+  "max": {
+   "granizo": false
+  },
+  "prob": null
  }
 ]
