@@ -440,6 +440,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261112153043_Viento_Llanura_alertas_alertas_4.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_12_1758_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -462,7 +465,7 @@
   "seco_desde": "2026-11-10T22:50:23.108808-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-12T14:00:30.658901-03:00",
+  "calculado": "2026-11-12T15:00:26.036307-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -602,7 +605,7 @@
    },
    "2026-11-16": {
     "lluvia": {
-     "amarillo": 2,
+     "amarillo": 0,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -628,7 +631,7 @@
    },
    "2026-11-17": {
     "lluvia": {
-     "amarillo": 5,
+     "amarillo": 4,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -660,7 +663,7 @@
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 6,
+     "amarillo": 7,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
