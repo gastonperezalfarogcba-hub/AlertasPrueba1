@@ -1,1 +1,39 @@
-[]
+[
+ {
+  "fecha": "2026-11-12T01:20:23.938610-03:00",
+  "aviso": "nueva",
+  "id": "int:lluvia",
+  "fuente": "pronostico",
+  "fenomeno": "lluvia",
+  "nivel": 2,
+  "desde": "2026-11-13T21:00:00-03:00",
+  "hasta": "2026-11-14T01:00:00-03:00",
+  "comunas": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "max": {
+   "lluvia_12h": 49.7,
+   "lluvia_1h": 43.7
+  },
+  "prob": {
+   "nivel": 0,
+   "amarillo": 2,
+   "escenarios": 122,
+   "confianza": "baja"
+  }
+ }
+]

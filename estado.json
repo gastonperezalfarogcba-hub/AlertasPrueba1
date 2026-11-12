@@ -292,11 +292,18 @@
    "caba": false
   }
  },
- "eventos": {},
+ "eventos": {
+  "int:lluvia": {
+   "nivel": 2,
+   "nombre": "Lluvias",
+   "ausente": 0,
+   "notificado": "2026-11-12T01:20:23.938624-03:00"
+  }
+ },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-11T20:00:29.074813-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nViernes 13/11 · 20° / 31°\nSábado 14/11 · 21° / 31° · 💧 41 %\nDomingo 15/11 · 16° / 27°\nLunes 16/11 · 17° / 29° · 💧 35 %\nMartes 17/11 · 19° / 29° · 💧 49 %\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-12T01:20:23.938495-03:00",
+  "texto": "🟠 ALERTA NARANJA · Lluvias\n📊 Por pronóstico (no oficial) · confianza baja: los escenarios no lo confirman\n🕒 Cuándo: mañana 21:00 a 14/11 01:00\n📍 Dónde: Toda la Ciudad\n🌧️ Acumulado hasta 50 mm en 12 h (máx. 43,7 mm en 1 h)\n🧮 WRF-SMN 50 mm 🟠 · Open-Meteo 1 mm ⚪ · más lluvia en Comunas 8, 7, 10 · ⚠️ no coinciden\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-11",
  "tg_offset": 253065130,
