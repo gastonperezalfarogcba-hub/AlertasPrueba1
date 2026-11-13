@@ -510,7 +510,7 @@
   "seco_desde": "2026-11-10T22:50:23.108808-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-12T23:00:24.567162-03:00",
+  "calculado": "2026-11-13T00:00:28.361206-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -519,7 +519,7 @@
   "escenarios": 122,
   "horizonte": {
    "lluvia": {
-    "amarillo": 0,
+    "amarillo": 1,
     "naranja": 0,
     "rojo": 0,
     "escenarios": 122
@@ -544,32 +544,6 @@
    }
   },
   "dias": {
-   "2026-11-12": {
-    "lluvia": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "viento": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "calor": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "frio": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    }
-   },
    "2026-11-13": {
     "lluvia": {
      "amarillo": 0,
@@ -598,7 +572,7 @@
    },
    "2026-11-14": {
     "lluvia": {
-     "amarillo": 0,
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -650,7 +624,7 @@
    },
    "2026-11-16": {
     "lluvia": {
-     "amarillo": 1,
+     "amarillo": 2,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -676,7 +650,7 @@
    },
    "2026-11-17": {
     "lluvia": {
-     "amarillo": 5,
+     "amarillo": 4,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -709,6 +683,32 @@
     },
     "viento": {
      "amarillo": 6,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-19": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
