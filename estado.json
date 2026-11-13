@@ -467,6 +467,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_1036_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_1049_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -479,17 +482,17 @@
  },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-12T21:20:21.933554-03:00",
-  "texto": "🟡 ALERTA AMARILLA · Tormentas\n📊 Por pronóstico (no oficial)\n🕒 Cuándo: 14/11 04:00 a 14/11 07:00\n📍 Dónde: Toda la Ciudad\n⛈️ Tormentas\n\nAbrir las alertas en el tablero"
+  "fecha": "2026-11-13T08:00:46.120710-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nDomingo 15/11 · 17° / 26°\nLunes 16/11 · 20° / 28° · 💧 33 %\nMartes 17/11 · 20° / 27° · 💧 78 %\n   🟡 Tormentas: tormentas (probabilidad 78 %) · Comunas 9, 10, 11, 12, 13, 14, 15\n   confianza baja\nMiércoles 18/11 · 17° / 31°\nJueves 19/11 · 18° / 29° · 💧 48 %\n\nVer la perspectiva en el tablero"
  },
- "resumen_fecha": "2026-11-12",
+ "resumen_fecha": "2026-11-13",
  "tg_offset": 253065130,
  "lluvia": {
   "estado": "seco",
   "seco_desde": "2026-11-10T22:50:23.108808-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-13T07:00:26.259016-03:00",
+  "calculado": "2026-11-13T08:00:42.866546-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -498,7 +501,7 @@
   "escenarios": 122,
   "horizonte": {
    "lluvia": {
-    "amarillo": 1,
+    "amarillo": 0,
     "naranja": 0,
     "rojo": 0,
     "escenarios": 122
@@ -551,7 +554,7 @@
    },
    "2026-11-14": {
     "lluvia": {
-     "amarillo": 1,
+     "amarillo": 0,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -603,7 +606,7 @@
    },
    "2026-11-16": {
     "lluvia": {
-     "amarillo": 2,
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -681,13 +684,13 @@
    },
    "2026-11-19": {
     "lluvia": {
-     "amarillo": 0,
-     "naranja": 0,
+     "amarillo": 2,
+     "naranja": 1,
      "rojo": 0,
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 1,
+     "amarillo": 4,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -707,5 +710,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-12@20"
+ "resumen_turno": "2026-11-13@8"
 }
