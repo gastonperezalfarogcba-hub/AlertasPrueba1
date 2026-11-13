@@ -555,9 +555,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_2207_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_2217_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_2233_cap_es.xml": {
    "caba": false
   },
@@ -584,8 +581,8 @@
  },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-13T14:20:37.416569-03:00",
-  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 12:20.\nInformación, no es una alerta."
+  "fecha": "2026-11-13T20:20:26.186104-03:00",
+  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nDomingo 15/11 · 16° / 28°\nLunes 16/11 · 21° / 29°\nMartes 17/11 · 19° / 28° · 💧 66 %\n   🟡 Tormentas: tormentas (probabilidad 66 %) · Toda la Ciudad\n   confianza baja\nMiércoles 18/11 · 17° / 28°\nJueves 19/11 · 16° / 29° · 💧 46 %\n\nVer la perspectiva en el tablero"
  },
  "resumen_fecha": "2026-11-13",
  "tg_offset": 253065130,
@@ -812,5 +809,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-13@8"
+ "resumen_turno": "2026-11-13@20"
 }
