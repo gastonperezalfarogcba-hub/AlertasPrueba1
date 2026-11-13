@@ -453,9 +453,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261113053707_Viento_Patagonia_alertas_alertas_8.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_0643_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_0709_cap_es.xml": {
    "caba": false
   },
@@ -472,6 +469,9 @@
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_0838_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_0847_cap_es.xml": {
    "caba": false
   }
  },
