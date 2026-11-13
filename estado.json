@@ -499,11 +499,18 @@
    "caba": false
   }
  },
- "eventos": {},
+ "eventos": {
+  "int:tormenta": {
+   "nivel": 1,
+   "nombre": "Tormentas",
+   "ausente": 0,
+   "notificado": "2026-11-12T21:20:21.933683-03:00"
+  }
+ },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-12T20:00:26.261948-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nSábado 14/11 · 20° / 28° · 💧 86 %\nDomingo 15/11 · 19° / 28°\nLunes 16/11 · 21° / 30°\nMartes 17/11 · 19° / 26° · 💧 78 %\n   🟡 Tormentas: tormentas (probabilidad 76 %) · Comunas 12, 13, 14, 15\n   confianza baja\nMiércoles 18/11 · 17° / 27°\n   🟡 Viento: ráfagas de hasta 66 km/h · prob. 9 % · Comunas 12, 13, 14, 15\n   confianza baja\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-12T21:20:21.933554-03:00",
+  "texto": "🟡 ALERTA AMARILLA · Tormentas\n📊 Por pronóstico (no oficial)\n🕒 Cuándo: 14/11 04:00 a 14/11 07:00\n📍 Dónde: Toda la Ciudad\n⛈️ Tormentas\n\nAbrir las alertas en el tablero"
  },
  "resumen_fecha": "2026-11-12",
  "tg_offset": 253065130,
