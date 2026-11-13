@@ -9,9 +9,6 @@
   "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87163_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_1554_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261113152211_Tormenta_Cordillera_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -539,6 +536,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_1736_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_1754_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -561,7 +561,7 @@
   "seco_desde": "2026-11-13T14:20:37.416706-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-13T14:00:40.501803-03:00",
+  "calculado": "2026-11-13T15:00:30.238637-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -675,7 +675,7 @@
    },
    "2026-11-16": {
     "lluvia": {
-     "amarillo": 0,
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -701,13 +701,13 @@
    },
    "2026-11-17": {
     "lluvia": {
-     "amarillo": 6,
+     "amarillo": 7,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 1,
+     "amarillo": 2,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -733,7 +733,7 @@
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 6,
+     "amarillo": 7,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
