@@ -539,6 +539,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_1601_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_1611_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -551,8 +554,8 @@
  },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-13T12:20:23.841473-03:00",
-  "texto": "🌦️ AVISO · Está lloviendo en la Ciudad\nInformación, no es una alerta.\n🛩️ Aeroparque (12:00, observado): lluvia débil\n🛩️ Ezeiza (12:00, observado): lluvia débil\n\nVer el radar en el tablero"
+  "fecha": "2026-11-13T13:20:26.895274-03:00",
+  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n🛩️ Aeroparque (13:00, observado): lluvia débil\n🛩️ San Fernando (13:00, observado): lluvia débil\n🛩️ El Palomar (13:00, observado): lluvia débil\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-13",
  "tg_offset": 253065130,
@@ -560,7 +563,7 @@
   "estado": "lloviendo",
   "seco_desde": "2026-11-10T22:50:23.108808-03:00",
   "desde": "2026-11-13T12:20:23.841582-03:00",
-  "ultimo": "2026-11-13T12:20:23.841587-03:00",
+  "ultimo": "2026-11-13T13:20:26.895388-03:00",
   "secos": 0
  },
  "ensambles": {
