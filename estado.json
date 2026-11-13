@@ -3,9 +3,6 @@
   "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87016_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_12_2055_cap_es.xml": {
-   "caba": false
-  },
   "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87046_cap_es.xml": {
    "caba": false
   },
@@ -518,7 +515,7 @@
   "seco_desde": "2026-11-10T22:50:23.108808-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-12T20:00:25.073328-03:00",
+  "calculado": "2026-11-12T21:00:32.547454-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -658,7 +655,7 @@
    },
    "2026-11-16": {
     "lluvia": {
-     "amarillo": 0,
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -684,13 +681,13 @@
    },
    "2026-11-17": {
     "lluvia": {
-     "amarillo": 4,
+     "amarillo": 5,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 2,
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -716,7 +713,7 @@
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 9,
+     "amarillo": 6,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
