@@ -360,10 +360,13 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261114034700_Tormenta_Patagonia_alertas_alertas_9.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0552_cap_es.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0734_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0734_cap_es.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0754_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0757_cap_es.xml": {
    "caba": false
   }
  },
@@ -371,7 +374,7 @@
   "int:tormenta": {
    "nivel": 1,
    "nombre": "Tormentas",
-   "ausente": 0,
+   "ausente": 1,
    "notificado": "2026-11-12T21:20:21.933683-03:00"
   }
  },
@@ -388,10 +391,10 @@
   "anticipado": "2026-11-14T04:00:29.126399-03:00",
   "desde": "2026-11-14T04:30:28.510990-03:00",
   "ultimo": "2026-11-14T04:30:28.510993-03:00",
-  "secos": 0
+  "secos": 1
  },
  "ensambles": {
-  "calculado": "2026-11-14T04:00:28.156497-03:00",
+  "calculado": "2026-11-14T05:00:41.321703-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
