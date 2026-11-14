@@ -624,12 +624,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261113231130_Tormenta_Patagonia_alertas_alertas_9.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0054_cap_es.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0058_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0112_cap_es.xml": {
    "caba": false
   },
@@ -646,6 +640,9 @@
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0209_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0253_cap_es.xml": {
    "caba": false
   }
  },
@@ -669,7 +666,7 @@
   "seco_desde": "2026-11-13T14:20:37.416706-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-13T23:00:26.662176-03:00",
+  "calculado": "2026-11-14T00:01:21.574348-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -703,32 +700,6 @@
    }
   },
   "dias": {
-   "2026-11-13": {
-    "lluvia": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "viento": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "calor": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "frio": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    }
-   },
    "2026-11-14": {
     "lluvia": {
      "amarillo": 2,
@@ -868,6 +839,32 @@
     },
     "viento": {
      "amarillo": 2,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-20": {
+    "lluvia": {
+     "amarillo": 2,
+     "naranja": 1,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 4,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
