@@ -370,28 +370,17 @@
    "caba": false
   }
  },
- "eventos": {
-  "int:tormenta": {
-   "nivel": 1,
-   "nombre": "Tormentas",
-   "ausente": 1,
-   "notificado": "2026-11-12T21:20:21.933683-03:00"
-  }
- },
+ "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-14T04:30:28.510885-03:00",
-  "texto": "🌦️ AVISO · Lluvia probable en este momento (según el pronóstico, sin confirmar)\nInformación, no es una alerta.\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7\n💧 Intensidad: débil (hasta 0,8 mm/h en Comuna 1)\n⏳ Próximas horas: lluvia hasta las 09 h aprox. · hasta 8 mm más (Comuna 12)\n\nVer el radar en el tablero"
+  "fecha": "2026-11-14T05:20:23.559284-03:00",
+  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 04:30.\nInformación, no es una alerta."
  },
  "resumen_fecha": "2026-11-13",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "lloviendo",
-  "seco_desde": "2026-11-13T14:20:37.416706-03:00",
-  "anticipado": "2026-11-14T04:00:29.126399-03:00",
-  "desde": "2026-11-14T04:30:28.510990-03:00",
-  "ultimo": "2026-11-14T04:30:28.510993-03:00",
-  "secos": 1
+  "estado": "seco",
+  "seco_desde": "2026-11-14T05:20:23.559317-03:00"
  },
  "ensambles": {
   "calculado": "2026-11-14T05:00:41.321703-03:00",
