@@ -6,9 +6,6 @@
   "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87046_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_1157_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_1214_cap_es.xml": {
    "caba": false
   },
@@ -331,17 +328,20 @@
  "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-14T08:00:25.576296-03:00",
-  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nLunes 16/11 · 20° / 30°\nMartes 17/11 · 19° / 29° · 💧 66 %\n   🟡 Tormentas: tormentas (probabilidad 66 %) · Toda la Ciudad\n   confianza media\nMiércoles 18/11 · 17° / 30°\nJueves 19/11 · 17° / 30° · 💧 46 %\nViernes 20/11 · 15° / 25° · 💧 58 %\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-14T11:00:30.659851-03:00",
+  "texto": "🌦️ AVISO · Lluvia probable en este momento (según el pronóstico, sin confirmar)\nInformación, no es una alerta.\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7, 8\n💧 Intensidad: débil (hasta 0,5 mm/h en Comuna 1)\n⏳ Próximas horas: lluvia hasta las 12 h aprox. · hasta 1 mm más (Comuna 1)\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-14",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "seco",
-  "seco_desde": "2026-11-14T05:20:23.559317-03:00"
+  "estado": "lloviendo",
+  "seco_desde": "2026-11-14T05:20:23.559317-03:00",
+  "desde": "2026-11-14T11:00:30.659978-03:00",
+  "ultimo": "2026-11-14T11:00:30.659981-03:00",
+  "secos": 0
  },
  "ensambles": {
-  "calculado": "2026-11-14T10:00:28.624814-03:00",
+  "calculado": "2026-11-14T11:00:29.806683-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
