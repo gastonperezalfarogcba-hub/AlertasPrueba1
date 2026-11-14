@@ -6,9 +6,6 @@
   "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87046_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_2308_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_2340_cap_es.xml": {
    "caba": false
   },
@@ -652,6 +649,9 @@
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0058_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0105_cap_es.xml": {
    "caba": false
   }
  },
