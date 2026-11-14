@@ -12,9 +12,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_2340_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_13_2356_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261113231128_Tormenta_Llanura_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -650,6 +647,12 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0040_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0054_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0058_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -672,7 +675,7 @@
   "seco_desde": "2026-11-13T14:20:37.416706-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-13T21:00:29.702766-03:00",
+  "calculado": "2026-11-13T22:01:21.547630-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
