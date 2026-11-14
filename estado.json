@@ -362,9 +362,6 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0552_cap_es.xml": {
    "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_0627_cap_es.xml": {
-   "caba": false
   }
  },
  "eventos": {
@@ -377,15 +374,18 @@
  },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-14T04:00:29.126262-03:00",
-  "texto": "🌂 AVISO · Se espera lluvia en la próxima hora\nInformación, no es una alerta.\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 13, 14, 15\n💧 Intensidad: débil (hasta 0,7 mm/h en Comuna 1)\n\nVer el radar en el tablero"
+  "fecha": "2026-11-14T04:30:28.510885-03:00",
+  "texto": "🌦️ AVISO · Lluvia probable en este momento (según el pronóstico, sin confirmar)\nInformación, no es una alerta.\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7\n💧 Intensidad: débil (hasta 0,8 mm/h en Comuna 1)\n⏳ Próximas horas: lluvia hasta las 09 h aprox. · hasta 8 mm más (Comuna 12)\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-13",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "anticipado",
+  "estado": "lloviendo",
   "seco_desde": "2026-11-13T14:20:37.416706-03:00",
-  "anticipado": "2026-11-14T04:00:29.126399-03:00"
+  "anticipado": "2026-11-14T04:00:29.126399-03:00",
+  "desde": "2026-11-14T04:30:28.510990-03:00",
+  "ultimo": "2026-11-14T04:30:28.510993-03:00",
+  "secos": 0
  },
  "ensambles": {
   "calculado": "2026-11-14T04:00:28.156497-03:00",
