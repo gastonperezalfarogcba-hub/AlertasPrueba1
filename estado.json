@@ -1,11 +1,5 @@
 {
  "cap_cache": {
-  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87016_cap_es.xml": {
-   "caba": false
-  },
-  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87046_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261114154118_Tormenta_Cordillera_alertas_alertas_1.xml": {
    "caba": false
   },
