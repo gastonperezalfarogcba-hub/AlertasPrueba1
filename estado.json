@@ -318,9 +318,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261114120841_Tormenta_Patagonia_alertas_alertas_9.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_1303_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_14_1429_cap_es.xml": {
    "caba": false
   }
@@ -328,17 +325,14 @@
  "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-14T11:00:30.659851-03:00",
-  "texto": "🌦️ AVISO · Lluvia probable en este momento (según el pronóstico, sin confirmar)\nInformación, no es una alerta.\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7, 8\n💧 Intensidad: débil (hasta 0,5 mm/h en Comuna 1)\n⏳ Próximas horas: lluvia hasta las 12 h aprox. · hasta 1 mm más (Comuna 1)\n\nVer el radar en el tablero"
+  "fecha": "2026-11-14T12:10:21.813805-03:00",
+  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 11:00.\nInformación, no es una alerta."
  },
  "resumen_fecha": "2026-11-14",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "lloviendo",
-  "seco_desde": "2026-11-14T05:20:23.559317-03:00",
-  "desde": "2026-11-14T11:00:30.659978-03:00",
-  "ultimo": "2026-11-14T11:00:30.659981-03:00",
-  "secos": 1
+  "estado": "seco",
+  "seco_desde": "2026-11-14T12:10:21.813931-03:00"
  },
  "ensambles": {
   "calculado": "2026-11-14T12:00:25.951059-03:00",
