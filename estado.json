@@ -308,7 +308,7 @@
   "int:tormenta": {
    "nivel": 1,
    "nombre": "Tormentas",
-   "ausente": 0,
+   "ausente": 1,
    "notificado": "2026-11-15T09:50:21.073057-03:00"
   }
  },
