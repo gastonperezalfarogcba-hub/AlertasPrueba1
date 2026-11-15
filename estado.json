@@ -302,20 +302,16 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_15_1933_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_15_1952_cap_es.xml": {
+   "caba": false
   }
  },
- "eventos": {
-  "int:tormenta": {
-   "nivel": 1,
-   "nombre": "Tormentas",
-   "ausente": 1,
-   "notificado": "2026-11-15T09:50:21.073057-03:00"
-  }
- },
+ "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-15T09:50:21.072932-03:00",
-  "texto": "🟡 ALERTA AMARILLA · Tormentas\n📊 Por pronóstico (no oficial)\n🕒 Cuándo: 17/11 04:00 a 17/11 05:00\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7 (aprox.)\n⛈️ Tormentas\n\nAbrir las alertas en el tablero"
+  "fecha": "2026-11-15T17:00:30.081522-03:00",
+  "texto": "✅ FINALIZÓ · Tormentas · por pronóstico\nYa no se prevén condiciones de alerta para la Ciudad."
  },
  "resumen_fecha": "2026-11-15",
  "tg_offset": 253065130,
@@ -324,7 +320,7 @@
   "seco_desde": "2026-11-14T12:10:21.813931-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-15T16:00:39.865442-03:00",
+  "calculado": "2026-11-15T17:00:29.162600-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
