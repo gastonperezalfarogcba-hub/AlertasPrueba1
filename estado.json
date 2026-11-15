@@ -301,11 +301,18 @@
    "caba": false
   }
  },
- "eventos": {},
+ "eventos": {
+  "int:tormenta": {
+   "nivel": 1,
+   "nombre": "Tormentas",
+   "ausente": 0,
+   "notificado": "2026-11-15T09:50:21.073057-03:00"
+  }
+ },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-15T08:00:35.566143-03:00",
-  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nMartes 17/11 · 19° / 27° · 💧 66 %\n   🟡 Tormentas: tormentas (probabilidad 66 %) · Comunas 1, 2, 3, 4, 5, 6, 7\n   confianza media\nMiércoles 18/11 · 18° / 29°\nJueves 19/11 · 17° / 28° · 💧 46 %\nViernes 20/11 · 18° / 28° · 💧 58 %\nSábado 21/11 · 16° / 28°\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-15T09:50:21.072932-03:00",
+  "texto": "🟡 ALERTA AMARILLA · Tormentas\n📊 Por pronóstico (no oficial)\n🕒 Cuándo: 17/11 04:00 a 17/11 05:00\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7 (aprox.)\n⛈️ Tormentas\n\nAbrir las alertas en el tablero"
  },
  "resumen_fecha": "2026-11-15",
  "tg_offset": 253065130,
