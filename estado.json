@@ -580,11 +580,18 @@
    "caba": false
   }
  },
- "eventos": {},
+ "eventos": {
+  "int:tormenta": {
+   "nivel": 1,
+   "nombre": "Tormentas",
+   "ausente": 0,
+   "notificado": "2026-11-15T22:40:32.507277-03:00"
+  }
+ },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-15T20:01:47.423971-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nMartes 17/11 · 20° / 28° · 💧 66 %\nMiércoles 18/11 · 17° / 29°\nJueves 19/11 · 17° / 31° · 💧 46 %\nViernes 20/11 · 17° / 28° · 💧 58 %\nSábado 21/11 · 16° / 27°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-15T22:40:32.507149-03:00",
+  "texto": "🟡 ALERTA AMARILLA · Tormentas\n📊 Por pronóstico (no oficial)\n🕒 Cuándo: 17/11 02:00 a 17/11 07:00\n📍 Dónde: Toda la Ciudad\n⛈️ Tormentas\n\nAbrir las alertas en el tablero"
  },
  "resumen_fecha": "2026-11-15",
  "tg_offset": 253065130,
