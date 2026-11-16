@@ -597,7 +597,7 @@
   "seco_desde": "2026-11-14T12:10:21.813931-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-16T03:00:26.010961-03:00",
+  "calculado": "2026-11-16T04:00:33.550789-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -606,13 +606,13 @@
   "escenarios": 122,
   "horizonte": {
    "lluvia": {
-    "amarillo": 0,
+    "amarillo": 2,
     "naranja": 0,
     "rojo": 0,
     "escenarios": 122
    },
    "viento": {
-    "amarillo": 1,
+    "amarillo": 0,
     "naranja": 0,
     "rojo": 0,
     "escenarios": 82
@@ -659,13 +659,13 @@
    },
    "2026-11-17": {
     "lluvia": {
-     "amarillo": 0,
+     "amarillo": 4,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 1,
+     "amarillo": 0,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -691,7 +691,7 @@
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 6,
+     "amarillo": 0,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -737,8 +737,8 @@
    },
    "2026-11-20": {
     "lluvia": {
-     "amarillo": 2,
-     "naranja": 1,
+     "amarillo": 0,
+     "naranja": 0,
      "rojo": 0,
      "escenarios": 82
     },
