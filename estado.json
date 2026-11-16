@@ -596,6 +596,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_16_1649_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_16_1656_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -618,7 +621,7 @@
   "seco_desde": "2026-11-14T12:10:21.813931-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-16T13:00:25.684172-03:00",
+  "calculado": "2026-11-16T14:00:49.766585-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
