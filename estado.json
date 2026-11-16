@@ -592,11 +592,18 @@
    "caba": false
   }
  },
- "eventos": {},
+ "eventos": {
+  "int:tormenta": {
+   "nivel": 1,
+   "nombre": "Tormentas",
+   "ausente": 0,
+   "notificado": "2026-11-16T11:00:37.405569-03:00"
+  }
+ },
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-16T08:10:33.515511-03:00",
-  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nMiércoles 18/11 · 17° / 28° · 💧 45 %\nJueves 19/11 · 17° / 29°\nViernes 20/11 · 17° / 28° · 💧 33 %\nSábado 21/11 · 16° / 29°\nDomingo 22/11 · 17° / 26° · 💧 32 %\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-16T11:00:37.405422-03:00",
+  "texto": "🟡 ALERTA AMARILLA · Tormentas\n📊 Por pronóstico (no oficial)\n🕒 Cuándo: mañana 02:00 a mañana 07:00\n📍 Dónde: Toda la Ciudad\n⛈️ Tormentas\n\nAbrir las alertas en el tablero"
  },
  "resumen_fecha": "2026-11-16",
  "tg_offset": 253065130,
@@ -605,7 +612,7 @@
   "seco_desde": "2026-11-14T12:10:21.813931-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-16T10:01:09.394971-03:00",
+  "calculado": "2026-11-16T11:00:30.800409-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
