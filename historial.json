@@ -192,5 +192,11 @@
    "granizo": false
   },
   "prob": null
+ },
+ {
+  "fecha": "2026-11-16T05:10:27.146621-03:00",
+  "aviso": "fin",
+  "id": "int:tormenta",
+  "nivel": 0
  }
 ]

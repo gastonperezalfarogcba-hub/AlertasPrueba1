@@ -577,18 +577,11 @@
    "caba": false
   }
  },
- "eventos": {
-  "int:tormenta": {
-   "nivel": 1,
-   "nombre": "Tormentas",
-   "ausente": 1,
-   "notificado": "2026-11-15T22:40:32.507277-03:00"
-  }
- },
+ "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-15T22:40:32.507149-03:00",
-  "texto": "🟡 ALERTA AMARILLA · Tormentas\n📊 Por pronóstico (no oficial)\n🕒 Cuándo: 17/11 02:00 a 17/11 07:00\n📍 Dónde: Toda la Ciudad\n⛈️ Tormentas\n\nAbrir las alertas en el tablero"
+  "fecha": "2026-11-16T05:10:27.146505-03:00",
+  "texto": "✅ FINALIZÓ · Tormentas · por pronóstico\nYa no se prevén condiciones de alerta para la Ciudad."
  },
  "resumen_fecha": "2026-11-15",
  "tg_offset": 253065130,
