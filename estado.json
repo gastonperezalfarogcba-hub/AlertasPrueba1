@@ -478,10 +478,10 @@
  "eventos": {},
  "seguimiento": {},
  "ultimo_envio": {
-  "fecha": "2026-11-16T05:10:27.146505-03:00",
-  "texto": "✅ FINALIZÓ · Tormentas · por pronóstico\nYa no se prevén condiciones de alerta para la Ciudad."
+  "fecha": "2026-11-16T08:10:33.515511-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nMiércoles 18/11 · 17° / 28° · 💧 45 %\nJueves 19/11 · 17° / 29°\nViernes 20/11 · 17° / 28° · 💧 33 %\nSábado 21/11 · 16° / 29°\nDomingo 22/11 · 17° / 26° · 💧 32 %\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
  },
- "resumen_fecha": "2026-11-15",
+ "resumen_fecha": "2026-11-16",
  "tg_offset": 253065130,
  "lluvia": {
   "estado": "seco",
@@ -706,5 +706,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-15@20"
+ "resumen_turno": "2026-11-16@8"
 }
