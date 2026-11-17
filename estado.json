@@ -323,6 +323,12 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_1025_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_1101_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_1107_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -337,16 +343,16 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-17T07:10:23.188673-03:00",
-  "texto": "📡 Seguimiento finalizado\nYa no hay alertas vigentes para la Ciudad. Se dejan de enviar los partes cada 30 minutos."
+  "fecha": "2026-11-17T08:10:25.011323-03:00",
+  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n📍 Dónde: Toda la Ciudad\n💧 Intensidad: débil (hasta 1,2 mm/h en Comuna 9)\n⏳ Próximas horas: lluvia hasta las 11 h aprox. · hasta 8 mm más (Comuna 1)\n\nVer el radar en el tablero"
  },
- "resumen_fecha": "2026-11-16",
+ "resumen_fecha": "2026-11-17",
  "tg_offset": 253065130,
  "lluvia": {
   "estado": "lloviendo",
   "seco_desde": "2026-11-14T12:10:21.813931-03:00",
   "desde": "2026-11-17T01:10:21.083700-03:00",
-  "ultimo": "2026-11-17T07:00:51.003005-03:00",
+  "ultimo": "2026-11-17T08:10:25.011359-03:00",
   "secos": 0
  },
  "ensambles": {
@@ -568,5 +574,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-16@20"
+ "resumen_turno": "2026-11-17@8"
 }
