@@ -521,7 +521,7 @@
   "secos": 0
  },
  "ensambles": {
-  "calculado": "2026-11-17T05:01:10.083085-03:00",
+  "calculado": "2026-11-17T06:00:24.706778-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -530,7 +530,7 @@
   "escenarios": 122,
   "horizonte": {
    "lluvia": {
-    "amarillo": 1,
+    "amarillo": 0,
     "naranja": 0,
     "rojo": 0,
     "escenarios": 122
