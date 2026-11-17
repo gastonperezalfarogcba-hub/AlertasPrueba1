@@ -294,5 +294,11 @@
   "aviso": "fin",
   "id": "smn:tormentas",
   "nivel": 0
+ },
+ {
+  "fecha": "2026-11-17T16:10:23.271774-03:00",
+  "aviso": "fin",
+  "id": "int:tormenta",
+  "nivel": 0
  }
 ]
