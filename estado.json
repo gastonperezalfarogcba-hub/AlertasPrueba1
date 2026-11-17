@@ -1,11 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_1101_cap_es.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_1107_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_1144_cap_es.xml": {
    "caba": false
   },
@@ -322,6 +316,9 @@
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261117122744_Lluvia_Patagonia_alertas_alertas_3.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_1304_cap_es.xml": {
    "caba": false
   }
  },
