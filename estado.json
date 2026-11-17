@@ -334,17 +334,14 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-17T08:10:25.011323-03:00",
-  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n📍 Dónde: Toda la Ciudad\n💧 Intensidad: débil (hasta 1,2 mm/h en Comuna 9)\n⏳ Próximas horas: lluvia hasta las 11 h aprox. · hasta 8 mm más (Comuna 1)\n\nVer el radar en el tablero"
+  "fecha": "2026-11-17T10:30:22.180752-03:00",
+  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 01:10.\nInformación, no es una alerta."
  },
  "resumen_fecha": "2026-11-17",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "lloviendo",
-  "seco_desde": "2026-11-14T12:10:21.813931-03:00",
-  "desde": "2026-11-17T01:10:21.083700-03:00",
-  "ultimo": "2026-11-17T08:10:25.011359-03:00",
-  "secos": 1
+  "estado": "seco",
+  "seco_desde": "2026-11-17T10:30:22.180873-03:00"
  },
  "ensambles": {
   "calculado": "2026-11-17T10:01:13.303731-03:00",
