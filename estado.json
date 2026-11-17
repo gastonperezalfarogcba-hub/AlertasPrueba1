@@ -498,15 +498,15 @@
   "activo": true,
   "motivo": "Alerta amarilla del SMN por Tormentas (hasta hoy 08:59)",
   "ausente": 0,
-  "ultimo": "2026-11-17T04:50:24.993514-03:00",
+  "ultimo": "2026-11-17T05:20:32.671145-03:00",
   "prev": {
-   "lluvia_max": 6.4,
-   "rafaga_max": 24.8
+   "lluvia_max": 8.8,
+   "rafaga_max": 37.1
   }
  },
  "ultimo_envio": {
-  "fecha": "2026-11-17T04:50:24.993375-03:00",
-  "texto": "📡 Seguimiento · Alerta amarilla del SMN por Tormentas (hasta hoy 08:59)\n04:50 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: lluvia en 15 de 15 comunas (máx. 3,3 mm en Comuna 12) · ráfagas hasta 24 km/h\n🌧️ Lluvia por comuna (WRF · Open-Meteo):\n   • Comuna 1: 1 · 5 mm · pico 07 h\n   • Comuna 3: 1 · 5 mm · pico 07 h\n   • Comuna 2: 1 · 5 mm · pico 07 h\n   • Comuna 4: 1 · 5 mm · pico 07 h\n   • Otras 11 comunas: entre 0 y 1 mm (WRF-SMN)\n💨 Viento: ráfagas de hasta 25 km/h (sin alerta)\n🌡️ 20° ahora · mínima 19°\n\nHora por hora (máx. en la Ciudad):\n04h 🌧️ 3,3 mm · 💨 24 km/h · 15 com.\n05h ☁️ 0,4 mm · 💨 18 km/h\n06h 🌧️ 1,8 mm · 💨 25 km/h · 15 com.\n07h 🌧️ 1,4 mm · 💨 18 km/h · 15 com.\n08h ☁️ 0,2 mm · 💨 20 km/h\n09h ☁️ 0,1 mm · 💨 24 km/h\n\nVer la lluvia por comuna en el tablero"
+  "fecha": "2026-11-17T05:20:32.671024-03:00",
+  "texto": "📡 Seguimiento · Alerta amarilla del SMN por Tormentas (hasta hoy 08:59)\n05:20 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: lluvia en 15 de 15 comunas (máx. 1,1 mm en Comuna 1) · ráfagas hasta 22 km/h\n🌧️ Lluvia por comuna (WRF · Open-Meteo):\n   • Comuna 1: 1 · 9 mm · pico 07 h\n   • Comuna 3: 1 · 9 mm · pico 07 h\n   • Comuna 2: 1 · 9 mm · pico 07 h\n   • Comuna 4: 1 · 9 mm · pico 07 h\n   • Otras 11 comunas: entre 0 y 1 mm (WRF-SMN)\n💨 Viento: ráfagas de hasta 37 km/h (sin alerta)\n⛈️ Tormentas: probables entre las 09 y las 11 h · Comunas 1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15\n🌡️ 20° ahora · mínima 19°\n📈 Desde el parte anterior: ⬆️ ráfagas más fuertes (+12 km/h)\n\nHora por hora (máx. en la Ciudad):\n05h 🌧️ 1,1 mm · 💨 22 km/h · 15 com.\n06h 🌧️ 0,6 mm · 💨 21 km/h · 1 com.\n07h 🌧️ 0,5 mm · 💨 30 km/h · 1 com.\n08h 🌧️ 1,2 mm · 💨 36 km/h · 15 com.\n09h ⛈️ 4,5 mm · 💨 35 km/h · 15 com.\n10h ⛈️ 2,2 mm · 💨 37 km/h · 11 com.\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-16",
  "tg_offset": 253065130,
