@@ -464,37 +464,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261117031226_Tormenta_Patagonia_alertas_alertas_9.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0405_cap_es.xml": {
-   "caba": true,
-   "comunas": [
-    4,
-    5,
-    6,
-    7,
-    8,
-    9,
-    10,
-    11,
-    12,
-    15
-   ],
-   "identificador": "urn:oid:2.49.0.1.32.0.2026.11.17.04.05.00",
-   "tipo": "Alert",
-   "enviado": "2026-11-17T04:05:00-03:00",
-   "evento": "TORMENTAS FUERTES",
-   "severidad": "Severe",
-   "urgencia": "Immediate",
-   "certeza": "Observed",
-   "desde": "2026-11-17T04:05:00-03:00",
-   "hasta": "2026-11-17T06:05:00-03:00",
-   "titulo": "AVISO NARANJA POR TORMENTAS FUERTES CON LLUVIAS INTENSAS",
-   "descripcion": "TORMENTAS FUERTES CON LLUVIAS INTENSAS",
-   "instrucciones": "Permanecé en construcciones cerradas como casas, escuelas o edificios públicos. Desconectá los electrodomésticos y cortá el suministro eléctrico si ingresa agua. Alejate de zonas inundables y no ingreses en calles anegadas. Mantenete alejado de artefactos eléctricos y evitá el uso de teléfonos con cable. Si estás al aire libre, buscá refugio inmediato en un edificio, casa o vehículo cerrado. Para minimizar el riesgo de ser alcanzado por un rayo, no permanezcas en playas, ríos, lagunas o piletas.",
-   "web": "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0405_cap_es.xml",
-   "areas": [
-    "BUENOS AIRES: ALMIRANTE BROWN - AVELLANEDA - BERAZATEGUI - BERISSO - BRANDSEN - CANUELAS - ENSENADA - ESCOBAR - ESTEBAN ECHEVERRIA - EZEIZA - FLORENCIO VARELA - GRAL BELGRANO - GRAL LAS HERAS - GRAL RODRIGUEZ - GRAL SAN MARTIN - HURLINGHAM - ITUZAINGO - JOSE C.  PAZ - LA MATANZA - LA PLATA - LANUS - LOMAS DE ZAMORA - LUJAN - MALVINAS ARGENTINA - MARCOS PAZ - MERCEDES - MERLO - MORENO - MORON - NAVARRO - PILAR - PTE PERON - QUILMES - SAN MIGUEL - SAN VICENTE - TIGRE - TRES DE FEBRERO - VICENTE LOPEZ. CAPITAL FEDERAL: CABA."
-   ]
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0424_cap_es.xml": {
    "caba": false
   },
@@ -505,6 +474,12 @@
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0527_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0600_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0604_cap_es.xml": {
    "caba": false
   }
  },
@@ -524,13 +499,13 @@
   "smn:tormentas fuertes": {
    "nivel": 2,
    "nombre": "AVISO NARANJA POR TORMENTAS FUERTES CON LLUVIAS INTENSAS",
-   "ausente": 0,
+   "ausente": 1,
    "notificado": "2026-11-17T01:10:20.596713-03:00"
   }
  },
  "seguimiento": {
   "activo": true,
-  "motivo": "Alerta naranja del SMN por AVISO NARANJA POR TORMENTAS FUERTES CON LLUVIAS INTENSAS (hasta hoy 06:05)",
+  "motivo": "Alerta amarilla del SMN por Tormentas (hasta hoy 08:59)",
   "ausente": 0,
   "ultimo": "2026-11-17T03:00:32.334686-03:00",
   "prev": {
