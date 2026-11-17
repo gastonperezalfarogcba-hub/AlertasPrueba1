@@ -282,5 +282,11 @@
   ],
   "max": null,
   "prob": null
+ },
+ {
+  "fecha": "2026-11-17T03:20:19.353588-03:00",
+  "aviso": "fin",
+  "id": "smn:tormentas fuertes",
+  "nivel": 0
  }
 ]
