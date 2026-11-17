@@ -258,8 +258,8 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-17T16:10:23.271654-03:00",
-  "texto": "✅ FINALIZÓ · Tormentas · por pronóstico\nYa no se prevén condiciones de alerta para la Ciudad."
+  "fecha": "2026-11-17T20:10:21.413656-03:00",
+  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nJueves 19/11 · 16° / 27°\nViernes 20/11 · 18° / 29° · 💧 63 %\n   🟡 Tormentas: tormentas (probabilidad 63 %) · Comunas 12, 13, 14, 15\n   confianza media\nSábado 21/11 · 15° / 28° · 💧 48 %\nDomingo 22/11 · 15° / 25° · 💧 31 %\nLunes 23/11 · 15° / 28°\n\nVer la perspectiva en el tablero"
  },
  "resumen_fecha": "2026-11-17",
  "tg_offset": 253065130,
@@ -486,5 +486,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-17@8"
+ "resumen_turno": "2026-11-17@20"
 }
