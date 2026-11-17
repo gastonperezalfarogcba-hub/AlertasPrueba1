@@ -1,14 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0222_cap_es.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0226_cap_es.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0229_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0234_cap_es.xml": {
    "caba": false
   },
@@ -515,6 +506,9 @@
    "areas": [
     "BUENOS AIRES: ALMIRANTE BROWN - AVELLANEDA - BERAZATEGUI - BERISSO - BRANDSEN - CANUELAS - ENSENADA - ESCOBAR - ESTEBAN ECHEVERRIA - EZEIZA - FLORENCIO VARELA - GRAL BELGRANO - GRAL LAS HERAS - GRAL RODRIGUEZ - GRAL SAN MARTIN - HURLINGHAM - ITUZAINGO - JOSE C.  PAZ - LA MATANZA - LA PLATA - LANUS - LOMAS DE ZAMORA - LUJAN - MALVINAS ARGENTINA - MARCOS PAZ - MERCEDES - MERLO - MORENO - MORON - NAVARRO - PILAR - PTE PERON - QUILMES - SAN MIGUEL - SAN VICENTE - TIGRE - TRES DE FEBRERO - VICENTE LOPEZ. CAPITAL FEDERAL: CABA."
    ]
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0424_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
