@@ -334,27 +334,14 @@
    "nombre": "Tormentas",
    "ausente": 0,
    "notificado": "2026-11-16T11:00:37.405569-03:00"
-  },
-  "smn:tormentas": {
-   "nivel": 1,
-   "nombre": "Tormentas",
-   "ausente": 1,
-   "notificado": "2026-11-16T18:01:34.178996-03:00"
   }
  },
  "seguimiento": {
-  "activo": true,
-  "motivo": "Alerta amarilla del SMN por Tormentas (hasta hoy 08:59)",
-  "ausente": 1,
-  "ultimo": "2026-11-17T05:50:19.203796-03:00",
-  "prev": {
-   "lluvia_max": 8.8,
-   "rafaga_max": 37.1
-  }
+  "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-17T05:50:19.203677-03:00",
-  "texto": "📡 Seguimiento · Alerta amarilla del SMN por Tormentas (hasta hoy 08:59)\n05:50 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: lluvia en 15 de 15 comunas (máx. 1,1 mm en Comuna 1) · ráfagas hasta 22 km/h\n🌧️ Lluvia por comuna (WRF · Open-Meteo):\n   • Comuna 1: 1 · 9 mm · pico 07 h\n   • Comuna 3: 1 · 9 mm · pico 07 h\n   • Comuna 2: 1 · 9 mm · pico 07 h\n   • Comuna 4: 1 · 9 mm · pico 07 h\n   • Otras 11 comunas: entre 0 y 1 mm (WRF-SMN)\n💨 Viento: ráfagas de hasta 37 km/h (sin alerta)\n⛈️ Tormentas: probables entre las 09 y las 11 h · Comunas 1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15\n🌡️ 20° ahora · mínima 19°\n\nHora por hora (máx. en la Ciudad):\n05h 🌧️ 1,1 mm · 💨 22 km/h · 15 com.\n06h 🌧️ 0,6 mm · 💨 21 km/h · 1 com.\n07h 🌧️ 0,5 mm · 💨 30 km/h · 1 com.\n08h 🌧️ 1,2 mm · 💨 36 km/h · 15 com.\n09h ⛈️ 4,5 mm · 💨 35 km/h · 15 com.\n10h ⛈️ 2,2 mm · 💨 37 km/h · 11 com.\n\nVer la lluvia por comuna en el tablero"
+  "fecha": "2026-11-17T07:10:23.188673-03:00",
+  "texto": "📡 Seguimiento finalizado\nYa no hay alertas vigentes para la Ciudad. Se dejan de enviar los partes cada 30 minutos."
  },
  "resumen_fecha": "2026-11-16",
  "tg_offset": 253065130,
@@ -363,7 +350,7 @@
   "seco_desde": "2026-11-14T12:10:21.813931-03:00",
   "desde": "2026-11-17T01:10:21.083700-03:00",
   "ultimo": "2026-11-17T07:00:51.003005-03:00",
-  "secos": 0
+  "secos": 1
  },
  "ensambles": {
   "calculado": "2026-11-17T07:00:26.093033-03:00",
