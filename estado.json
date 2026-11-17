@@ -1,11 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0103_cap_es.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0108_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0133_cap_es.xml": {
    "caba": false
   },
@@ -664,27 +658,32 @@
   }
  },
  "eventos": {
-  "smn:tormentas": {
-   "nivel": 1,
-   "nombre": "Tormentas",
-   "ausente": 0,
-   "notificado": "2026-11-16T18:01:34.178996-03:00"
-  },
   "int:tormenta": {
    "nivel": 1,
    "nombre": "Tormentas",
    "ausente": 0,
    "notificado": "2026-11-16T11:00:37.405569-03:00"
+  },
+  "smn:tormentas": {
+   "nivel": 1,
+   "nombre": "Tormentas",
+   "ausente": 0,
+   "notificado": "2026-11-16T18:01:34.178996-03:00"
   }
  },
  "seguimiento": {
   "activo": true,
   "motivo": "Alerta amarilla del SMN por Tormentas (hasta hoy 08:59)",
-  "ausente": 0
+  "ausente": 0,
+  "ultimo": "2026-11-17T00:10:18.732800-03:00",
+  "prev": {
+   "lluvia_max": 8.2,
+   "rafaga_max": 29.5
+  }
  },
  "ultimo_envio": {
-  "fecha": "2026-11-16T20:00:28.579477-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nMiércoles 18/11 · 17° / 28° · 💧 54 %\n   🟡 Tormentas: tormentas (probabilidad 54 %) · Comuna 8\n   confianza media\nJueves 19/11 · 16° / 28°\nViernes 20/11 · 18° / 29° · 💧 48 %\nSábado 21/11 · 16° / 28° · 💧 50 %\nDomingo 22/11 · 15° / 27° · 💧 53 %\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-17T00:10:18.732678-03:00",
+  "texto": "📡 Seguimiento · Alerta amarilla del SMN por Tormentas (hasta hoy 08:59)\n00:10 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: sin lluvia significativa · ráfagas hasta 22 km/h\n🌧️ Lluvia por comuna (WRF · Open-Meteo):\n   • Comuna 9: 7 · 8 mm · pico 03 h\n   • Comuna 11: 6 · 8 mm · pico 03 h\n   • Comuna 10: 6 · 8 mm · pico 03 h\n   • Comuna 8: 5 · 8 mm · pico 03 h\n   • Otras 11 comunas: entre 2 y 4 mm (WRF-SMN)\n💨 Viento: ráfagas de hasta 30 km/h (sin alerta)\n⛈️ Tormentas: probables 03 h · Toda la Ciudad\n🌡️ 23° ahora · mínima 19°\n\nHora por hora (máx. en la Ciudad):\n00h ☁️ 0,2 mm · 💨 22 km/h\n01h ☁️ 0,0 mm · 💨 18 km/h\n02h ☁️ 0,0 mm · 💨 14 km/h\n03h ⛈️ 6,0 mm · 💨 30 km/h · 15 com.\n04h 🌧️ 3,3 mm · 💨 24 km/h · 15 com.\n05h ☁️ 0,4 mm · 💨 18 km/h\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-16",
  "tg_offset": 253065130,
