@@ -1,8 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_0355_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261117031225_Tormenta_Llanura_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -512,6 +509,12 @@
   }
  },
  "eventos": {
+  "int:tormenta": {
+   "nivel": 1,
+   "nombre": "Tormentas",
+   "ausente": 0,
+   "notificado": "2026-11-16T11:00:37.405569-03:00"
+  },
   "smn:tormentas": {
    "nivel": 1,
    "nombre": "Tormentas",
@@ -523,27 +526,21 @@
    "nombre": "AVISO NARANJA POR TORMENTAS FUERTES CON LLUVIAS INTENSAS",
    "ausente": 0,
    "notificado": "2026-11-17T01:10:20.596713-03:00"
-  },
-  "int:tormenta": {
-   "nivel": 1,
-   "nombre": "Tormentas",
-   "ausente": 0,
-   "notificado": "2026-11-16T11:00:37.405569-03:00"
   }
  },
  "seguimiento": {
   "activo": true,
   "motivo": "Alerta naranja del SMN por AVISO NARANJA POR TORMENTAS FUERTES CON LLUVIAS INTENSAS (hasta hoy 06:05)",
   "ausente": 0,
-  "ultimo": "2026-11-17T02:30:25.379788-03:00",
+  "ultimo": "2026-11-17T03:00:32.334686-03:00",
   "prev": {
-   "lluvia_max": 11.1,
+   "lluvia_max": 11.3,
    "rafaga_max": 29.5
   }
  },
  "ultimo_envio": {
-  "fecha": "2026-11-17T02:30:25.379658-03:00",
-  "texto": "📡 Seguimiento · Alerta naranja del SMN por AVISO NARANJA POR TORMENTAS FUERTES CON LLUVIAS INTENSAS (hasta hoy 06:05)\n02:30 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: sin lluvia significativa · ráfagas hasta 14 km/h\n🌧️ Lluvia por comuna (WRF · Open-Meteo):\n   • Comuna 3: 1 · 8 mm · pico 07 h\n   • Comuna 1: 1 · 8 mm · pico 07 h\n   • Comuna 2: 1 · 8 mm · pico 07 h\n   • Comuna 4: 1 · 8 mm · pico 07 h\n   • Otras 11 comunas: entre 0 y 1 mm (WRF-SMN)\n💨 Viento: ráfagas de hasta 30 km/h (sin alerta)\n⛈️ Tormentas: probables 03 h · Toda la Ciudad\n🌡️ 22° ahora · mínima 19°\n\nHora por hora (máx. en la Ciudad):\n02h ☁️ 0,0 mm · 💨 14 km/h\n03h ⛈️ 6,0 mm · 💨 30 km/h · 15 com.\n04h 🌧️ 3,3 mm · 💨 24 km/h · 15 com.\n05h ☁️ 0,4 mm · 💨 18 km/h\n06h 🌧️ 1,8 mm · 💨 25 km/h · 15 com.\n07h 🌧️ 1,4 mm · 💨 18 km/h · 15 com.\n\nVer la lluvia por comuna en el tablero"
+  "fecha": "2026-11-17T03:00:32.334532-03:00",
+  "texto": "📡 Seguimiento · Alerta naranja del SMN por AVISO NARANJA POR TORMENTAS FUERTES CON LLUVIAS INTENSAS (hasta hoy 06:05)\n03:00 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: lluvia en 15 de 15 comunas (máx. 6,0 mm en Comuna 8) · ráfagas hasta 30 km/h\n🌧️ Lluvia por comuna (WRF · Open-Meteo):\n   • Comuna 1: 1 · 8 mm · pico 07 h\n   • Comuna 3: 1 · 8 mm · pico 07 h\n   • Comuna 2: 1 · 8 mm · pico 07 h\n   • Comuna 4: 1 · 8 mm · pico 07 h\n   • Otras 11 comunas: entre 0 y 1 mm (WRF-SMN)\n💨 Viento: ráfagas de hasta 30 km/h (sin alerta)\n⛈️ Tormentas: probables 03 h · Toda la Ciudad\n🌡️ 20° ahora · mínima 19°\n\nHora por hora (máx. en la Ciudad):\n03h ⛈️ 6,0 mm · 💨 30 km/h · 15 com.\n04h 🌧️ 3,3 mm · 💨 24 km/h · 15 com.\n05h ☁️ 0,4 mm · 💨 18 km/h\n06h 🌧️ 1,8 mm · 💨 25 km/h · 15 com.\n07h 🌧️ 1,4 mm · 💨 18 km/h · 15 com.\n08h ☁️ 0,2 mm · 💨 20 km/h\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-16",
  "tg_offset": 253065130,
@@ -555,7 +552,7 @@
   "secos": 0
  },
  "ensambles": {
-  "calculado": "2026-11-17T02:00:23.885708-03:00",
+  "calculado": "2026-11-17T03:00:25.877175-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -721,7 +718,7 @@
    },
    "2026-11-22": {
     "lluvia": {
-     "amarillo": 2,
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
