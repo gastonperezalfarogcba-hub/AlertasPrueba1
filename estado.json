@@ -326,6 +326,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_1144_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_17_1149_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -353,7 +356,7 @@
   "secos": 0
  },
  "ensambles": {
-  "calculado": "2026-11-17T08:01:19.764811-03:00",
+  "calculado": "2026-11-17T09:00:39.439291-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -368,7 +371,7 @@
     "escenarios": 122
    },
    "viento": {
-    "amarillo": 1,
+    "amarillo": 0,
     "naranja": 0,
     "rojo": 0,
     "escenarios": 82
@@ -389,13 +392,13 @@
   "dias": {
    "2026-11-17": {
     "lluvia": {
-     "amarillo": 1,
-     "naranja": 0,
+     "amarillo": 11,
+     "naranja": 2,
      "rojo": 0,
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 1,
+     "amarillo": 0,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -519,7 +522,7 @@
    },
    "2026-11-22": {
     "lluvia": {
-     "amarillo": 1,
+     "amarillo": 2,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
