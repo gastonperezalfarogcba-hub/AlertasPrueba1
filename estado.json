@@ -268,7 +268,7 @@
   "seco_desde": "2026-11-17T10:30:22.180873-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-17T20:01:10.050456-03:00",
+  "calculado": "2026-11-17T21:00:26.677059-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -434,7 +434,7 @@
    },
    "2026-11-22": {
     "lluvia": {
-     "amarillo": 1,
+     "amarillo": 2,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
