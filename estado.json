@@ -1,8 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_0923_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261118091633_Tormenta_Llanura_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -328,9 +325,6 @@
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261118091636_Zonda_Cordillera_alertas_alertas_1.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1024_cap_es.xml": {
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1051_cap_es.xml": {
