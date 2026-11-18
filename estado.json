@@ -370,8 +370,8 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-18T16:20:23.445705-03:00",
-  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 12:20.\nInformación, no es una alerta."
+  "fecha": "2026-11-18T20:10:30.682682-03:00",
+  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nViernes 20/11 · 18° / 27° · 💧 86 %\n   🟡 Tormentas: tormentas (probabilidad 86 %) · Comunas 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11\n   confianza media\nSábado 21/11 · 16° / 27° · 💧 61 %\nDomingo 22/11 · 14° / 25° · 💧 51 %\nLunes 23/11 · 15° / 28°\nMartes 24/11 · 13° / 30° · 💧 49 %\n\nVer la perspectiva en el tablero"
  },
  "resumen_fecha": "2026-11-18",
  "tg_offset": 253065130,
@@ -598,5 +598,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-18@8"
+ "resumen_turno": "2026-11-18@20"
 }
