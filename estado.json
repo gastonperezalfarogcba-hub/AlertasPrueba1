@@ -285,34 +285,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261118123733_Lluvia_Patagonia_alertas_alertas_2.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1631_cap_es.xml": {
-   "caba": true,
-   "comunas": [
-    6,
-    10,
-    11,
-    12,
-    13,
-    14,
-    15
-   ],
-   "identificador": "urn:oid:2.49.0.1.32.0.2026.11.18.16.31.00",
-   "tipo": "Alert",
-   "enviado": "2026-11-18T16:31:00-03:00",
-   "evento": "TORMENTAS CON OCACIONAL CAIDA DE GRANIZO",
-   "severidad": "Severe",
-   "urgencia": "Immediate",
-   "certeza": "Observed",
-   "desde": "2026-11-18T16:31:00-03:00",
-   "hasta": "2026-11-18T17:31:00-03:00",
-   "titulo": "AVISO NARANJA POR TORMENTAS CON OCACIONAL CAIDA DE GRANIZO",
-   "descripcion": "TORMENTAS CON OCACIONAL CAIDA DE GRANIZO",
-   "instrucciones": "---",
-   "web": "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1631_cap_es.xml",
-   "areas": [
-    "BUENOS AIRES: CAMPANA - ESCOBAR - EXALTACION DE LA CRUZ - GRAL SAN MARTIN - HURLINGHAM - JOSE C.  PAZ - LUJAN - MALVINAS ARGENTINA - MORENO - MORON - PILAR - SAN FERNANDO - SAN ISIDRO - SAN MIGUEL - TIGRE - TRES DE FEBRERO - VICENTE LOPEZ. CAPITAL FEDERAL: CABA."
-   ]
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1648_cap_es.xml": {
    "caba": false
   },
@@ -324,20 +296,23 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1729_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1732_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
   "smn:tormentas con ocacional caida de granizo": {
    "nivel": 2,
    "nombre": "AVISO NARANJA POR TORMENTAS CON OCACIONAL CAIDA DE GRANIZO",
-   "ausente": 0,
+   "ausente": 1,
    "notificado": "2026-11-18T13:41:21.588094-03:00"
   }
  },
  "seguimiento": {
   "activo": true,
   "motivo": "Alerta naranja del SMN por AVISO NARANJA POR TORMENTAS CON OCACIONAL CAIDA DE GRANIZO (hasta hoy 17:31)",
-  "ausente": 0,
+  "ausente": 1,
   "ultimo": "2026-11-18T14:20:32.875159-03:00",
   "prev": {
    "lluvia_max": 2.0,
