@@ -258,14 +258,17 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-17T20:10:21.413656-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nJueves 19/11 · 16° / 27°\nViernes 20/11 · 18° / 29° · 💧 63 %\n   🟡 Tormentas: tormentas (probabilidad 63 %) · Comunas 12, 13, 14, 15\n   confianza media\nSábado 21/11 · 15° / 28° · 💧 48 %\nDomingo 22/11 · 15° / 25° · 💧 31 %\nLunes 23/11 · 15° / 28°\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-17T21:30:25.292750-03:00",
+  "texto": "🌦️ AVISO · Está lloviendo en la Ciudad\nInformación, no es una alerta.\n🛩️ Aeroparque (21:00, observado): tormenta con lluvia\n🛩️ Ezeiza (21:22, observado): tormenta\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-17",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "seco",
-  "seco_desde": "2026-11-17T10:30:22.180873-03:00"
+  "estado": "lloviendo",
+  "seco_desde": "2026-11-17T10:30:22.180873-03:00",
+  "desde": "2026-11-17T21:30:25.292859-03:00",
+  "ultimo": "2026-11-17T21:30:25.292864-03:00",
+  "secos": 0
  },
  "ensambles": {
   "calculado": "2026-11-17T21:00:26.677059-03:00",
