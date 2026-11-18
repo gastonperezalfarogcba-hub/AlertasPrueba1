@@ -312,6 +312,9 @@
    "areas": [
     "BUENOS AIRES: CAMPANA - ESCOBAR - EXALTACION DE LA CRUZ - GRAL SAN MARTIN - HURLINGHAM - JOSE C.  PAZ - LUJAN - MALVINAS ARGENTINA - MORENO - MORON - PILAR - SAN FERNANDO - SAN ISIDRO - SAN MIGUEL - TIGRE - TRES DE FEBRERO - VICENTE LOPEZ. CAPITAL FEDERAL: CABA."
    ]
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1648_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -325,11 +328,16 @@
  "seguimiento": {
   "activo": true,
   "motivo": "Alerta naranja del SMN por AVISO NARANJA POR TORMENTAS CON OCACIONAL CAIDA DE GRANIZO (hasta hoy 17:31)",
-  "ausente": 0
+  "ausente": 0,
+  "ultimo": "2026-11-18T13:50:28.283681-03:00",
+  "prev": {
+   "lluvia_max": 2.1,
+   "rafaga_max": 58.7
+  }
  },
  "ultimo_envio": {
-  "fecha": "2026-11-18T13:41:21.587949-03:00",
-  "texto": "🟠 ALERTA NARANJA · AVISO NARANJA POR TORMENTAS CON OCACIONAL CAIDA DE GRANIZO\n🏛️ Oficial SMN\n🕒 Cuándo: hoy 16:31 a hoy 17:31\n📍 Dónde: Comunas 6, 10, 11, 12, 13, 14, 15\n\nTORMENTAS CON OCACIONAL CAIDA DE GRANIZO\nQué hacer: ---\nAlerta completa y recomendaciones en el SMN"
+  "fecha": "2026-11-18T13:50:28.283550-03:00",
+  "texto": "📡 Seguimiento · Alerta naranja del SMN por AVISO NARANJA POR TORMENTAS CON OCACIONAL CAIDA DE GRANIZO (hasta hoy 17:31)\n13:50 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: lluvia en 7 de 15 comunas (máx. 0,7 mm en Comuna 9) · ráfagas hasta 54 km/h\n🌧️ Lluvia por comuna (WRF · Open-Meteo):\n   • Comuna 1: 0 · 2 mm\n   • Comuna 2: 0 · 2 mm\n   • Comuna 3: 0 · 2 mm\n   • Comuna 4: 0 · 2 mm\n   • Otras 4 comunas: entre 0 y 0 mm (WRF-SMN)\n💨 Viento: ráfagas de hasta 59 km/h (sin alerta)\n🌡️ 23° ahora · mínima 21°\n\nHora por hora (máx. en la Ciudad):\n13h 🌧️ 0,7 mm · 💨 54 km/h · 7 com.\n14h 🌧️ 1,8 mm · 💨 59 km/h · 15 com.\n15h ☁️ 0,0 mm · 💨 32 km/h\n16h ☁️ 0,0 mm · 💨 41 km/h\n17h ☁️ 0,0 mm · 💨 44 km/h\n18h ☁️ 0,1 mm · 💨 45 km/h\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-18",
  "tg_offset": 253065130,
