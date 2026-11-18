@@ -261,17 +261,14 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-17T22:30:24.541755-03:00",
-  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n🛩️ Aeroparque (22:00, observado): tormenta con lluvia\n🛩️ Ezeiza (22:00, observado): tormenta\n\nVer el radar en el tablero"
+  "fecha": "2026-11-17T23:20:24.618627-03:00",
+  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 21:30.\nInformación, no es una alerta."
  },
  "resumen_fecha": "2026-11-17",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "lloviendo",
-  "seco_desde": "2026-11-17T10:30:22.180873-03:00",
-  "desde": "2026-11-17T21:30:25.292859-03:00",
-  "ultimo": "2026-11-17T22:30:24.541875-03:00",
-  "secos": 1
+  "estado": "seco",
+  "seco_desde": "2026-11-17T23:20:24.618763-03:00"
  },
  "ensambles": {
   "calculado": "2026-11-17T23:00:35.024885-03:00",
