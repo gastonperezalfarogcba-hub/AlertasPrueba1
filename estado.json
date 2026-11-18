@@ -285,9 +285,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261118123733_Lluvia_Patagonia_alertas_alertas_2.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1648_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1651_cap_es.xml": {
    "caba": false
   },
@@ -301,27 +298,13 @@
    "caba": false
   }
  },
- "eventos": {
-  "smn:tormentas con ocacional caida de granizo": {
-   "nivel": 2,
-   "nombre": "AVISO NARANJA POR TORMENTAS CON OCACIONAL CAIDA DE GRANIZO",
-   "ausente": 1,
-   "notificado": "2026-11-18T13:41:21.588094-03:00"
-  }
- },
+ "eventos": {},
  "seguimiento": {
-  "activo": true,
-  "motivo": "Alerta naranja del SMN por AVISO NARANJA POR TORMENTAS CON OCACIONAL CAIDA DE GRANIZO (hasta hoy 17:31)",
-  "ausente": 1,
-  "ultimo": "2026-11-18T14:20:32.875159-03:00",
-  "prev": {
-   "lluvia_max": 2.0,
-   "rafaga_max": 58.7
-  }
+  "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-18T14:20:32.875013-03:00",
-  "texto": "📡 Seguimiento · Alerta naranja del SMN por AVISO NARANJA POR TORMENTAS CON OCACIONAL CAIDA DE GRANIZO (hasta hoy 17:31)\n14:20 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: lluvia en 15 de 15 comunas (máx. 1,8 mm en Comuna 8) · ráfagas hasta 59 km/h\n🌧️ Lluvia por comuna (WRF · Open-Meteo):\n   • Comuna 8: 0 · 2 mm\n💨 Viento: ráfagas de hasta 59 km/h (sin alerta)\n🌡️ 21° ahora · mínima 21°\n\nHora por hora (máx. en la Ciudad):\n14h 🌧️ 1,8 mm · 💨 59 km/h · 15 com.\n15h ☁️ 0,0 mm · 💨 32 km/h\n16h ☁️ 0,0 mm · 💨 41 km/h\n17h ☁️ 0,0 mm · 💨 44 km/h\n18h ☁️ 0,1 mm · 💨 45 km/h\n19h ☁️ 0,1 mm · 💨 38 km/h\n\nVer la lluvia por comuna en el tablero"
+  "fecha": "2026-11-18T14:50:24.658764-03:00",
+  "texto": "📡 Seguimiento finalizado\nYa no hay alertas vigentes para la Ciudad. Se dejan de enviar los partes cada 30 minutos."
  },
  "resumen_fecha": "2026-11-18",
  "tg_offset": 253065130,
