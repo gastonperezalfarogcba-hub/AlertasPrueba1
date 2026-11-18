@@ -300,5 +300,26 @@
   "aviso": "fin",
   "id": "int:tormenta",
   "nivel": 0
+ },
+ {
+  "fecha": "2026-11-18T13:41:21.588082-03:00",
+  "aviso": "nueva",
+  "id": "smn:tormentas con ocacional caida de granizo",
+  "fuente": "smn",
+  "fenomeno": "TORMENTAS CON OCACIONAL CAIDA DE GRANIZO",
+  "nivel": 2,
+  "desde": "2026-11-18T16:31:00-03:00",
+  "hasta": "2026-11-18T17:31:00-03:00",
+  "comunas": [
+   6,
+   10,
+   11,
+   12,
+   13,
+   14,
+   15
+  ],
+  "max": null,
+  "prob": null
  }
 ]
