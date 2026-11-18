@@ -1,8 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1230_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261118123731_Tormenta_Cordillera_alertas_alertas_1.xml": {
    "caba": false
   },
