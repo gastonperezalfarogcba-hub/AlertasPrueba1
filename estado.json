@@ -293,6 +293,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1852_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1905_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -317,7 +320,7 @@
   "seco_desde": "2026-11-17T23:20:24.618763-03:00",
   "desde": "2026-11-18T12:20:40.215733-03:00",
   "ultimo": "2026-11-18T15:20:28.893316-03:00",
-  "secos": 0
+  "secos": 1
  },
  "ensambles": {
   "calculado": "2026-11-18T16:00:44.445445-03:00",
