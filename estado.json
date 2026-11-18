@@ -296,6 +296,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1801_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1818_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -310,8 +313,8 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-18T15:00:50.586488-03:00",
-  "texto": "🟡 ALERTA AMARILLA · Tormentas\n📊 Por pronóstico (no oficial)\n🕒 Cuándo: 20/11 14:00 a 20/11 15:00\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15 (aprox.)\n⛈️ Tormentas\n\nAbrir las alertas en el tablero"
+  "fecha": "2026-11-18T15:20:28.893202-03:00",
+  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n🛩️ Aeroparque (15:00, observado): lluvia débil\n🛩️ El Palomar (15:00, observado): lluvia débil\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-18",
  "tg_offset": 253065130,
@@ -319,7 +322,7 @@
   "estado": "lloviendo",
   "seco_desde": "2026-11-17T23:20:24.618763-03:00",
   "desde": "2026-11-18T12:20:40.215733-03:00",
-  "ultimo": "2026-11-18T14:20:32.881779-03:00",
+  "ultimo": "2026-11-18T15:20:28.893316-03:00",
   "secos": 0
  },
  "ensambles": {
