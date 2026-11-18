@@ -288,13 +288,13 @@
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1651_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1702_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1729_cap_es.xml": {
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1732_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_18_1801_cap_es.xml": {
    "caba": false
   }
  },
@@ -320,7 +320,7 @@
   "seco_desde": "2026-11-17T23:20:24.618763-03:00",
   "desde": "2026-11-18T12:20:40.215733-03:00",
   "ultimo": "2026-11-18T14:20:32.881779-03:00",
-  "secos": 1
+  "secos": 0
  },
  "ensambles": {
   "calculado": "2026-11-18T15:00:29.396227-03:00",
