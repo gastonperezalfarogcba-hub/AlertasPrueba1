@@ -297,14 +297,17 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-18T08:00:42.414099-03:00",
-  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nViernes 20/11 · 18° / 28° · 💧 80 %\n   🟡 Tormentas: tormentas (probabilidad 80 %) · Comunas 8, 9, 10, 11, 12, 13, 14, 15\n   confianza media\nSábado 21/11 · 16° / 28° · 💧 63 %\nDomingo 22/11 · 16° / 28° · 💧 49 %\nLunes 23/11 · 16° / 31°\nMartes 24/11 · 15° / 30°\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-18T12:20:40.215614-03:00",
+  "texto": "🌦️ AVISO · Lluvia probable en este momento (según el pronóstico, sin confirmar)\nInformación, no es una alerta.\n📍 Dónde: Comunas 9, 10, 11, 12, 13, 14, 15\n💧 Intensidad: débil (hasta 0,8 mm/h en Comuna 9)\n⏳ Próximas horas: lluvia hasta las 15 h aprox. · hasta 2 mm más (Comuna 1)\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-18",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "seco",
-  "seco_desde": "2026-11-17T23:20:24.618763-03:00"
+  "estado": "lloviendo",
+  "seco_desde": "2026-11-17T23:20:24.618763-03:00",
+  "desde": "2026-11-18T12:20:40.215733-03:00",
+  "ultimo": "2026-11-18T12:20:40.215736-03:00",
+  "secos": 0
  },
  "ensambles": {
   "calculado": "2026-11-18T12:01:11.115687-03:00",
