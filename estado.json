@@ -274,7 +274,7 @@
   "seco_desde": "2026-11-17T23:20:24.618763-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-17T23:00:35.024885-03:00",
+  "calculado": "2026-11-18T00:01:08.347557-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -308,32 +308,6 @@
    }
   },
   "dias": {
-   "2026-11-17": {
-    "lluvia": {
-     "amarillo": 4,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "viento": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "calor": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "frio": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    }
-   },
    "2026-11-18": {
     "lluvia": {
      "amarillo": 0,
@@ -473,6 +447,32 @@
     },
     "viento": {
      "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-24": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 6,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
