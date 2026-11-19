@@ -3,9 +3,6 @@
   "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87007_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_19_1223_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261119120352_Tormenta_Cordillera_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -340,6 +337,9 @@
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261119120439_Viento_Cordillera_alertas_alertas_2.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_19_1318_cap_es.xml": {
    "caba": false
   }
  },
