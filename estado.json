@@ -308,7 +308,7 @@
   "seco_desde": "2026-11-18T16:20:23.445826-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-19T08:01:15.483792-03:00",
+  "calculado": "2026-11-19T09:00:36.678329-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -480,7 +480,7 @@
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 9,
+     "amarillo": 7,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -506,7 +506,7 @@
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 12,
+     "amarillo": 9,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
