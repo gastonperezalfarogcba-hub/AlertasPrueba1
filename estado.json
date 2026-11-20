@@ -396,13 +396,13 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261120154541_Nevada_Cordillera_alertas_alertas_3.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_1625_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_1729_cap_es.xml": {
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_1731_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_1745_cap_es.xml": {
    "caba": false
   }
  },
