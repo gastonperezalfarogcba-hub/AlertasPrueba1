@@ -406,20 +406,13 @@
    "caba": false
   }
  },
- "eventos": {
-  "int:tormenta": {
-   "nivel": 1,
-   "nombre": "Tormentas",
-   "ausente": 1,
-   "notificado": "2026-11-18T15:00:50.586570-03:00"
-  }
- },
+ "eventos": {},
  "seguimiento": {
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-20T14:20:19.810062-03:00",
-  "texto": "🌦️ AVISO · Lluvia probable en este momento (según el pronóstico, sin confirmar)\nInformación, no es una alerta.\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7, 8\n💧 Intensidad: débil (hasta 1,2 mm/h en Comuna 1)\n⏳ Próximas horas: lluvia hasta las 19 h aprox. · hasta 4 mm más (Comuna 8)\n\nVer el radar en el tablero"
+  "fecha": "2026-11-20T15:10:26.155594-03:00",
+  "texto": "✅ FINALIZÓ · Tormentas · por pronóstico\nYa no se prevén condiciones de alerta para la Ciudad."
  },
  "resumen_fecha": "2026-11-20",
  "tg_offset": 253065130,
