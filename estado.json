@@ -417,19 +417,16 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261120030456_Nevada_Cordillera_alertas_alertas_2.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0446_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0504_cap_es.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0549_cap_es.xml": {
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0613_cap_es.xml": {
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0640_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0648_cap_es.xml": {
    "caba": false
   }
  },
@@ -455,7 +452,7 @@
   "seco_desde": "2026-11-18T16:20:23.445826-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-20T03:00:21.540862-03:00",
+  "calculado": "2026-11-20T04:00:28.238296-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
