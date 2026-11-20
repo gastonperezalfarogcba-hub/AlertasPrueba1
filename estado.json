@@ -1,8 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0846_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261120084303_Tormenta_Llanura_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -345,10 +342,13 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261120084305_Nevada_Cordillera_alertas_alertas_3.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0948_cap_es.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_1003_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_1003_cap_es.xml": {
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_1054_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_1056_cap_es.xml": {
    "caba": false
   }
  },
@@ -374,7 +374,7 @@
   "seco_desde": "2026-11-20T05:20:24.260178-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-20T07:00:28.065168-03:00",
+  "calculado": "2026-11-20T08:01:12.390047-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
