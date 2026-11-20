@@ -6,9 +6,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0340_cap_es.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_0351_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261120030407_Zonda_Cordillera_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -455,7 +452,7 @@
   "seco_desde": "2026-11-18T16:20:23.445826-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-20T01:00:25.310739-03:00",
+  "calculado": "2026-11-20T02:00:38.263354-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
