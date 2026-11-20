@@ -414,18 +414,14 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-20T16:20:29.006618-03:00",
-  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n📍 Dónde: Toda la Ciudad\n💧 Intensidad: débil (hasta 0,8 mm/h en Comuna 9)\n🛩️ Ezeiza (16:00, observado): tormenta con lluvia\n⏳ Próximas horas: lluvia hasta las 17 h aprox. · hasta 1 mm más (Comuna 9)\n\nVer el radar en el tablero"
+  "fecha": "2026-11-20T17:10:27.814530-03:00",
+  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 14:20.\nInformación, no es una alerta."
  },
  "resumen_fecha": "2026-11-20",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "lloviendo",
-  "seco_desde": "2026-11-20T05:20:24.260178-03:00",
-  "anticipado": "2026-11-20T14:00:29.052228-03:00",
-  "desde": "2026-11-20T14:20:19.810187-03:00",
-  "ultimo": "2026-11-20T16:20:29.006769-03:00",
-  "secos": 1
+  "estado": "seco",
+  "seco_desde": "2026-11-20T17:10:27.814654-03:00"
  },
  "ensambles": {
   "calculado": "2026-11-20T17:00:27.116245-03:00",
