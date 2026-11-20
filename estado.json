@@ -415,17 +415,18 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-20T08:10:23.442579-03:00",
-  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nDomingo 22/11 · 16° / 27° · 💧 37 %\nLunes 23/11 · 16° / 29°\nMartes 24/11 · 18° / 30°\nMiércoles 25/11 · 13° / 29°\nJueves 26/11 · 11° / 23°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-20T14:00:29.052096-03:00",
+  "texto": "🌂 AVISO · Se espera lluvia en la próxima hora\nInformación, no es una alerta.\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15\n💧 Intensidad: débil (hasta 1,0 mm/h en Comuna 1)\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-20",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "seco",
-  "seco_desde": "2026-11-20T05:20:24.260178-03:00"
+  "estado": "anticipado",
+  "seco_desde": "2026-11-20T05:20:24.260178-03:00",
+  "anticipado": "2026-11-20T14:00:29.052228-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-20T13:01:10.893721-03:00",
+  "calculado": "2026-11-20T14:00:27.224933-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
