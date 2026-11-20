@@ -412,15 +412,18 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-20T14:00:29.052096-03:00",
-  "texto": "🌂 AVISO · Se espera lluvia en la próxima hora\nInformación, no es una alerta.\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7, 8, 12, 13, 14, 15\n💧 Intensidad: débil (hasta 1,0 mm/h en Comuna 1)\n\nVer el radar en el tablero"
+  "fecha": "2026-11-20T14:20:19.810062-03:00",
+  "texto": "🌦️ AVISO · Lluvia probable en este momento (según el pronóstico, sin confirmar)\nInformación, no es una alerta.\n📍 Dónde: Comunas 1, 2, 3, 4, 5, 6, 7, 8\n💧 Intensidad: débil (hasta 1,2 mm/h en Comuna 1)\n⏳ Próximas horas: lluvia hasta las 19 h aprox. · hasta 4 mm más (Comuna 8)\n\nVer el radar en el tablero"
  },
  "resumen_fecha": "2026-11-20",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "anticipado",
+  "estado": "lloviendo",
   "seco_desde": "2026-11-20T05:20:24.260178-03:00",
-  "anticipado": "2026-11-20T14:00:29.052228-03:00"
+  "anticipado": "2026-11-20T14:00:29.052228-03:00",
+  "desde": "2026-11-20T14:20:19.810187-03:00",
+  "ultimo": "2026-11-20T14:20:19.810191-03:00",
+  "secos": 0
  },
  "ensambles": {
   "calculado": "2026-11-20T14:00:27.224933-03:00",
