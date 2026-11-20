@@ -395,9 +395,6 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261120154541_Nevada_Cordillera_alertas_alertas_3.xml": {
    "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_20_2054_cap_es.xml": {
-   "caba": false
   }
  },
  "eventos": {},
@@ -405,8 +402,8 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-20T17:10:27.814530-03:00",
-  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 14:20.\nInformación, no es una alerta."
+  "fecha": "2026-11-20T20:00:25.153501-03:00",
+  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nDomingo 22/11 · 17° / 28° · 💧 41 %\nLunes 23/11 · 17° / 28°\nMartes 24/11 · 17° / 30°\nMiércoles 25/11 · 12° / 28°\nJueves 26/11 · 14° / 26°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
  },
  "resumen_fecha": "2026-11-20",
  "tg_offset": 253065130,
@@ -415,7 +412,7 @@
   "seco_desde": "2026-11-20T17:10:27.814654-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-20T19:00:27.022323-03:00",
+  "calculado": "2026-11-20T20:00:24.451872-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -633,5 +630,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-20@8"
+ "resumen_turno": "2026-11-20@20"
 }
