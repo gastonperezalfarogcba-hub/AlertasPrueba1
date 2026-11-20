@@ -410,7 +410,7 @@
   "int:tormenta": {
    "nivel": 1,
    "nombre": "Tormentas",
-   "ausente": 0,
+   "ausente": 1,
    "notificado": "2026-11-18T15:00:50.586570-03:00"
   }
  },
@@ -432,7 +432,7 @@
   "secos": 0
  },
  "ensambles": {
-  "calculado": "2026-11-20T14:00:27.224933-03:00",
+  "calculado": "2026-11-20T15:00:31.263576-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
