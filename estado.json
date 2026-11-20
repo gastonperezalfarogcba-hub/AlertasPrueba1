@@ -364,10 +364,10 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-20T05:20:24.260004-03:00",
-  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 04:20.\nInformación, no es una alerta."
+  "fecha": "2026-11-20T08:10:23.442579-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nDomingo 22/11 · 16° / 27° · 💧 37 %\nLunes 23/11 · 16° / 29°\nMartes 24/11 · 18° / 30°\nMiércoles 25/11 · 13° / 29°\nJueves 26/11 · 11° / 23°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
  },
- "resumen_fecha": "2026-11-19",
+ "resumen_fecha": "2026-11-20",
  "tg_offset": 253065130,
  "lluvia": {
   "estado": "seco",
@@ -592,5 +592,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-19@20"
+ "resumen_turno": "2026-11-20@8"
 }
