@@ -309,17 +309,17 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-20T20:00:25.153501-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nDomingo 22/11 · 17° / 28° · 💧 41 %\nLunes 23/11 · 17° / 28°\nMartes 24/11 · 17° / 30°\nMiércoles 25/11 · 12° / 28°\nJueves 26/11 · 14° / 26°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-21T08:00:30.164749-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nLunes 23/11 · 17° / 29°\nMartes 24/11 · 18° / 31°\nMiércoles 25/11 · 14° / 29°\nJueves 26/11 · 14° / 25°\nViernes 27/11 · 15° / 28°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
  },
- "resumen_fecha": "2026-11-20",
+ "resumen_fecha": "2026-11-21",
  "tg_offset": 253065130,
  "lluvia": {
   "estado": "seco",
   "seco_desde": "2026-11-20T17:10:27.814654-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-21T07:00:23.362193-03:00",
+  "calculado": "2026-11-21T08:00:27.716460-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -439,7 +439,7 @@
      "escenarios": 82
     },
     "viento": {
-     "amarillo": 7,
+     "amarillo": 6,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -537,5 +537,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-20@20"
+ "resumen_turno": "2026-11-21@8"
 }
