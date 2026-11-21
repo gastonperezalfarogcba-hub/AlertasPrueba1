@@ -432,9 +432,6 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261120232525_Viento_Cordillera_alertas_alertas_3.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_21_0226_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_21_0309_cap_es.xml": {
    "caba": false
   }
