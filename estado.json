@@ -405,17 +405,14 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-21T18:20:27.890406-03:00",
-  "texto": "🌧️ AVISO · Sigue lloviendo en la Ciudad\nInformación, no es una alerta.\n📍 Dónde: Comunas 12, 13, 14, 15\n💧 Intensidad: débil (hasta 0,6 mm/h en Comuna 12)\n⏳ Próximas horas: lluvia hasta las 19 h aprox. · hasta 1 mm más (Comuna 12)\n\nVer el radar en el tablero"
+  "fecha": "2026-11-21T19:10:20.349782-03:00",
+  "texto": "🌤️ AVISO · Dejó de llover en la Ciudad\nLlovió desde las 17:20.\nInformación, no es una alerta."
  },
  "resumen_fecha": "2026-11-21",
  "tg_offset": 253065130,
  "lluvia": {
-  "estado": "lloviendo",
-  "seco_desde": "2026-11-20T17:10:27.814654-03:00",
-  "desde": "2026-11-21T17:20:19.586957-03:00",
-  "ultimo": "2026-11-21T18:20:27.890520-03:00",
-  "secos": 1
+  "estado": "seco",
+  "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
   "calculado": "2026-11-21T19:00:37.452892-03:00",
