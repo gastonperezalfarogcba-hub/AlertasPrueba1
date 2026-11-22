@@ -263,9 +263,6 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261122090114_Viento_Patagonia_alertas_alertas_9.xml": {
    "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_22_1052_cap_es.xml": {
-   "caba": false
   }
  },
  "eventos": {},
@@ -283,7 +280,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-22T09:00:25.115369-03:00",
+  "calculado": "2026-11-22T10:00:27.932166-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
