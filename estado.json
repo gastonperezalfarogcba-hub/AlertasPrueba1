@@ -1,8 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_23_0347_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261123033710_Tormenta_Cordillera_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -418,7 +415,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-23T02:00:34.685896-03:00",
+  "calculado": "2026-11-23T03:00:30.070870-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -439,7 +436,7 @@
     "escenarios": 82
    },
    "calor": {
-    "amarillo": 1,
+    "amarillo": 0,
     "naranja": 0,
     "rojo": 0,
     "escenarios": 82
@@ -570,7 +567,7 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 1,
+     "amarillo": 0,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -596,7 +593,7 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 11,
+     "amarillo": 5,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -622,7 +619,7 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 10,
+     "amarillo": 5,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
