@@ -1,8 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_23_0943_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261123092730_Tormenta_Llanura_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -361,6 +358,12 @@
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261123092731_Viento_Patagonia_alertas_alertas_9.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_23_1039_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_23_1044_cap_es.xml": {
    "caba": false
   }
  },
