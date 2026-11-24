@@ -395,6 +395,9 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_1247_cap_es.xml": {
    "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_1308_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {},
