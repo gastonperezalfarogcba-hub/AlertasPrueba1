@@ -465,13 +465,13 @@
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261123204437_Viento_Patagonia_alertas_alertas_9.xml": {
    "caba": false
   },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_0149_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_0217_cap_es.xml": {
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_0221_cap_es.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_0254_cap_es.xml": {
    "caba": false
   }
  },
@@ -490,7 +490,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-23T23:00:24.408063-03:00",
+  "calculado": "2026-11-24T00:00:33.815447-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -511,8 +511,8 @@
     "escenarios": 82
    },
    "calor": {
-    "amarillo": 0,
-    "naranja": 0,
+    "amarillo": 6,
+    "naranja": 2,
     "rojo": 0,
     "escenarios": 82
    },
@@ -524,32 +524,6 @@
    }
   },
   "dias": {
-   "2026-11-23": {
-    "lluvia": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "viento": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "calor": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "frio": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    }
-   },
    "2026-11-24": {
     "lluvia": {
      "amarillo": 0,
@@ -668,8 +642,8 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 4,
-     "naranja": 0,
+     "amarillo": 6,
+     "naranja": 2,
      "rojo": 0,
      "escenarios": 82
     },
@@ -694,8 +668,34 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 4,
+     "amarillo": 26,
+     "naranja": 2,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
      "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-11-30": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 22,
+     "naranja": 2,
      "rojo": 0,
      "escenarios": 82
     },
