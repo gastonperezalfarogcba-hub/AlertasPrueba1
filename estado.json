@@ -1,8 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_0823_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_0853_cap_es.xml": {
    "caba": false
   },
@@ -391,6 +388,9 @@
    "caba": false
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261124091337_Viento_Llanura_alertas_alertas_6.xml": {
+   "caba": false
+  },
+  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_1018_cap_es.xml": {
    "caba": false
   }
  },
