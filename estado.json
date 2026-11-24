@@ -400,7 +400,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-24T14:00:33.876545-03:00",
+  "calculado": "2026-11-24T15:00:29.677739-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -421,8 +421,8 @@
     "escenarios": 82
    },
    "calor": {
-    "amarillo": 5,
-    "naranja": 2,
+    "amarillo": 4,
+    "naranja": 4,
     "rojo": 0,
     "escenarios": 82
    },
@@ -552,8 +552,8 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 5,
-     "naranja": 2,
+     "amarillo": 4,
+     "naranja": 4,
      "rojo": 0,
      "escenarios": 82
     },
@@ -578,8 +578,8 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 33,
-     "naranja": 2,
+     "amarillo": 39,
+     "naranja": 4,
      "rojo": 0,
      "escenarios": 82
     },
@@ -592,7 +592,7 @@
    },
    "2026-11-30": {
     "lluvia": {
-     "amarillo": 0,
+     "amarillo": 1,
      "naranja": 0,
      "rojo": 0,
      "escenarios": 82
@@ -604,8 +604,8 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 30,
-     "naranja": 2,
+     "amarillo": 39,
+     "naranja": 4,
      "rojo": 0,
      "escenarios": 82
     },
