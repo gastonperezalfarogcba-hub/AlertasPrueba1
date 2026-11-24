@@ -357,8 +357,8 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-24T08:00:30.727767-03:00",
-  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nJueves 26/11 · 15° / 27°\nViernes 27/11 · 19° / 32°\nSábado 28/11 · 20° / 34°\nDomingo 29/11 · 21° / 33°\n   🟡 Temperaturas extremas · calor: 30 % de los escenarios superan el umbral amarillo (el modelo principal no lo muestra)\n   confianza baja\nLunes 30/11 · 21° / 35°\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-24T20:00:30.840764-03:00",
+  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nJueves 26/11 · 15° / 27°\nViernes 27/11 · 19° / 32°\nSábado 28/11 · 20° / 35°\nDomingo 29/11 · 22° / 36°\n   🟡 Temperaturas extremas · calor: máximas de hasta 36 °C · prob. 39 % · Comunas 8, 9, 10, 11\n   confianza baja\nLunes 30/11 · 23° / 34°\n   🟡 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 39 % · Comunas 8, 9, 10, 11\n   confianza baja\n\nVer la perspectiva en el tablero"
  },
  "resumen_fecha": "2026-11-24",
  "tg_offset": 253065130,
@@ -367,7 +367,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-24T19:00:39.171331-03:00",
+  "calculado": "2026-11-24T20:00:29.749017-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -585,5 +585,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-24@8"
+ "resumen_turno": "2026-11-24@20"
 }
