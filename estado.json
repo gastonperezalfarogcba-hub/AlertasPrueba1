@@ -1,8 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_0853_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_24_0942_cap_es.xml": {
    "caba": false
   },
@@ -402,17 +399,17 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-23T20:00:36.360174-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nMiércoles 25/11 · 16° / 30°\nJueves 26/11 · 14° / 26°\nViernes 27/11 · 18° / 32°\nSábado 28/11 · 19° / 34°\nDomingo 29/11 · 22° / 33°\n\n✅ Sin señales de eventos significativos en estos días.\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-24T08:00:30.727767-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nJueves 26/11 · 15° / 27°\nViernes 27/11 · 19° / 32°\nSábado 28/11 · 20° / 34°\nDomingo 29/11 · 21° / 33°\n   🟡 Temperaturas extremas · calor: 30 % de los escenarios superan el umbral amarillo (el modelo principal no lo muestra)\n   confianza baja\nLunes 30/11 · 21° / 35°\n\nVer la perspectiva en el tablero"
  },
- "resumen_fecha": "2026-11-23",
+ "resumen_fecha": "2026-11-24",
  "tg_offset": 253065130,
  "lluvia": {
   "estado": "seco",
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-24T07:00:24.415004-03:00",
+  "calculado": "2026-11-24T08:00:29.681203-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -433,7 +430,7 @@
     "escenarios": 82
    },
    "calor": {
-    "amarillo": 6,
+    "amarillo": 5,
     "naranja": 5,
     "rojo": 0,
     "escenarios": 82
@@ -564,7 +561,7 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 6,
+     "amarillo": 5,
      "naranja": 5,
      "rojo": 0,
      "escenarios": 82
@@ -590,7 +587,7 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 17,
+     "amarillo": 30,
      "naranja": 5,
      "rojo": 0,
      "escenarios": 82
@@ -616,7 +613,7 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 15,
+     "amarillo": 29,
      "naranja": 4,
      "rojo": 0,
      "escenarios": 82
@@ -630,5 +627,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-23@20"
+ "resumen_turno": "2026-11-24@8"
 }
