@@ -361,5 +361,30 @@
   "aviso": "fin",
   "id": "int:tormenta",
   "nivel": 0
+ },
+ {
+  "fecha": "2026-11-25T00:00:44.989070-03:00",
+  "aviso": "nueva",
+  "id": "int:calor",
+  "fuente": "pronostico",
+  "fenomeno": "calor",
+  "nivel": 2,
+  "desde": "2026-11-29T00:00:00-03:00",
+  "hasta": "2026-11-30T00:00:00-03:00",
+  "comunas": [
+   8,
+   9,
+   10,
+   11
+  ],
+  "max": {
+   "tmax": 35.3
+  },
+  "prob": {
+   "nivel": 18,
+   "amarillo": 34,
+   "escenarios": 82,
+   "confianza": "baja"
+  }
  }
 ]
