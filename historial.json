@@ -386,5 +386,30 @@
    "escenarios": 82,
    "confianza": "baja"
   }
+ },
+ {
+  "fecha": "2026-11-25T16:10:47.928225-03:00",
+  "aviso": "baja",
+  "id": "int:calor",
+  "fuente": "pronostico",
+  "fenomeno": "calor",
+  "nivel": 1,
+  "desde": "2026-11-29T00:00:00-03:00",
+  "hasta": "2026-11-30T00:00:00-03:00",
+  "comunas": [
+   8,
+   9,
+   10,
+   11
+  ],
+  "max": {
+   "tmax": 34.6
+  },
+  "prob": {
+   "nivel": 49,
+   "amarillo": 49,
+   "escenarios": 82,
+   "confianza": "media"
+  }
  }
 ]

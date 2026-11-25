@@ -108,18 +108,18 @@
  },
  "eventos": {
   "int:calor": {
-   "nivel": 2,
+   "nivel": 1,
    "nombre": "Temperaturas extremas · calor",
    "ausente": 0,
-   "notificado": "2026-11-25T00:00:44.989080-03:00"
+   "notificado": "2026-11-25T16:10:47.928238-03:00"
   }
  },
  "seguimiento": {
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-25T08:00:41.728881-03:00",
-  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nViernes 27/11 · 18° / 32°\nSábado 28/11 · 20° / 35°\nDomingo 29/11 · 22° / 34°\n   🟠 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 21 % · Comunas 8, 9, 10, 11\n   confianza baja\nLunes 30/11 · 23° / 34°\n   🟠 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 21 % · Comunas 8, 9, 10, 11\n   confianza baja\nMartes 01/12 · 23° / 36° · 💧 35 %\n   🟠 Temperaturas extremas · calor: máximas de hasta 36 °C · prob. 20 % · Comunas 8, 9, 10, 11\n   confianza baja\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-25T16:10:47.928105-03:00",
+  "texto": "🟡 ⬇️ BAJA A ALERTA AMARILLA · Temperaturas extremas · calor\n📊 Por pronóstico (no oficial) · confianza media (49 %)\n🕒 Cuándo: 29/11\n📍 Dónde: Comunas 8, 9, 10, 11 (aprox.)\n🌡️ Temperaturas máximas de hasta 35 °C, con noches cálidas\n\nAbrir las alertas en el tablero"
  },
  "resumen_fecha": "2026-11-25",
  "tg_offset": 253065130,
