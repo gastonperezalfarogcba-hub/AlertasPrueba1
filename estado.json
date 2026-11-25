@@ -12,8 +12,8 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-25T16:10:47.928105-03:00",
-  "texto": "🟡 ⬇️ BAJA A ALERTA AMARILLA · Temperaturas extremas · calor\n📊 Por pronóstico (no oficial) · confianza media (49 %)\n🕒 Cuándo: 29/11\n📍 Dónde: Comunas 8, 9, 10, 11 (aprox.)\n🌡️ Temperaturas máximas de hasta 35 °C, con noches cálidas\n\nAbrir las alertas en el tablero"
+  "fecha": "2026-11-25T20:00:24.558271-03:00",
+  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nViernes 27/11 · 18° / 32°\nSábado 28/11 · 20° / 35°\nDomingo 29/11 · 22° / 34°\n   🟡 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 49 % · Comunas 8, 9, 10, 11\n   confianza baja\nLunes 30/11 · 23° / 33°\n   🟡 Temperaturas extremas · calor: máximas de hasta 33 °C · prob. 56 % · Comunas 8, 9, 10, 11\n   confianza baja\nMartes 01/12 · 20° / 32° · 💧 49 %\n   🟡 Temperaturas extremas · calor: 30 % de los escenarios superan el umbral amarillo (el modelo principal no lo muestra)\n   confianza baja\n\nVer la perspectiva en el tablero"
  },
  "resumen_fecha": "2026-11-25",
  "tg_offset": 253065130,
@@ -240,5 +240,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-25@8"
+ "resumen_turno": "2026-11-25@20"
 }
