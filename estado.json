@@ -128,7 +128,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-25T23:20:22.405357-03:00",
+  "calculado": "2026-11-26T00:20:30.671830-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -149,8 +149,8 @@
     "escenarios": 82
    },
    "calor": {
-    "amarillo": 51,
-    "naranja": 23,
+    "amarillo": 62,
+    "naranja": 26,
     "rojo": 0,
     "escenarios": 82
    },
@@ -162,32 +162,6 @@
    }
   },
   "dias": {
-   "2026-11-25": {
-    "lluvia": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "viento": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "calor": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "frio": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    }
-   },
    "2026-11-26": {
     "lluvia": {
      "amarillo": 0,
@@ -280,8 +254,8 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 51,
-     "naranja": 23,
+     "amarillo": 54,
+     "naranja": 26,
      "rojo": 0,
      "escenarios": 82
     },
@@ -306,8 +280,8 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 60,
-     "naranja": 23,
+     "amarillo": 61,
+     "naranja": 26,
      "rojo": 0,
      "escenarios": 82
     },
@@ -332,8 +306,34 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 32,
-     "naranja": 22,
+     "amarillo": 34,
+     "naranja": 24,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-12-02": {
+    "lluvia": {
+     "amarillo": 1,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 1,
+     "naranja": 0,
      "rojo": 0,
      "escenarios": 82
     },
