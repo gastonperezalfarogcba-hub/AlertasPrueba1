@@ -62,6 +62,18 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_9.xml": {
    "caba": false
+  },
+  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87637_cap_es.xml": {
+   "caba": false
+  },
+  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87679_cap_es.xml": {
+   "caba": false
+  },
+  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87715_cap_es.xml": {
+   "caba": false
+  },
+  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87774_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -86,7 +98,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-26T17:20:27.497356-03:00",
+  "calculado": "2026-11-26T18:20:19.008834-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
