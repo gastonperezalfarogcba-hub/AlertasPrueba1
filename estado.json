@@ -94,8 +94,8 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-26T08:00:31.216732-03:00",
-  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nSábado 28/11 · 20° / 35°\nDomingo 29/11 · 22° / 34°\n   🟡 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 46 % · Comunas 8, 9, 10, 11\n   confianza media\nLunes 30/11 · 23° / 33°\n   🟡 Temperaturas extremas · calor: máximas de hasta 33 °C · prob. 55 % · Comunas 8, 9, 10, 11\n   confianza baja\nMartes 01/12 · 20° / 32° · 💧 57 %\n   🟡 Temperaturas extremas · calor: 30 % de los escenarios superan el umbral amarillo (el modelo principal no lo muestra)\n   confianza baja\nMiércoles 02/12 · 14° / 28° · 💧 51 %\n   🟡 Viento: ráfagas de hasta 67 km/h · prob. 0 % · Comunas 12, 13, 14, 15\n   confianza baja\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-26T20:10:23.180385-03:00",
+  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nSábado 28/11 · 20° / 36°\nDomingo 29/11 · 22° / 35°\n   🟡 Temperaturas extremas · calor: máximas de hasta 35 °C · prob. 57 % · Comunas 8, 9, 10, 11\n   confianza media\nLunes 30/11 · 23° / 34°\n   🟡 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 72 % · Comunas 8, 9, 10, 11\n   confianza baja\nMartes 01/12 · 21° / 34° · 💧 61 %\n   🟡 Tormentas: tormentas (probabilidad 61 %) · Toda la Ciudad\n   🟡 Temperaturas extremas · calor: 38 % de los escenarios superan el umbral amarillo (el modelo principal no lo muestra)\n   confianza baja\nMiércoles 02/12 · 12° / 26° · 💧 43 %\n\nVer la perspectiva en el tablero"
  },
  "resumen_fecha": "2026-11-26",
  "tg_offset": 253065130,
@@ -322,5 +322,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-26@8"
+ "resumen_turno": "2026-11-26@20"
 }
