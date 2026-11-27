@@ -411,5 +411,30 @@
    "escenarios": 82,
    "confianza": "media"
   }
+ },
+ {
+  "fecha": "2026-11-27T17:00:56.238072-03:00",
+  "aviso": "sube",
+  "id": "int:calor",
+  "fuente": "pronostico",
+  "fenomeno": "calor",
+  "nivel": 2,
+  "desde": "2026-11-29T00:00:00-03:00",
+  "hasta": "2026-12-02T00:00:00-03:00",
+  "comunas": [
+   8,
+   9,
+   10,
+   11
+  ],
+  "max": {
+   "tmax": 36.2
+  },
+  "prob": {
+   "nivel": 20,
+   "amarillo": 63,
+   "escenarios": 82,
+   "confianza": "baja"
+  }
  }
 ]
