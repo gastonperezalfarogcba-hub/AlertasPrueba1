@@ -113,9 +113,6 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261127133845_Tormenta_Patagonia_alertas_alertas_9.xml": {
    "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/avisocortoplazo/2026_11_27_1601_cap_es.xml": {
-   "caba": false
   }
  },
  "eventos": {
