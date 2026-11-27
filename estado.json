@@ -1,17 +1,5 @@
 {
  "cap_cache": {
-  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87637_cap_es.xml": {
-   "caba": false
-  },
-  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87679_cap_es.xml": {
-   "caba": false
-  },
-  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87715_cap_es.xml": {
-   "caba": false
-  },
-  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87774_cap_es.xml": {
-   "caba": false
-  },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261127204517_Tormenta_Llanura_alertas_alertas_1.xml": {
    "caba": false
   },
@@ -191,6 +179,78 @@
   },
   "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261127204517_Tormenta_Patagonia_alertas_alertas_9.xml": {
    "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87416_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87509_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87544_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87548_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87550_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87563_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87570_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87576_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87585_cap_es.xml": {
+   "caba": true,
+   "comunas": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15
+   ],
+   "identificador": "urn:oid:2.49.0.1.32.0.2026.11.27.20.44.00",
+   "tipo": "Alert",
+   "enviado": "2026-11-27T20:44:00-03:00",
+   "evento": "TEMPERATURAS EXTREMAS CALOR - ALERTA AMARILLA",
+   "severidad": "Moderate",
+   "urgencia": "Immediate",
+   "certeza": "Observed",
+   "desde": "2026-11-27T20:44:00-03:00",
+   "hasta": "2026-11-28T20:44:00-03:00",
+   "titulo": "ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR",
+   "descripcion": "---",
+   "instrucciones": "---",
+   "web": "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87585_cap_en.xml",
+   "areas": [
+    "Caba y alrededores"
+   ]
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87623_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87640_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87641_cap_es.xml": {
+   "caba": false
+  },
+  "http://www3.smn.gob.ar/feeds/CAP/oladecalor/87645_cap_es.xml": {
+   "caba": false
   }
  },
  "eventos": {
@@ -199,14 +259,27 @@
    "nombre": "Temperaturas extremas · calor",
    "ausente": 0,
    "notificado": "2026-11-27T17:00:56.238085-03:00"
+  },
+  "smn:temperaturas extremas calor - alerta amarilla": {
+   "nivel": 1,
+   "nombre": "ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR",
+   "ausente": 0,
+   "notificado": "2026-11-27T18:20:33.616015-03:00"
   }
  },
  "seguimiento": {
-  "activo": false
+  "activo": true,
+  "ultimo": "2026-11-27T18:20:34.110817-03:00",
+  "prev": {
+   "lluvia_max": 0,
+   "rafaga_max": 40.7
+  },
+  "motivo": "Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta mañana 20:44)",
+  "ausente": 0
  },
  "ultimo_envio": {
-  "fecha": "2026-11-27T17:00:56.237966-03:00",
-  "texto": "🟠 ⬆️ SUBE A ALERTA NARANJA · Temperaturas extremas · calor\n📊 Por pronóstico (no oficial) · confianza baja (20 %)\n🕒 Cuándo: 29/11 al 01/12\n📍 Dónde: Comunas 8, 9, 10, 11 (aprox.)\n🌡️ Temperaturas máximas de hasta 36 °C, con noches cálidas\n\nAbrir las alertas en el tablero"
+  "fecha": "2026-11-27T18:20:34.110795-03:00",
+  "texto": "📡 Seguimiento · Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta mañana 20:44)\n18:20 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: sin lluvia significativa · ráfagas hasta 41 km/h\n🌧️ Lluvia: ninguno de los dos modelos espera lluvia significativa.\n💨 Viento: ráfagas de hasta 41 km/h (sin alerta)\n🌡️ 29° ahora · mínima 24°\n\nHora por hora (máx. en la Ciudad):\n18h 🌤️ 0,0 mm · 💨 41 km/h\n19h 🌤️ 0,0 mm · 💨 38 km/h\n20h 🌤️ 0,0 mm · 💨 34 km/h\n21h 🌤️ 0,0 mm · 💨 28 km/h\n22h 🌤️ 0,0 mm · 💨 26 km/h\n23h 🌤️ 0,0 mm · 💨 23 km/h\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-27",
  "tg_offset": 253065130,
@@ -215,7 +288,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-27T17:20:37.354670-03:00",
+  "calculado": "2026-11-27T18:20:21.991548-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
