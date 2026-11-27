@@ -254,32 +254,32 @@
   }
  },
  "eventos": {
-  "smn:temperaturas extremas calor - alerta amarilla": {
-   "nivel": 1,
-   "nombre": "ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR",
-   "ausente": 0,
-   "notificado": "2026-11-27T18:20:33.616015-03:00"
-  },
   "int:calor": {
    "nivel": 2,
    "nombre": "Temperaturas extremas · calor",
    "ausente": 0,
    "notificado": "2026-11-27T17:00:56.238085-03:00"
+  },
+  "smn:temperaturas extremas calor - alerta amarilla": {
+   "nivel": 1,
+   "nombre": "ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR",
+   "ausente": 0,
+   "notificado": "2026-11-27T18:20:33.616015-03:00"
   }
  },
  "seguimiento": {
   "activo": true,
-  "ultimo": "2026-11-27T19:50:18.261406-03:00",
+  "ultimo": "2026-11-27T20:30:26.394747-03:00",
   "prev": {
    "lluvia_max": 0,
-   "rafaga_max": 38.2
+   "rafaga_max": 34.2
   },
   "motivo": "Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta mañana 20:44)",
   "ausente": 0
  },
  "ultimo_envio": {
-  "fecha": "2026-11-27T20:00:27.238707-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nDomingo 29/11 · 22° / 34°\n   🟠 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 24 % · Comunas 8, 9, 10, 11\n   confianza media\nLunes 30/11 · 23° / 34°\n   🟠 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 24 % · Comunas 8, 9, 10, 11\n   confianza media\nMartes 01/12 · 23° / 36° · 💧 57 %\n   🟠 Temperaturas extremas · calor: máximas de hasta 36 °C · prob. 24 % · Comunas 8, 9, 10, 11\n   confianza baja\nMiércoles 02/12 · 17° / 27° · 💧 35 %\nJueves 03/12 · 12° / 25°\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-27T20:30:26.394629-03:00",
+  "texto": "📡 Seguimiento · Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta mañana 20:44)\n20:30 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: sin lluvia significativa · ráfagas hasta 34 km/h\n🌧️ Lluvia: ninguno de los dos modelos espera lluvia significativa.\n💨 Viento: ráfagas de hasta 34 km/h (sin alerta)\n🌡️ 27° ahora · mínima 23°\n\nHora por hora (máx. en la Ciudad):\n20h 🌤️ 0,0 mm · 💨 34 km/h\n21h 🌤️ 0,0 mm · 💨 28 km/h\n22h 🌤️ 0,0 mm · 💨 26 km/h\n23h 🌤️ 0,0 mm · 💨 23 km/h\n00h 🌤️ 0,0 mm · 💨 22 km/h\n01h 🌤️ 0,0 mm · 💨 21 km/h\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-27",
  "tg_offset": 253065130,
