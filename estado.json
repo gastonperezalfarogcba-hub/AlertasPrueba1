@@ -1,5 +1,18 @@
 {
- "cap_cache": {},
+ "cap_cache": {
+  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87637_cap_es.xml": {
+   "caba": false
+  },
+  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87679_cap_es.xml": {
+   "caba": false
+  },
+  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87715_cap_es.xml": {
+   "caba": false
+  },
+  "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87774_cap_es.xml": {
+   "caba": false
+  }
+ },
  "eventos": {
   "int:calor": {
    "nivel": 1,
@@ -12,10 +25,10 @@
   "activo": false
  },
  "ultimo_envio": {
-  "fecha": "2026-11-26T20:10:23.180385-03:00",
-  "texto": "🗓️ Perspectiva · próximos días · actualización de la tarde\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nSábado 28/11 · 20° / 36°\nDomingo 29/11 · 22° / 35°\n   🟡 Temperaturas extremas · calor: máximas de hasta 35 °C · prob. 57 % · Comunas 8, 9, 10, 11\n   confianza media\nLunes 30/11 · 23° / 34°\n   🟡 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 72 % · Comunas 8, 9, 10, 11\n   confianza baja\nMartes 01/12 · 21° / 34° · 💧 61 %\n   🟡 Tormentas: tormentas (probabilidad 61 %) · Toda la Ciudad\n   🟡 Temperaturas extremas · calor: 38 % de los escenarios superan el umbral amarillo (el modelo principal no lo muestra)\n   confianza baja\nMiércoles 02/12 · 12° / 26° · 💧 43 %\n\nVer la perspectiva en el tablero"
+  "fecha": "2026-11-27T08:01:49.471125-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nDomingo 29/11 · 22° / 35°\n   🟡 Temperaturas extremas · calor: máximas de hasta 35 °C · prob. 72 % · Comunas 8, 9, 10, 11\n   confianza media\nLunes 30/11 · 23° / 34°\n   🟡 Temperaturas extremas · calor: máximas de hasta 34 °C · prob. 74 % · Comunas 8, 9, 10, 11\n   confianza media\nMartes 01/12 · 21° / 34° · 💧 77 %\nMiércoles 02/12 · 14° / 26° · 💧 47 %\nJueves 03/12 · 12° / 23°\n\nVer la perspectiva en el tablero"
  },
- "resumen_fecha": "2026-11-26",
+ "resumen_fecha": "2026-11-27",
  "tg_offset": 253065130,
  "lluvia": {
   "estado": "seco",
@@ -240,5 +253,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-26@20"
+ "resumen_turno": "2026-11-27@8"
 }
