@@ -1,68 +1,5 @@
 {
  "cap_cache": {
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090154_Tormenta_Llanura_alertas_alertas_1.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090154_Tormenta_Llanura_alertas_alertas_2.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090154_Tormenta_Llanura_alertas_alertas_3.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090154_Tormenta_Llanura_alertas_alertas_4.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090154_Tormenta_Patagonia_alertas_alertas_1.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090154_Tormenta_Patagonia_alertas_alertas_2.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090154_Tormenta_Patagonia_alertas_alertas_3.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090154_Tormenta_Patagonia_alertas_alertas_4.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_1.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_10.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_11.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_12.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_13.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_2.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_3.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_4.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_5.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_6.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_7.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_8.xml": {
-   "caba": false
-  },
-  "https://ssl.smn.gob.ar/feeds/CAP/xml_generados/CAP_20261126090158_Viento_Patagonia_alertas_alertas_9.xml": {
-   "caba": false
-  },
   "http://forms.smn.gob.ar/feeds/CAP/oladecalor/87637_cap_es.xml": {
    "caba": false
   },
@@ -104,7 +41,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-26T20:21:07.905026-03:00",
+  "calculado": "2026-11-26T21:21:05.833977-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -126,7 +63,7 @@
    },
    "calor": {
     "amarillo": 72,
-    "naranja": 26,
+    "naranja": 30,
     "rojo": 0,
     "escenarios": 82
    },
@@ -204,8 +141,8 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 7,
-     "naranja": 7,
+     "amarillo": 6,
+     "naranja": 6,
      "rojo": 0,
      "escenarios": 82
     },
@@ -230,8 +167,8 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 57,
-     "naranja": 26,
+     "amarillo": 65,
+     "naranja": 30,
      "rojo": 0,
      "escenarios": 82
     },
@@ -257,7 +194,7 @@
     },
     "calor": {
      "amarillo": 72,
-     "naranja": 26,
+     "naranja": 30,
      "rojo": 0,
      "escenarios": 82
     },
@@ -282,8 +219,8 @@
      "escenarios": 82
     },
     "calor": {
-     "amarillo": 38,
-     "naranja": 21,
+     "amarillo": 35,
+     "naranja": 26,
      "rojo": 0,
      "escenarios": 82
     },
