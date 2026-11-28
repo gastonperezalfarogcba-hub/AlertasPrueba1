@@ -158,17 +158,17 @@
   }
  },
  "eventos": {
-  "smn:temperaturas extremas calor - alerta amarilla": {
-   "nivel": 1,
-   "nombre": "ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR",
-   "ausente": 0,
-   "notificado": "2026-11-27T18:20:33.616015-03:00"
-  },
   "int:calor": {
    "nivel": 2,
    "nombre": "Temperaturas extremas · calor",
    "ausente": 0,
    "notificado": "2026-11-28T09:50:25.787806-03:00"
+  },
+  "smn:temperaturas extremas calor - alerta amarilla": {
+   "nivel": 1,
+   "nombre": "ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR",
+   "ausente": 0,
+   "notificado": "2026-11-27T18:20:33.616015-03:00"
   }
  },
  "seguimiento": {
