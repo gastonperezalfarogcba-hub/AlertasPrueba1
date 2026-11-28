@@ -269,17 +269,17 @@
  },
  "seguimiento": {
   "activo": true,
-  "ultimo": "2026-11-27T21:30:26.615314-03:00",
+  "ultimo": "2026-11-27T22:00:42.170007-03:00",
   "prev": {
    "lluvia_max": 0,
-   "rafaga_max": 28.1
+   "rafaga_max": 23.0
   },
   "motivo": "Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta mañana 20:44)",
   "ausente": 0
  },
  "ultimo_envio": {
-  "fecha": "2026-11-27T21:40:22.730908-03:00",
-  "texto": "🟡 ⬇️ BAJA A ALERTA AMARILLA · Temperaturas extremas · calor\n📊 Por pronóstico (no oficial) · confianza alta (63 %)\n🕒 Cuándo: 29/11 al 30/11\n📍 Dónde: Comunas 8, 9, 10, 11 (aprox.)\n🌡️ Temperaturas máximas de hasta 36 °C, con noches cálidas\n\nAbrir las alertas en el tablero"
+  "fecha": "2026-11-27T22:00:42.169871-03:00",
+  "texto": "📡 Seguimiento · Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta mañana 20:44)\n22:00 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: sin lluvia significativa · ráfagas hasta 23 km/h\n🌧️ Lluvia: ninguno de los dos modelos espera lluvia significativa.\n💨 Viento: ráfagas de hasta 23 km/h (sin alerta)\n🌡️ 26° ahora · mínima 22°\n\nHora por hora (máx. en la Ciudad):\n22h 🌤️ 0,0 mm · 💨 23 km/h\n23h 🌤️ 0,0 mm · 💨 23 km/h\n00h 🌤️ 0,0 mm · 💨 23 km/h\n01h 🌤️ 0,0 mm · 💨 22 km/h\n02h 🌤️ 0,0 mm · 💨 20 km/h\n03h 🌤️ 0,0 mm · 💨 22 km/h\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-27",
  "tg_offset": 253065130,
