@@ -288,7 +288,7 @@
   "seco_desde": "2026-11-21T19:10:20.349896-03:00"
  },
  "ensambles": {
-  "calculado": "2026-11-27T23:20:19.329308-03:00",
+  "calculado": "2026-11-28T00:20:23.871749-03:00",
   "modelos": [
    "ecmwf_ifs025 (51)",
    "gfs_seamless (31)",
@@ -322,32 +322,6 @@
    }
   },
   "dias": {
-   "2026-11-27": {
-    "lluvia": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "viento": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "calor": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    },
-    "frio": {
-     "amarillo": 0,
-     "naranja": 0,
-     "rojo": 0,
-     "escenarios": 82
-    }
-   },
    "2026-11-28": {
     "lluvia": {
      "amarillo": 0,
@@ -479,6 +453,32 @@
     }
    },
    "2026-12-03": {
+    "lluvia": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "viento": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "calor": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    },
+    "frio": {
+     "amarillo": 0,
+     "naranja": 0,
+     "rojo": 0,
+     "escenarios": 82
+    }
+   },
+   "2026-12-04": {
     "lluvia": {
      "amarillo": 0,
      "naranja": 0,
