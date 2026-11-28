@@ -269,7 +269,7 @@
  },
  "seguimiento": {
   "activo": true,
-  "ultimo": "2026-11-28T04:00:26.218342-03:00",
+  "ultimo": "2026-11-28T04:30:25.508433-03:00",
   "prev": {
    "lluvia_max": 0,
    "rafaga_max": 26.6
@@ -278,8 +278,8 @@
   "ausente": 0
  },
  "ultimo_envio": {
-  "fecha": "2026-11-28T04:00:26.218207-03:00",
-  "texto": "📡 Seguimiento · Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta hoy 20:44)\n04:00 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: sin lluvia significativa · ráfagas hasta 21 km/h\n🌧️ Lluvia: ninguno de los dos modelos espera lluvia significativa.\n💨 Viento: ráfagas de hasta 27 km/h (sin alerta)\n🌡️ 22° ahora · mínima 21°\n\nHora por hora (máx. en la Ciudad):\n04h 🌤️ 0,0 mm · 💨 21 km/h\n05h 🌤️ 0,0 mm · 💨 20 km/h\n06h 🌤️ 0,0 mm · 💨 21 km/h\n07h 🌤️ 0,0 mm · 💨 21 km/h\n08h 🌤️ 0,0 mm · 💨 23 km/h\n09h 🌤️ 0,0 mm · 💨 27 km/h\n\nVer la lluvia por comuna en el tablero"
+  "fecha": "2026-11-28T04:30:25.508295-03:00",
+  "texto": "📡 Seguimiento · Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta hoy 20:44)\n04:30 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: sin lluvia significativa · ráfagas hasta 21 km/h\n🌧️ Lluvia: ninguno de los dos modelos espera lluvia significativa.\n💨 Viento: ráfagas de hasta 27 km/h (sin alerta)\n🌡️ 22° ahora · mínima 21°\n\nHora por hora (máx. en la Ciudad):\n04h 🌤️ 0,0 mm · 💨 21 km/h\n05h 🌤️ 0,0 mm · 💨 20 km/h\n06h 🌤️ 0,0 mm · 💨 21 km/h\n07h 🌤️ 0,0 mm · 💨 21 km/h\n08h 🌤️ 0,0 mm · 💨 23 km/h\n09h 🌤️ 0,0 mm · 💨 27 km/h\n\nVer la lluvia por comuna en el tablero"
  },
  "resumen_fecha": "2026-11-27",
  "tg_offset": 253065130,
