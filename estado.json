@@ -173,19 +173,19 @@
  },
  "seguimiento": {
   "activo": true,
-  "ultimo": "2026-11-28T07:30:32.199565-03:00",
+  "ultimo": "2026-11-28T08:00:25.348643-03:00",
   "prev": {
    "lluvia_max": 0,
-   "rafaga_max": 33.5
+   "rafaga_max": 36.7
   },
   "motivo": "Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta hoy 20:44)",
   "ausente": 0
  },
  "ultimo_envio": {
-  "fecha": "2026-11-28T07:30:32.199423-03:00",
-  "texto": "📡 Seguimiento · Alerta amarilla del SMN por ALERTA AMARILLA POR TEMPERATURAS EXTREMAS CALOR (hasta hoy 20:44)\n07:30 · próximas 6 h · WRF-SMN y Open-Meteo · por comuna, aproximado\n\n🕒 Esta hora: sin lluvia significativa · ráfagas hasta 22 km/h\n🌧️ Lluvia: ninguno de los dos modelos espera lluvia significativa.\n💨 Viento: ráfagas de hasta 34 km/h (sin alerta)\n🌡️ 22° ahora · mínima 21°\n\nHora por hora (máx. en la Ciudad):\n07h 🌤️ 0,0 mm · 💨 22 km/h\n08h 🌤️ 0,0 mm · 💨 24 km/h\n09h 🌤️ 0,0 mm · 💨 27 km/h\n10h 🌤️ 0,0 mm · 💨 31 km/h\n11h 🌤️ 0,0 mm · 💨 33 km/h\n12h 🌤️ 0,0 mm · 💨 34 km/h\n\nVer la lluvia por comuna en el tablero"
+  "fecha": "2026-11-28T08:00:25.788348-03:00",
+  "texto": "🗓️ Perspectiva · próximos días\nPronóstico extendido de menor certeza. No es una alerta: sirve para anticipar.\n\nLunes 30/11 · 23° / 35°\n   🟡 Temperaturas extremas · calor: máximas de hasta 35 °C · prob. 55 % · Comunas 8, 9, 10, 11\n   confianza media\nMartes 01/12 · 21° / 35° · 💧 56 %\n   🟡 Tormentas: tormentas (probabilidad 56 %) · Comunas 9, 10, 11, 12, 13, 14, 15\n   confianza media\nMiércoles 02/12 · 16° / 24° · 💧 55 %\nJueves 03/12 · 11° / 23°\nViernes 04/12 · 16° / 30°\n\nVer la perspectiva en el tablero"
  },
- "resumen_fecha": "2026-11-27",
+ "resumen_fecha": "2026-11-28",
  "tg_offset": 253065130,
  "lluvia": {
   "estado": "seco",
@@ -410,5 +410,5 @@
    }
   }
  },
- "resumen_turno": "2026-11-27@20"
+ "resumen_turno": "2026-11-28@8"
 }
